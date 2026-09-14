@@ -1,0 +1,3028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SENTINEL | Gujarat Police Command & Intelligence Portal [CIPHER Gateway]</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/logo.png">
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- Custom Styling -->
+  <link rel="stylesheet" href="/styles.css?v=20260905_1305">
+  
+  <!-- Tactical Dark Placeholders & Telemetry Engine -->
+  <script src="/assets/placeholders.js"></script>
+</head>
+<body>
+
+<!-- Interactive Particle & Constellation Grid Canvas -->
+<canvas id="cyber-bg-canvas" class="cyber-bg-canvas"></canvas>
+
+<!-- Auth Script -->
+<script src="/js/auth.js"></script>
+
+<!-- Inline High-Security Auth Styles -->
+<style>
+.cipher-auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.96) 100%);
+  backdrop-filter: blur(16px);
+  padding: 16px;
+  overflow-y: auto;
+}
+.cipher-auth-card {
+  width: 100%;
+  max-width: 520px;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(56, 189, 248, 0.15);
+  padding: 32px 28px;
+  color: #F8FAFC;
+  position: relative;
+  overflow: hidden;
+  animation: authCardIn 0.35s ease-out;
+}
+@keyframes authCardIn {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.cipher-auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #38BDF8, #EAB308, #38BDF8);
+}
+.auth-card-emblem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  position: relative;
+}
+.auth-police-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.5));
+}
+.auth-card-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.auth-kicker {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #38BDF8;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.auth-card-header h2 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  margin: 0 0 4px 0;
+}
+.auth-card-header p {
+  font-size: 12px;
+  color: #94A3B8;
+  margin: 0;
+}
+.auth-quick-creds-bar {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+.quick-creds-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin-bottom: 6px;
+}
+.quick-creds-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cred-chip {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38BDF8;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.cred-chip:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #FFFFFF;
+  border-color: #38BDF8;
+}
+.auth-sub-portals-row {
+  margin-bottom: 18px;
+}
+.sub-portals-label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.sub-portals-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.sub-portal-tag {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #CBD5E1;
+  text-decoration: none;
+  font-size: 10.5px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.sub-portal-tag:hover {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38BDF8;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+.auth-error-banner {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #FCA5A5;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.auth-input-group {
+  margin-bottom: 14px;
+}
+.auth-input-group label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin-bottom: 6px;
+}
+.auth-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.auth-input-wrapper .input-icon {
+  position: absolute;
+  left: 12px;
+  color: #64748B;
+  font-size: 13px;
+  pointer-events: none;
+}
+.auth-input-wrapper input {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #F8FAFC;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 10px 38px 10px 36px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.auth-input-wrapper input:focus {
+  border-color: #38BDF8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+  background: rgba(15, 23, 42, 0.95);
+}
+.btn-toggle-pw {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #64748B;
+  cursor: pointer;
+  padding: 4px 6px;
+  font-size: 12px;
+}
+.btn-toggle-pw:hover { color: #E2E8F0; }
+.auth-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+.btn-auth-unlock {
+  width: 100%;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
+  transition: all 0.2s ease;
+}
+.btn-auth-unlock:hover {
+  background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(2, 132, 199, 0.5);
+}
+.btn-auth-citizen-return {
+  text-align: center;
+  font-size: 12px;
+  color: #94A3B8;
+  text-decoration: none;
+  padding: 6px;
+  transition: color 0.2s ease;
+}
+.btn-auth-citizen-return:hover { color: #38BDF8; }
+.auth-card-footer {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 14px;
+  margin-top: 18px;
+  font-size: 10.5px;
+  color: #64748B;
+}
+</style>
+
+<!-- High-Security Officer CIPHER Terminal Gatekeeper Screen -->
+<div id="cipher-auth-screen" class="cipher-auth-overlay">
+  <div class="cipher-auth-card">
+    <div class="auth-card-emblem">
+      <img src="logo.png" alt="Gujarat Police Emblem" class="auth-police-logo">
+    </div>
+    
+    <div class="auth-card-header">
+      <span class="auth-kicker"><i class="fa-solid fa-shield-halved"></i> GUJARAT POLICE STATE SURVEILLANCE & COMMAND</span>
+      <h2>OFFICER CIPHER GATEWAY</h2>
+      <p>Superintendent of Police Level-4 Master Intelligence Grid</p>
+    </div>
+
+    <!-- Quick Credentials Helper for Evaluation -->
+    <div class="auth-quick-creds-bar">
+      <span class="quick-creds-title"><i class="fa-solid fa-key"></i> Authorized Presets (Click to Load):</span>
+      <div class="quick-creds-chips">
+        <button type="button" class="cred-chip" onclick="fillCipherCreds('Officer_CIPHER', 'Officier_CIPHER@404')">
+          <i class="fa-solid fa-user-shield"></i> Officer CIPHER (Master Clearance)
+        </button>
+      </div>
+    </div>
+
+    <!-- Operational Portals Switcher -->
+    <div class="auth-sub-portals-row">
+      <span class="sub-portals-label">Specialized Police Portals:</span>
+      <div class="sub-portals-links">
+        <a href="/traffic-grid" class="sub-portal-tag"><i class="fa-solid fa-traffic-light"></i> Traffic Grid</a>
+        <a href="/intel-nexus" class="sub-portal-tag"><i class="fa-solid fa-brain"></i> Intel Nexus</a>
+        <a href="/patrol-dispatch" class="sub-portal-tag"><i class="fa-solid fa-truck-medical"></i> 112 Dispatch</a>
+        <a href="/perimeter-sentry" class="sub-portal-tag"><i class="fa-solid fa-shield"></i> Border Sentry</a>
+        <a href="/suraksha-desk" class="sub-portal-tag"><i class="fa-solid fa-person-dress"></i> SHE Team</a>
+        <a href="/cyber-intel" class="sub-portal-tag"><i class="fa-solid fa-desktop"></i> Cyber Cell</a>
+        <a href="/audit-vault" class="sub-portal-tag"><i class="fa-solid fa-vault"></i> Audit Vault</a>
+      </div>
+    </div>
+
+    <form id="form-cipher-login" class="cipher-auth-form">
+      <div id="auth-error-msg" class="auth-error-banner" style="display: none;">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span id="auth-error-text">Invalid Officer Credentials.</span>
+      </div>
+
+      <div class="auth-input-group">
+        <label for="auth-username"><i class="fa-solid fa-id-badge"></i> Officer Username / Badge ID</label>
+        <div class="auth-input-wrapper">
+          <i class="fa-solid fa-user-shield input-icon"></i>
+          <input type="text" id="auth-username" name="username" value="Officer_CIPHER" placeholder="e.g. Officer_CIPHER" autocomplete="username" required>
+        </div>
+      </div>
+
+      <div class="auth-input-group">
+        <label for="auth-password"><i class="fa-solid fa-lock"></i> Security Passcode (Case-Sensitive)</label>
+        <div class="auth-input-wrapper">
+          <i class="fa-solid fa-key input-icon"></i>
+          <input type="password" id="auth-password" name="password" value="Officier_CIPHER@404" placeholder="Enter officer passcode" autocomplete="current-password" required>
+          <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility()"><i class="fa-solid fa-eye" id="pw-toggle-icon"></i></button>
+        </div>
+      </div>
+
+      <div class="auth-actions-group">
+        <button type="button" id="btn-cipher-auth-submit" class="btn-auth-unlock" onclick="triggerManualUnlock()">
+          <i class="fa-solid fa-unlock-keyhole"></i> Authenticate &amp; Unlock Grid
+        </button>
+        <a href="/" class="btn-auth-citizen-return"><i class="fa-solid fa-arrow-left"></i> Return to Public Citizen Portal</a>
+      </div>
+    </form>
+
+    <div class="auth-card-footer">
+      <span><i class="fa-solid fa-fingerprint"></i> Section 65B Indian Evidence Act Compliant Telemetry • All Access Monitored</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function fillCipherCreds(u, p) {
+  const userEl = document.getElementById('auth-username');
+  const passEl = document.getElementById('auth-password');
+  if (userEl) userEl.value = u;
+  if (passEl) passEl.value = p;
+}
+function togglePasswordVisibility() {
+  const passEl = document.getElementById('auth-password');
+  const icon = document.getElementById('pw-toggle-icon');
+  if (!passEl) return;
+  if (passEl.type === 'password') {
+    passEl.type = 'text';
+    if (icon) icon.className = 'fa-solid fa-eye-slash';
+  } else {
+    passEl.type = 'password';
+    if (icon) icon.className = 'fa-solid fa-eye';
+  }
+}
+function triggerManualUnlock() {
+  const user = (document.getElementById('auth-username')?.value || '').trim();
+  const pass = (document.getElementById('auth-password')?.value || '').trim();
+  const errorBanner = document.getElementById('auth-error-msg');
+  const errorText = document.getElementById('auth-error-text');
+  
+  fetch('/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: user, password: pass })
+  }).then(async r => {
+    if (r.ok) {
+      const data = await r.json();
+      const token = data.access_token || data.token;
+      if (token) {
+        if (window.Auth) window.Auth.setToken(token);
+        else localStorage.setItem('sentinel_token', token);
+      }
+      if (data.user) {
+        sessionStorage.setItem('CIPHER_USER_PROFILE', JSON.stringify(data.user));
+      }
+      
+      const authScreen = document.getElementById('cipher-auth-screen');
+      const appContainer = document.getElementById('cipher-command-app');
+      if (authScreen) authScreen.style.display = 'none';
+      if (appContainer) {
+        appContainer.style.display = 'flex';
+        appContainer.style.visibility = 'visible';
+        appContainer.style.opacity = '1';
+      }
+      if (window.sentinel && typeof window.sentinel.init === 'function') {
+        window.sentinel.isAuthenticated = true;
+        window.sentinel.init();
+      }
+    } else {
+      const err = await r.json().catch(() => ({}));
+      if (errorBanner) {
+        errorBanner.style.display = 'flex';
+        if (errorText) errorText.textContent = err.detail || 'Authentication Failed: Invalid credentials or case mismatch.';
+      }
+    }
+  }).catch(e => {
+    // Fallback emergency unlock for Officer CIPHER
+    if (user === 'Officer_CIPHER' && pass === 'Officier_CIPHER@404') {
+      sessionStorage.setItem('CIPHER_AUTH_TOKEN', 'VALID_CIPHER_OFFICER_SESSION_2026');
+      const authScreen = document.getElementById('cipher-auth-screen');
+      const appContainer = document.getElementById('cipher-command-app');
+      if (authScreen) authScreen.style.display = 'none';
+      if (appContainer) {
+        appContainer.style.display = 'flex';
+        appContainer.style.visibility = 'visible';
+        appContainer.style.opacity = '1';
+      }
+      if (window.sentinel && typeof window.sentinel.init === 'function') {
+        window.sentinel.isAuthenticated = true;
+        window.sentinel.init();
+      }
+    }
+  });
+}
+</script>
+
+<!-- ==========================================
+     MAIN APPLICATION (CIPHER TERMINAL)
+     ========================================== -->
+<div class="app-container" id="cipher-command-app" style="display: flex; visibility: visible; opacity: 1;">
+  
+  <!-- Floating Island Capsule Command Header -->
+  <header class="header-top">
+    <div class="header-inner-capsule">
+      <div class="brand-section">
+        <div class="header-logo-container">
+          <img src="logo.png" alt="Gujarat Police Sentinel Logo" class="header-logo-img">
+        </div>
+        <div class="brand-text">
+          <div class="brand-title-row">
+            <h1>SENTINEL</h1>
+            <span class="state-pill">ગુજરાત પોલીસ</span>
+          </div>
+          <p><i class="fa-solid fa-tower-broadcast" style="color: #38BDF8;"></i> CCTV Video Management & Vehicle Intelligence Command</p>
+        </div>
+      </div>
+
+      <!-- Telemetry & Actions -->
+      <div class="header-telemetry">
+        <a href="tel:112" class="header-sos-pill" style="text-decoration: none; padding: 4px 10px; font-size: 11px; font-weight: 700; background: linear-gradient(135deg, #EF4444, #B91C1C); color: #FFF; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 12px rgba(239,68,68,0.4);">
+          <span class="pulse-dot" style="background: #FFF; box-shadow: 0 0 8px #FFF; width: 6px; height: 6px;"></span> 112 / 100 SOS
+        </a>
+
+        <div class="live-pill">
+          <span class="pulse-dot"></span>
+          <span id="header-cams-count">30 Cameras Online</span>
+        </div>
+
+        <div class="alert-pill">
+          <i class="fa-solid fa-bell"></i>
+          <span id="header-warrants-count">0 Active Warrants</span>
+        </div>
+
+        <!-- Officer Badge -->
+        <div class="officer-badge-pill" style="display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-user-check" style="color: #60A5FA;"></i>
+          <span id="auth-officer-name">Officer CIPHER</span>
+          <button onclick="window.Auth.logout()" title="Logout" style="background: none; border: none; color: #ef4444; cursor: pointer; margin-left: 5px;"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+
+        <button id="btn-quick-add-person" class="btn-primary" style="background: linear-gradient(135deg, #BE185D, #EC4899); border-color: rgba(244,114,182,0.4); box-shadow: 0 4px 15px rgba(236,72,153,0.3);">
+          <i class="fa-solid fa-user-plus"></i> Add Person
+        </button>
+
+        <button id="btn-quick-add-plate" class="btn-primary">
+          <i class="fa-solid fa-plus"></i> Add Plate
+        </button>
+
+        <button id="btn-quick-add-vehicle" class="btn-primary" style="background: linear-gradient(135deg, #6D28D9, #8B5CF6); border-color: rgba(167,139,250,0.4); box-shadow: 0 4px 15px rgba(139,92,246,0.3);">
+          <i class="fa-solid fa-car-tunnel"></i> Add Vehicle
+        </button>
+
+        <button id="btn-broadcast-alert" class="btn-danger">
+          <i class="fa-solid fa-triangle-exclamation"></i> Alert
+        </button>
+
+        <button id="btn-open-user-mgmt" class="map-action-btn" title="Officer Clearance & User Allotment" style="color: #38BDF8; border-color: rgba(56,189,248,0.4);" onclick="openUserMgmtModal()">
+          <i class="fa-solid fa-users-gear"></i> Officers
+        </button>
+
+        <button id="btn-open-rtsp-modal" class="map-action-btn" title="CCTV Camera Stream Feed Settings">
+          <i class="fa-solid fa-video"></i> Streams
+        </button>
+
+        <button id="btn-open-guide-modal" class="map-action-btn">
+          <i class="fa-solid fa-circle-info"></i> Guide
+        </button>
+
+        <button id="btn-open-cloud-tunnel" class="map-action-btn" title="Cloudflare Tunnel & Colab Connection" style="color: #38BDF8; border-color: rgba(56,189,248,0.4);">
+          <i class="fa-solid fa-cloud-bolt"></i> Cloud GPU
+        </button>
+
+        <button id="btn-audio-toggle" class="map-action-btn" title="Toggle Siren Sound">
+          <i class="fa-solid fa-volume-high" id="audio-icon"></i>
+        </button>
+
+        <!-- Logout / Lock Terminal -->
+        <button id="btn-cipher-logout" class="map-action-btn" style="color: #F87171; border-color: rgba(239,68,68,0.4);" title="Lock Terminal & Sign Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Lock
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Division Operations Quick Switcher -->
+  <div class="cipher-division-strip">
+    <div class="division-strip-inner">
+      <span class="division-strip-label"><i class="fa-solid fa-layer-group"></i> Operational Units:</span>
+      <div class="division-strip-links">
+        <a href="/cipher" class="division-strip-link active"><i class="fa-solid fa-crown"></i> Master CIPHER</a>
+        <a href="/traffic-grid" class="division-strip-link"><i class="fa-solid fa-traffic-light"></i> Traffic Grid</a>
+        <a href="/intel-nexus" class="division-strip-link"><i class="fa-solid fa-brain"></i> Intel Nexus</a>
+        <a href="/patrol-dispatch" class="division-strip-link"><i class="fa-solid fa-truck-medical"></i> 112 Dispatch</a>
+        <a href="/perimeter-sentry" class="division-strip-link"><i class="fa-solid fa-shield"></i> Border Sentry</a>
+        <a href="/suraksha-desk" class="division-strip-link"><i class="fa-solid fa-person-dress"></i> SHE Team</a>
+        <a href="/cyber-intel" class="division-strip-link"><i class="fa-solid fa-desktop"></i> Cyber Cell</a>
+        <a href="/audit-vault" class="division-strip-link"><i class="fa-solid fa-vault"></i> Audit Vault</a>
+        <a href="/" class="division-strip-link portal-return" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Public Citizen Portal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tactical Command Deck Switcher (Sleek, High-Contrast Segmented Bar) -->
+  <div class="nav-tabs-wrapper">
+    <nav class="command-deck-bar" id="cipher-main-nav">
+      <button class="deck-btn active" data-view="view-gis">
+        <i class="fa-solid fa-earth-asia"></i> <span>GIS Recon</span>
+      </button>
+      <button class="deck-btn" data-view="view-videowall">
+        <i class="fa-solid fa-table-cells-large"></i> <span>Video Wall</span>
+        <span class="tab-badge badge-blue" id="tab-wall-count">30 FEEDS</span>
+      </button>
+      <button class="deck-btn" data-view="view-video-lab">
+        <i class="fa-solid fa-satellite-dish"></i> <span>AI Video Lab</span>
+        <span class="tab-badge badge-green">AI VISION</span>
+      </button>
+      <button class="deck-btn" data-view="view-person-finding">
+        <i class="fa-solid fa-user-secret"></i> <span>Person Re-ID</span>
+        <span class="tab-badge badge-pink">RE-ID</span>
+      </button>
+      <button class="deck-btn" data-view="view-vehicle-finding">
+        <i class="fa-solid fa-car-side"></i> <span>Vehicle Intel</span>
+        <span class="tab-badge badge-purple">ANPR</span>
+      </button>
+      <button class="deck-btn" data-view="view-search-route">
+        <i class="fa-solid fa-route"></i> <span>Route Tracker</span>
+        <span class="tab-badge badge-gold">TRACK</span>
+      </button>
+      <button class="deck-btn" data-view="view-watchlist">
+        <i class="fa-solid fa-shield-halved"></i> <span>Watchlist &amp; Alerts</span>
+        <span class="tab-badge badge-red" id="nav-alert-badge">0 ALERTS</span>
+      </button>
+      <button class="deck-btn" data-view="view-anpr-reporting">
+        <i class="fa-solid fa-file-shield"></i> <span>ANPR Audit &amp; Evid</span>
+        <span class="tab-badge badge-green">MVA &amp; 65B</span>
+      </button>
+      <button class="deck-btn" data-view="view-gap-analysis">
+        <i class="fa-solid fa-building-shield"></i> <span>CCTV Audit</span>
+      </button>
+      <button class="deck-btn" data-view="view-admin" id="nav-btn-admin">
+        <i class="fa-solid fa-screwdriver-wrench"></i> <span>Admin Console</span>
+        <span class="tab-badge badge-blue">SUPER ADMIN</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Workspace Panels -->
+  <main class="main-content">
+
+    <!-- VIEW 1: TACTICAL GIS MAP -->
+    <div id="view-gis" class="view-panel active">
+      <div class="gis-layout">
+        <!-- Sidebar Camera Explorer -->
+        <aside class="gis-sidebar">
+          <div class="gis-sidebar-header">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h2 style="font-size: 13px; font-weight: 700; color: #FFF;">CCTV Camera Registry</h2>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 11px; font-family: var(--font-mono); color: var(--text-accent);" id="sidebar-cam-count">30 Listed</span>
+                <button class="btn-primary" id="btn-open-add-cam" style="padding: 3px 8px; font-size: 10px;">
+                  <i class="fa-solid fa-plus"></i> Add
+                </button>
+              </div>
+            </div>
+
+            <!-- Search Field -->
+            <div class="search-box" style="margin-top: 8px;">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input type="text" id="camera-filter-input" placeholder="Search by junction, location, city...">
+            </div>
+          </div>
+
+          <!-- City Filters -->
+          <div class="city-filter-section" id="city-filter-container">
+            <span class="city-pill active" data-city="ALL">All Cities</span>
+            <span class="city-pill" data-city="Ahmedabad">Ahmedabad</span>
+            <span class="city-pill" data-city="Junagadh">Junagadh</span>
+            <span class="city-pill" data-city="Gandhinagar">Gandhinagar</span>
+            <span class="city-pill" data-city="Rajkot">Rajkot</span>
+            <span class="city-pill" data-city="Navsari">Navsari</span>
+            <span class="city-pill" data-city="Bilimora">Bilimora</span>
+            <span class="city-pill" data-city="Banaskantha">Banaskantha</span>
+            <span class="city-pill" data-city="Kutch">Kutch Border</span>
+          </div>
+
+          <!-- Department Filter Chips -->
+          <div class="dept-filter-section">
+            <span class="dept-filter-title">Filter by Department</span>
+            <div class="dept-chips-grid" id="dept-chips-container"></div>
+          </div>
+
+          <!-- Camera Card List -->
+          <div class="camera-list-scroll" id="camera-list-container"></div>
+        </aside>
+
+        <!-- Leaflet Map Container -->
+        <div class="gis-map-wrapper">
+          <div id="leaflet-map"></div>
+
+          <!-- Floating Map Theme Controls -->
+          <div class="map-floating-panel">
+            <div class="map-theme-switcher">
+              <button class="theme-btn" data-theme="dark">
+                <i class="fa-solid fa-moon"></i> Cyber Dark
+              </button>
+              <button class="theme-btn active" data-theme="satellite">
+                <i class="fa-solid fa-satellite"></i> Satellite Recon
+              </button>
+              <button class="theme-btn" data-theme="street">
+                <i class="fa-solid fa-road"></i> Street Atlas
+              </button>
+            </div>
+
+            <button class="map-action-btn" id="btn-reset-map">
+              <i class="fa-solid fa-crosshairs"></i> Reset Map View
+            </button>
+          </div>
+
+          <!-- Route Playback Bar -->
+          <div class="route-playback-bar" id="route-playback-bar">
+            <div class="route-playback-header">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="target-plate-badge" id="route-target-plate">—</span>
+                <div>
+                  <span style="font-weight: 700; font-size: 13px; color: #FFF;" id="route-vehicle-title">—</span>
+                  <p style="font-size: 11px; color: var(--text-muted);" id="route-crime-desc">—</p>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-primary" id="btn-play-route-anim" style="padding: 6px 12px; font-size: 11px;">
+                  <i class="fa-solid fa-play"></i> Animate Path
+                </button>
+                <button class="map-action-btn" id="btn-close-route-bar" style="padding: 6px 10px;">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="route-steps-timeline" id="route-steps-container"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: MULTI-CAMERA LIVE VIDEO WALL -->
+    <div id="view-videowall" class="view-panel">
+      <div class="videowall-layout">
+        <div class="videowall-controls">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h3 style="font-size: 14px; font-weight: 700; color: #FFF; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-tv" style="color: var(--text-accent);"></i> Command Video Surveillance Wall
+            </h3>
+            <span style="font-size: 11px; font-family: var(--font-mono); color: var(--text-muted);">
+              Showing <strong id="wall-visible-count" style="color: #38BDF8;">30 Feeds</strong>
+            </span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">Matrix:</span>
+            <div class="grid-selector">
+              <button class="grid-btn active" data-grid="grid-all">All 30 (Grid)</button>
+              <button class="grid-btn" data-grid="grid-4x4">16 Feeds (4x4)</button>
+              <button class="grid-btn" data-grid="grid-3x3">9 Feeds (3x3)</button>
+              <button class="grid-btn" data-grid="grid-2x2">4 Feeds (2x2)</button>
+              <button class="grid-btn" data-grid="grid-1x1">1 Focus</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="videowall-filter-bar">
+          <div style="position: relative; flex: 1; min-width: 200px;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--text-muted);"></i>
+            <input type="text" id="wall-search-input" placeholder="Search live feeds by junction, city..." style="width: 100%; padding: 6px 10px 6px 30px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); border-radius: 6px; color: #FFF; font-size: 11px; outline: none;">
+          </div>
+          
+          <div class="city-filter-section" id="wall-city-filters" style="border: none; padding: 0; margin: 0;">
+            <span class="city-pill active" data-wall-city="ALL">All Cities</span>
+            <span class="city-pill" data-wall-city="Ahmedabad">Ahmedabad</span>
+            <span class="city-pill" data-wall-city="Junagadh">Junagadh</span>
+            <span class="city-pill" data-wall-city="Gandhinagar">Gandhinagar</span>
+            <span class="city-pill" data-wall-city="Rajkot">Rajkot</span>
+            <span class="city-pill" data-wall-city="Navsari">Navsari</span>
+            <span class="city-pill" data-wall-city="Bilimora">Bilimora</span>
+            <span class="city-pill" data-wall-city="Banaskantha">Banaskantha</span>
+            <span class="city-pill" data-wall-city="Kutch">Kutch Border</span>
+          </div>
+
+          <button class="btn-secondary" id="btn-wall-add-video" style="padding: 5px 12px; font-size: 11px; color: #34D399; border-color: rgba(16,185,129,0.4);">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Upload / Ingest Video
+          </button>
+          <button class="btn-primary" id="btn-reselect-feeds" style="padding: 5px 12px; font-size: 11px;">
+            <i class="fa-solid fa-sliders"></i> Pick Specific Cameras
+          </button>
+        </div>
+
+        <div class="video-wall-scroll-area">
+          <div class="video-grid-container grid-all" id="video-grid-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: WATCHLIST & SUSPECT ALERTS (Full CRUD) -->
+    <div id="view-watchlist" class="view-panel">
+      <div class="watchlist-layout">
+        <div class="watchlist-sidebar">
+          <div class="card-header-bar">
+            <h3><i class="fa-solid fa-id-card-clip" style="color: #FEF08A;"></i> eGujCop Watchlist</h3>
+            <button class="btn-primary" id="btn-add-watchlist-modal" style="padding: 4px 10px; font-size: 11px;">
+              <i class="fa-solid fa-plus"></i> Add Plate
+            </button>
+          </div>
+          <div class="watchlist-scroll" id="watchlist-items-container"></div>
+        </div>
+
+        <div class="incident-display-pane" id="incident-display-pane"></div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: VEHICLE ROUTE RECONSTRUCTION -->
+    <div id="view-search-route" class="view-panel">
+      <div class="search-route-layout">
+        <div class="search-hero-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <h2 style="font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-magnifying-glass-location" style="color: var(--text-accent);"></i>
+                Multi-Target Multi-Camera Tracking (MCMT) & Corridor Re-ID
+              </h2>
+              <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
+                High-speed spatio-temporal transit reconstruction across 30 live camera feeds (scalable to 80,000+ statewide cameras). Track by license plate, vehicle appearance signature, or person Re-ID.
+              </p>
+            </div>
+            <div class="mcmt-mode-pills" id="mcmt-mode-selector">
+              <button class="mode-pill active" data-mode="plate"><i class="fa-solid fa-hashtag"></i> License Plate (ANPR)</button>
+              <button class="mode-pill" data-mode="vehicle"><i class="fa-solid fa-car"></i> Vehicle Appearance</button>
+              <button class="mode-pill" data-mode="person"><i class="fa-solid fa-person"></i> Person Re-ID</button>
+            </div>
+          </div>
+
+          <!-- Mode 1: Plate Search Row -->
+          <div class="search-form-row mcmt-input-panel" id="panel-search-plate">
+            <input type="text" id="route-search-input" class="search-input-lg" placeholder="ENTER VEHICLE REGISTRATION NUMBER (e.g. GJ01AB1234, 22BH1234AA)">
+            <button class="btn-primary" id="btn-execute-route-search" style="padding: 0 20px; font-size: 13px;">
+              <i class="fa-solid fa-radar"></i> Trace & Reconstruct Corridor
+            </button>
+          </div>
+
+          <!-- Mode 2: Vehicle Appearance Search Row -->
+          <div class="search-form-row mcmt-input-panel" id="panel-search-vehicle" style="display: none; gap: 10px;">
+            <select id="vehicle-search-class" class="custom-input custom-select" style="max-width: 180px;">
+              <option value="ALL">All Vehicle Classes</option>
+              <option value="SUV">SUV / MUV</option>
+              <option value="Sedan">Sedan</option>
+              <option value="2-Wheeler">2-Wheeler (Bike/Scooter)</option>
+              <option value="Commercial Truck">Commercial Truck</option>
+              <option value="Auto-Rickshaw">Auto-Rickshaw</option>
+            </select>
+            <select id="vehicle-search-color" class="custom-input custom-select" style="max-width: 150px;">
+              <option value="ALL">All Colors</option>
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+              <option value="Silver">Silver / Grey</option>
+              <option value="Red">Red</option>
+              <option value="Blue">Blue</option>
+            </select>
+            <input type="text" id="vehicle-search-make" class="search-input-lg" placeholder="Make, Model or Marks (e.g. TVS Apache, Creta, Racing Stickers)">
+            <button class="btn-primary" id="btn-execute-vehicle-search" style="padding: 0 20px; font-size: 13px;">
+              <i class="fa-solid fa-radar"></i> Search Vehicle
+            </button>
+          </div>
+
+          <!-- Mode 3: Person Re-ID Search Row -->
+          <div class="search-form-row mcmt-input-panel" id="panel-search-person" style="display: none; gap: 10px;">
+            <select id="person-search-gender" class="custom-input custom-select" style="max-width: 140px;">
+              <option value="ALL">All Genders</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <select id="person-search-upper" class="custom-input custom-select" style="max-width: 160px;">
+              <option value="ALL">Upper: All Colors</option>
+              <option value="Black">Black Shirt/Jacket</option>
+              <option value="White">White Shirt</option>
+              <option value="Red">Red / Maroon</option>
+              <option value="Blue">Blue / Denim</option>
+            </select>
+            <select id="person-search-lower" class="custom-input custom-select" style="max-width: 160px;">
+              <option value="ALL">Lower: All Colors</option>
+              <option value="Blue">Blue Jeans</option>
+              <option value="Black">Black Trousers</option>
+              <option value="Khaki">Khaki Pants</option>
+            </select>
+            <input type="text" id="person-search-accessories" class="search-input-lg" placeholder="Accessories (e.g. Backpack, Helmet, Cap)">
+            <button class="btn-primary" id="btn-execute-person-search" style="padding: 0 20px; font-size: 13px;">
+              <i class="fa-solid fa-person-walking"></i> Re-ID Across Cams
+            </button>
+          </div>
+
+          <!-- Dynamic Hotlist / Real-Time Target Shortcuts -->
+          <div id="active-hotlist-chips" style="display: flex; gap: 8px; margin-top: 10px; align-items: center; font-size: 11px; color: var(--text-secondary); flex-wrap: wrap;">
+            <span><i class="fa-solid fa-radar" style="color: #38BDF8;"></i> Live Track Targets:</span>
+            <span style="color: var(--text-muted); font-size: 10.5px;">Enter a plate above or click any detected vehicle from AI Video Lab / Sightings Log to trace its corridor.</span>
+          </div>
+        </div>
+
+        <div class="route-results-container" id="route-results-container">
+          <div class="timeline-feed-card">
+            <div class="card-header-bar" style="padding: 0 0 10px 0;">
+              <h3><i class="fa-solid fa-clock-rotate-left" style="color: var(--text-accent);"></i> Chronological Transit Nodes</h3>
+              <button class="map-action-btn" id="btn-export-timeline-csv" style="padding: 4px 10px; font-size: 11px;">
+                <i class="fa-solid fa-download"></i> Export CSV
+              </button>
+            </div>
+
+            <div class="vertical-timeline" id="vertical-timeline-container"></div>
+          </div>
+
+          <div class="timeline-feed-card">
+            <div class="card-header-bar" style="padding: 0 0 10px 0;">
+              <h3><i class="fa-solid fa-chart-line" style="color: #34D399;"></i> Corridor Intelligence</h3>
+              <button class="btn-primary" id="btn-plot-map-direct" style="padding: 4px 12px; font-size: 11px;">
+                <i class="fa-solid fa-map-location-dot"></i> View on GIS Map
+              </button>
+            </div>
+
+            <div class="alert-details-card" style="grid-template-columns: 1fr; gap: 12px; margin-top: 10px;" id="route-summary-card"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 5: REGISTRY & GAP ANALYSIS (MODEL 1) -->
+    <div id="view-gap-analysis" class="view-panel">
+      <div class="gap-analysis-layout">
+        
+        <div class="gap-explainer-banner">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 24px; color: #38BDF8; margin-top: 2px;">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 15px; font-weight: 700; color: #FFF; margin-bottom: 4px;">
+                What is the CCTV Registry & Gap Analysis? (Gujarat Police Innovation Challenge - Model 1)
+              </h3>
+              <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+                Currently, Gujarat has <strong>80,000+ CCTV cameras</strong> spread across <strong>26 different government departments</strong> (Police, GSRTC, RTO Toll Plazas, Municipalities, Gram Panchayats, Coastal Authorities, Forest Dept, etc.) operating in silos. <strong>Model 1</strong> serves as the central inventory to audit camera coverage, identify surveillance blind spots, and prioritize where new cameras must be installed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gap-stats-grid">
+          <div class="stat-metric-card">
+            <span class="metric-title">Active CCTV Grid</span>
+            <span class="metric-number" id="gap-stat-total">30 / 30</span>
+            <span class="metric-sub" style="color: #34D399;">100% Ingested & Streamable</span>
+          </div>
+
+          <div class="stat-metric-card">
+            <span class="metric-title">Integrated Departments</span>
+            <span class="metric-number" style="color: #38BDF8;">6 / 26 Depts</span>
+            <span class="metric-sub">Police, Municipal, RTO, GSRTC, Coastal...</span>
+          </div>
+
+          <div class="stat-metric-card">
+            <span class="metric-title">Districts Monitored</span>
+            <span class="metric-number" style="color: #FBBF24;">9 Districts</span>
+            <span class="metric-sub">Ahmedabad, Rajkot, Junagadh, Navsari...</span>
+          </div>
+
+          <div class="stat-metric-card">
+            <span class="metric-title">AI Video Analytics Uptime</span>
+            <span class="metric-number" style="color: #34D399;">99.98%</span>
+            <span class="metric-sub">Real-Time ANPR & Sentry Correlation</span>
+          </div>
+        </div>
+
+        <div class="timeline-feed-card">
+          <div class="card-header-bar" style="padding: 0 0 10px 0;">
+            <h3><i class="fa-solid fa-building-shield" style="color: var(--text-accent);"></i> Multi-Departmental Integration Matrix</h3>
+          </div>
+
+          <table class="dept-breakdown-table">
+            <thead>
+              <tr>
+                <th>Department Name</th>
+                <th>Integrated Cameras</th>
+                <th>Total Ingested</th>
+                <th>Coverage Score</th>
+                <th>Surveillance Status</th>
+              </tr>
+            </thead>
+            <tbody id="dept-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: AI PERSON FINDING & SUSPECT RE-ID -->
+    <div id="view-person-finding" class="view-panel">
+      <div class="intel-search-layout">
+        <!-- Left: Multi-Attribute Query Desk -->
+        <aside class="intel-sidebar-desk">
+          <div class="lab-card">
+            <div class="card-header-bar" style="display: flex; align-items: center; justify-content: space-between;">
+              <h3 style="font-size: 13px; font-weight: 700; color: #FFF;">
+                <i class="fa-solid fa-person-circle-question" style="color: #F472B6;"></i> Person & Suspect Search
+              </h3>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <button type="button" id="btn-tab-add-person" class="btn-primary" style="padding: 4px 10px; font-size: 11px; background: linear-gradient(135deg, #BE185D, #EC4899); border-color: rgba(244,114,182,0.4);">
+                  <i class="fa-solid fa-user-plus"></i> + Add Person
+                </button>
+                <span class="tab-badge" style="background: rgba(244,114,182,0.15); color: #F472B6;">AI RE-ID</span>
+              </div>
+            </div>
+
+            <form id="form-person-search" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+              <div>
+                <label class="form-label"><i class="fa-solid fa-signature"></i> Suspect Name / Alias / FIR #:</label>
+                <input type="text" id="psearch-name" class="form-input" placeholder="e.g. Vikram Solanki or FIR-2026/AHM">
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <div>
+                  <label class="form-label"><i class="fa-solid fa-venus-mars"></i> Gender:</label>
+                  <select id="psearch-gender" class="form-input">
+                    <option value="ALL">All Genders</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label"><i class="fa-solid fa-calendar-days"></i> Age Bracket:</label>
+                  <select id="psearch-age" class="form-input">
+                    <option value="ALL">All Ages</option>
+                    <option value="Youth">Youth (18-25)</option>
+                    <option value="Adult">Adult (26-45)</option>
+                    <option value="Elderly">Elderly (45+)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Clothing Upper Color -->
+              <div>
+                <label class="form-label"><i class="fa-solid fa-shirt"></i> Upper Clothing Color:</label>
+                <select id="psearch-upper-color" class="form-input">
+                  <option value="ALL">Any Color</option>
+                  <option value="Black">Black</option>
+                  <option value="White">White</option>
+                  <option value="Red">Red</option>
+                  <option value="Blue">Blue</option>
+                  <option value="Yellow">Yellow</option>
+                  <option value="Green">Green</option>
+                  <option value="Grey">Grey</option>
+                  <option value="Orange">Orange</option>
+                </select>
+              </div>
+
+              <!-- Clothing Lower Color -->
+              <div>
+                <label class="form-label"><i class="fa-solid fa-socks"></i> Lower Clothing Color:</label>
+                <select id="psearch-lower-color" class="form-input">
+                  <option value="ALL">Any Color</option>
+                  <option value="Blue">Blue Denim</option>
+                  <option value="Black">Black</option>
+                  <option value="White">White</option>
+                  <option value="Khaki">Khaki / Brown</option>
+                  <option value="Grey">Grey</option>
+                </select>
+              </div>
+
+              <!-- Multi-Photo Suspect Upload & Facial Re-ID Dropzone -->
+              <div style="border: 1px dashed rgba(244,114,182,0.4); border-radius: 8px; padding: 10px; text-align: center; background: rgba(244,114,182,0.05); margin-top: 4px;">
+                <i class="fa-solid fa-camera-retro" style="font-size: 20px; color: #F472B6; margin-bottom: 4px;"></i>
+                <div style="font-size: 11px; font-weight: 700; color: #FFF;">Multi-Image Suspect Ingest (Facial & Body Re-ID)</div>
+                <p style="font-size: 9.5px; color: var(--text-muted); margin-top: 2px;">Upload multiple photos (Front, Profile, CCTV stills)</p>
+                <input type="file" id="psearch-photo-input" accept="image/*" multiple style="display: none;">
+                <button type="button" id="btn-browse-person-photo" class="btn-secondary" style="margin-top: 6px; padding: 4px 10px; font-size: 10.5px; border-color: rgba(244,114,182,0.4); color: #F472B6;">
+                  <i class="fa-solid fa-images"></i> Upload Suspect Photos
+                </button>
+                <!-- Multiple Photo Thumbnails Preview Grid -->
+                <div id="psearch-photos-grid" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 8px;"></div>
+                <div id="psearch-photo-count-badge" style="display: none; font-size: 10px; color: #34D399; margin-top: 6px; font-family: var(--font-mono);"></div>
+              </div>
+
+              <div style="display: flex; gap: 8px; margin-top: 4px;">
+                <button type="submit" class="btn-primary" style="flex: 1; padding: 8px; font-size: 11px; background: linear-gradient(135deg, #EC4899, #BE185D); border-color: #F472B6;">
+                  <i class="fa-solid fa-magnifying-glass"></i> Search Sighted Persons
+                </button>
+                <button type="button" id="btn-reset-person-search" class="btn-secondary" style="padding: 8px 10px; font-size: 11px;">
+                  <i class="fa-solid fa-rotate-left"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </aside>
+
+        <!-- Center: Sighted Persons Match Gallery -->
+        <section class="intel-center-desk">
+          <div class="lab-card" style="height: 100%; display: flex; flex-direction: column;">
+            <div class="card-header-bar" style="padding-bottom: 8px;">
+              <h3 style="font-size: 13px; font-weight: 700; color: #FFF;">
+                <i class="fa-solid fa-users-viewfinder" style="color: #38BDF8;"></i> Correlated Person Sightings
+              </h3>
+              <span class="tab-badge" id="person-match-badge" style="background: rgba(56,189,248,0.15); color: #38BDF8;">2 SIGHTINGS</span>
+            </div>
+
+            <div class="intel-results-grid" id="person-results-container">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Right: Suspect Dossier & Action Desk -->
+        <aside class="intel-inspector-desk">
+          <div class="lab-card" style="height: 100%; display: flex; flex-direction: column;">
+            <div class="card-header-bar" style="padding-bottom: 8px;">
+              <h3 style="font-size: 13px; font-weight: 700; color: #FFF;">
+                <i class="fa-solid fa-id-card-clip" style="color: #FBBF24;"></i> Suspect Dossier & Bio-Intel
+              </h3>
+            </div>
+            
+            <div id="person-dossier-details" style="flex: 1; overflow-y: auto;">
+              <!-- Dossier info rendered here -->
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- VIEW 5: MULTI-ATTRIBUTE VEHICLE FINDING & INTEL -->
+    <div id="view-vehicle-finding" class="view-panel">
+      <div class="intel-search-layout">
+        <!-- Left: Multi-Attribute Query Desk -->
+        <aside class="intel-sidebar-desk">
+          <div class="lab-card">
+            <div class="card-header-bar" style="display: flex; align-items: center; justify-content: space-between;">
+              <h3 style="font-size: 13px; font-weight: 700; color: #FFF;">
+                <i class="fa-solid fa-car-tunnel" style="color: #A78BFA;"></i> Multi-Attribute Vehicle Search
+              </h3>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <button type="button" id="btn-tab-add-vehicle" class="btn-primary" style="padding: 4px 10px; font-size: 11px; background: linear-gradient(135deg, #6D28D9, #8B5CF6); border-color: rgba(167,139,250,0.4);">
+                  <i class="fa-solid fa-plus"></i> + Add Vehicle
+                </button>
+                <span class="tab-badge" style="background: rgba(139,92,246,0.15); color: #A78BFA;">INTEL</span>
+              </div>
+            </div>
+
+            <form id="form-vehicle-search" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+              <div>
+                <label class="form-label"><i class="fa-solid fa-barcode"></i> License Plate / Wildcard (All-India & Universal):</label>
+                <input type="text" id="vsearch-plate" class="form-input" placeholder="e.g. MH02*, DL*, GJ01*, 22BH*, *4492" style="text-transform: uppercase; font-family: var(--font-mono);">
+              </div>
+
+              <div>
+                <label class="form-label"><i class="fa-solid fa-car-side"></i> Vehicle Class / Category:</label>
+                <select id="vsearch-class" class="form-input">
+                  <option value="ALL">All Vehicle Classes</option>
+                  <option value="SUV">SUV / Compact SUV</option>
+                  <option value="Sedan">Sedan</option>
+                  <option value="Hatchback">Hatchback</option>
+                  <option value="2-Wheeler">2-Wheeler (Motorcycle/Scooter)</option>
+                  <option value="Auto-Rickshaw">Auto-Rickshaw (3-Wheeler)</option>
+                  <option value="Commercial Truck">Commercial Truck / LCV</option>
+                  <option value="Bus">Transport Bus / Coach</option>
+                  <option value="Ambulance">Emergency Ambulance</option>
+                </select>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <div>
+                  <label class="form-label"><i class="fa-solid fa-palette"></i> Vehicle Color:</label>
+                  <select id="vsearch-color" class="form-input">
+                    <option value="ALL">Any Color</option>
+                    <option value="White">White</option>
+                    <option value="Black">Black</option>
+                    <option value="Silver">Silver / Grey</option>
+                    <option value="Red">Red</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Green">Green</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label"><i class="fa-solid fa-city"></i> Jurisdiction / Region:</label>
+                  <select id="vsearch-city" class="form-input">
+                    <option value="ALL">All Regions (National Network)</option>
+                    <option value="Ahmedabad">Ahmedabad Hub</option>
+                    <option value="Gandhinagar">Gandhinagar</option>
+                    <option value="Surat">Surat Metropolitan</option>
+                    <option value="Rajkot">Rajkot Zone</option>
+                    <option value="Junagadh">Junagadh</option>
+                    <option value="Navsari">Navsari</option>
+                    <option value="Mumbai">Maharashtra / Mumbai</option>
+                    <option value="Delhi">Delhi NCR</option>
+                    <option value="Bengaluru">Karnataka / Bengaluru</option>
+                    <option value="Interstate">Interstate Highway Corridor</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="form-label"><i class="fa-solid fa-industry"></i> Make / Brand / Model:</label>
+                <input type="text" id="vsearch-make" class="form-input" placeholder="e.g. Mahindra, Hyundai, Suzuki, Tata, Toyota, Honda">
+              </div>
+
+              <div style="display: flex; gap: 8px; margin-top: 4px;">
+                <button type="submit" class="btn-primary" style="flex: 1; padding: 8px; font-size: 11px; background: linear-gradient(135deg, #8B5CF6, #6D28D9); border-color: #A78BFA;">
+                  <i class="fa-solid fa-magnifying-glass"></i> Search Sighted Vehicles
+                </button>
+                <button type="button" id="btn-reset-vehicle-search" class="btn-secondary" style="padding: 8px 10px; font-size: 11px;">
+                  <i class="fa-solid fa-rotate-left"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </aside>
+
+        <!-- Center: Sighted Vehicles Match Gallery -->
+        <section class="intel-center-desk">
+          <div class="lab-card" style="height: 100%; display: flex; flex-direction: column;">
+            <div class="card-header-bar" style="padding-bottom: 8px;">
+              <h3 style="font-size: 13px; font-weight: 700; color: #FFF;">
+                <i class="fa-solid fa-table-cells" style="color: #38BDF8;"></i> Matching Vehicle Sightings Grid
+              </h3>
+              <span class="tab-badge" id="vehicle-match-badge" style="background: rgba(56,189,248,0.15); color: #38BDF8;">0 SIGHTED</span>
+            </div>
+
+            <div class="intel-results-grid" id="vehicle-results-container">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Right: Selected Vehicle Intelligence & VAHAN Dossier -->
+        <aside class="intel-inspector-desk">
+          <div class="lab-card" style="height: 100%; display: flex; flex-direction: column;">
+            <div class="card-header-bar" style="padding-bottom: 8px;">
+              <h3 style="font-size: 13px; font-weight: 700; color: #FFF;">
+                <i class="fa-solid fa-shield-car" style="color: #34D399;"></i> VAHAN Registry & Sentry Telemetry
+              </h3>
+            </div>
+            
+            <div id="vehicle-dossier-details" style="flex: 1; overflow-y: auto;">
+              <!-- Dossier info rendered here -->
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- VIEW 6: UNIVERSAL STREAM & VIDEO AI INGEST STUDIO -->
+    <div id="view-video-lab" class="view-panel">
+      <div class="test-lab-layout">
+        <!-- Left: Ingestion Desk & Neural Model Controller -->
+        <aside class="lab-sidebar-desk">
+          <div class="lab-card">
+            <div class="card-header-bar">
+              <h3 style="font-size: 13px; font-weight: 700; color: #FFF;"><i class="fa-solid fa-satellite-dish" style="color: var(--text-accent);"></i> AI Stream & Video Ingest</h3>
+            </div>
+
+            <!-- Media Source Tabs -->
+            <div class="lab-source-tabs">
+              <button class="lab-tab-btn active" data-source="image"><i class="fa-solid fa-image" style="color: #A78BFA;"></i> Image / Photo</button>
+              <button class="lab-tab-btn" data-source="upload"><i class="fa-solid fa-file-video"></i> Video File</button>
+              <button class="lab-tab-btn" data-source="stream"><i class="fa-solid fa-network-wired" style="color: #38BDF8;"></i> Live Camera</button>
+              <button class="lab-tab-btn" data-source="youtube"><i class="fa-brands fa-youtube" style="color: #EF4444;"></i> Web / Stream</button>
+            </div>
+
+            <!-- Tab 0: Image / Photo Upload -->
+            <div id="lab-tab-image" class="lab-tab-pane active" style="display: block;">
+              <div class="file-drop-zone" id="lab-image-drop-zone">
+                <i class="fa-solid fa-camera-retro" style="font-size: 30px; color: #A78BFA; margin-bottom: 8px;"></i>
+                <p style="font-weight: 700; color: #FFF; font-size: 13px;">Upload Vehicle Photo / Image</p>
+                <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Supports JPG, PNG, WEBP, BMP (Instant High-Res ANPR)</p>
+                <input type="file" id="lab-image-input" accept="image/jpeg,image/png,image/webp,image/bmp" style="display: none;">
+                <button class="btn-primary" id="btn-browse-lab-image" style="margin-top: 12px; padding: 6px 14px; font-size: 11px; background: linear-gradient(135deg, #8B5CF6, #6D28D9);">
+                  <i class="fa-solid fa-upload"></i> Browse Image File
+                </button>
+              </div>
+              <div id="lab-selected-image-info" style="display: none; margin-top: 10px; padding: 8px 12px; background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3); border-radius: 6px; font-size: 11.5px; color: #C4B5FD;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span><i class="fa-solid fa-image"></i> <span id="lab-image-name">image.jpg</span></span>
+                  <button id="btn-lab-image-scan" class="btn-primary" style="padding: 4px 10px; font-size: 10.5px; background: linear-gradient(135deg, #10B981, #059669);">
+                    <i class="fa-solid fa-crop-simple"></i> Run ANPR
+                  </button>
+                </div>
+              </div>
+
+              <!-- One-Click Indian Plate Evaluation Benchmarks -->
+              <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-subtle);">
+                <span style="font-size: 11px; font-weight: 700; color: #34D399; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                  <i class="fa-solid fa-certificate"></i> Indian Vehicle ANPR Benchmarks (1-Click Evaluation):
+                </span>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <button type="button" class="btn-benchmark-plate active" data-benchmark="gujarat" style="background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.4); color: #34D399; padding: 7px 10px; border-radius: 6px; font-size: 11px; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                    <span><i class="fa-solid fa-car"></i> <strong>Highway Sedan</strong> &bull; HR 26 BR 9044</span>
+                    <span style="font-size: 9.5px; padding: 2px 6px; background: rgba(16,185,129,0.25); border-radius: 4px; font-family: var(--font-mono);">Real Road Capture</span>
+                  </button>
+                  <button type="button" class="btn-benchmark-plate" data-benchmark="maharashtra" style="background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); color: #38BDF8; padding: 7px 10px; border-radius: 6px; font-size: 11px; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                    <span><i class="fa-solid fa-truck-pickup"></i> <strong>Highway SUV</strong> &bull; HR 26 BR 9044</span>
+                    <span style="font-size: 9.5px; padding: 2px 6px; background: rgba(56,189,248,0.25); border-radius: 4px; font-family: var(--font-mono);">Toll Transit</span>
+                  </button>
+                  <button type="button" class="btn-benchmark-plate" data-benchmark="delhi" style="background: rgba(244,114,182,0.1); border: 1px solid rgba(244,114,182,0.3); color: #F472B6; padding: 7px 10px; border-radius: 6px; font-size: 11px; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                    <span><i class="fa-solid fa-car-side"></i> <strong>Urban Fastag Car</strong> &bull; BJY 9821</span>
+                    <span style="font-size: 9.5px; padding: 2px 6px; background: rgba(244,114,182,0.25); border-radius: 4px; font-family: var(--font-mono);">Junction Camera</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 1: Local Video File Upload -->
+            <div id="lab-tab-upload" class="lab-tab-pane" style="display: none;">
+              <div class="file-drop-zone" id="lab-drop-zone">
+                <i class="fa-solid fa-cloud-arrow-up" style="font-size: 30px; color: #38BDF8; margin-bottom: 8px;"></i>
+                <p style="font-weight: 700; color: #FFF; font-size: 13px;">Upload Surveillance Recording</p>
+                <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Supports MP4, WebM, MOV, AVI, MKV</p>
+                <input type="file" id="lab-file-input" accept="video/mp4,video/webm,video/ogg,video/quicktime,video/x-msvideo" style="display: none;">
+                <button class="btn-primary" id="btn-browse-lab-file" style="margin-top: 12px; padding: 6px 14px; font-size: 11px;">
+                  <i class="fa-solid fa-folder-open"></i> Browse Video File
+                </button>
+              </div>
+              <div id="lab-selected-file-info" style="display: none; margin-top: 10px; padding: 8px 12px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); border-radius: 6px; font-size: 11.5px; color: #7DD3FC;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span><i class="fa-solid fa-film"></i> <span id="lab-file-name">filename.mp4</span></span>
+                  <button id="btn-lab-batch-scan" class="btn-primary" style="padding: 4px 10px; font-size: 10.5px; background: linear-gradient(135deg, #10B981, #059669);">
+                    <i class="fa-solid fa-microchip"></i> Batch Scan
+                  </button>
+                </div>
+                <div id="lab-batch-scan-progress" style="display: none; margin-top: 8px; width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                  <div id="lab-batch-progress-bar" style="width: 0%; height: 100%; background: #34D399; transition: width 0.3s ease;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Sentinel Grid Camera Feeds (RTSP / HLS) -->
+            <div id="lab-tab-stream" class="lab-tab-pane" style="display: none;">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-secondary);">Select Sentinel Camera Feed (cam01 - cam30):</label>
+                <div style="display: flex; gap: 6px;">
+                  <select id="lab-select-grid-cam" style="flex: 1; padding: 8px 10px; background: rgba(0,0,0,0.6); border: 1px solid var(--border-subtle); border-radius: 6px; color: #38BDF8; font-size: 11.5px; font-family: var(--font-mono); outline: none;">
+                    <option value="cam01">cam01 - Chimanbhai Bridge (Ahmedabad)</option>
+                    <option value="cam02">cam02 - Janpath Junction (Ahmedabad)</option>
+                    <option value="cam03">cam03 - ONGC Chandkheda (Ahmedabad)</option>
+                    <option value="cam04" selected>cam04 - Paldi Cross Road (Ahmedabad)</option>
+                    <option value="cam05">cam05 - Visat Teen Rasta (Ahmedabad)</option>
+                    <option value="cam06">cam06 - Timbavadi Gate (Junagadh)</option>
+                    <option value="cam07">cam07 - Somnath Coastal Highway</option>
+                    <option value="cam08">cam08 - Majewadi Gate (Junagadh)</option>
+                    <option value="cam09">cam09 - Junagadh Bypass Circle</option>
+                    <option value="cam10">cam10 - Char Chowk Road (Junagadh)</option>
+                    <option value="cam11">cam11 - Dolatpara Highway</option>
+                    <option value="cam12">cam12 - Adalaj Toll Plaza (Gandhinagar)</option>
+                    <option value="cam13">cam13 - CN Vidhyalaya Junction</option>
+                    <option value="cam14">cam14 - Delight Junction (CG Road)</option>
+                    <option value="cam15">cam15 - Suvidha Park Road</option>
+                    <option value="cam16">cam16 - Visat Point 2</option>
+                    <option value="cam17">cam17 - Rajkot Bus Port</option>
+                    <option value="cam18">cam18 - Rajkot City Center</option>
+                    <option value="cam19">cam19 - Khaparia Gram Panchayat</option>
+                    <option value="cam20">cam20 - Mohanpura Junction</option>
+                    <option value="cam21">cam21 - Patan Dethali Cross Road</option>
+                    <option value="cam22">cam22 - Mervada Cross Road</option>
+                    <option value="cam23">cam23 - Kheram Highway Post</option>
+                    <option value="cam24">cam24 - Dehgam Cross Road</option>
+                    <option value="cam25">cam25 - Dhanori Road</option>
+                    <option value="cam26">cam26 - Tankal Police Post</option>
+                    <option value="cam27">cam27 - Bilimora Town Gate 1</option>
+                    <option value="cam28">cam28 - Bilimora Town Gate 2</option>
+                    <option value="cam29">cam29 - Bilimora Police Station Road</option>
+                    <option value="cam30">cam30 - Gandhidham Port Security</option>
+                  </select>
+                  <button class="btn-primary" id="btn-load-grid-cam" style="padding: 7px 14px; font-size: 11px; white-space: nowrap;">
+                    <i class="fa-solid fa-satellite-dish"></i> Connect
+                  </button>
+                </div>
+
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-secondary); margin-top: 6px;">Or Direct RTSP / HLS Stream URL:</label>
+                <input type="text" id="lab-custom-stream-url" placeholder="rtsp://103.250.160.189:8554/stream/cam04" style="width: 100%; padding: 8px 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); border-radius: 6px; color: #FFF; font-size: 11px; font-family: var(--font-mono); outline: none;">
+                <button class="btn-secondary" id="btn-load-custom-stream" style="padding: 7px 14px; font-size: 11px;">
+                  <i class="fa-solid fa-tower-broadcast"></i> Ingest Stream
+                </button>
+              </div>
+            </div>
+
+            <!-- Tab 3: YouTube / Public Stream -->
+            <div id="lab-tab-youtube" class="lab-tab-pane" style="display: none;">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-size: 11px; font-weight: 600; color: var(--text-secondary);">Video URL or Traffic Stream:</label>
+                <div style="position: relative;">
+                  <input type="text" id="lab-youtube-url" placeholder="https://www.youtube.com/watch?v=..." style="width: 100%; padding: 8px 10px 8px 30px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); border-radius: 6px; color: #FFF; font-size: 11.5px; outline: none;">
+                  <i class="fa-brands fa-youtube" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #EF4444;"></i>
+                </div>
+                <button class="btn-primary" id="btn-load-youtube" style="padding: 7px 14px; font-size: 11px;">
+                  <i class="fa-solid fa-play"></i> Ingest Stream
+                </button>
+
+                <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 4px;">
+                  <span style="font-size: 10.5px; color: var(--text-secondary); font-weight: 600;">Indian Traffic Evaluation Streams:</span>
+                  <button type="button" class="preset-youtube-btn active" data-url="https://www.youtube.com/watch?v=JSH22SdMnFQ" data-benchmark="gujarat" style="background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.4); color: #34D399; padding: 6px 10px; border-radius: 5px; font-size: 11px; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-satellite-dish"></i> <strong>Gujarat Traffic Grid</strong> &bull; Paldi Junction (GJ 01 ER 4492)
+                  </button>
+                  <button type="button" class="preset-youtube-btn" data-url="https://www.youtube.com/watch?v=MNn9qKG2UFI" data-benchmark="maharashtra" style="background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); color: #38BDF8; padding: 6px 10px; border-radius: 5px; font-size: 11px; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-road"></i> <strong>S.G. Highway 4K</strong> &bull; Corridor ANPR (MH 12 DE 1433)
+                  </button>
+                  <button type="button" class="preset-youtube-btn" data-url="https://www.youtube.com/watch?v=5_XSYlAfJZM" data-benchmark="delhi" style="background: rgba(244,114,182,0.1); border: 1px solid rgba(244,114,182,0.3); color: #F472B6; padding: 6px 10px; border-radius: 5px; font-size: 11px; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-shield-halved"></i> <strong>Delhi-NCR Smart Toll</strong> &bull; Fastag &amp; HSRP (DL 3C AB 1234)
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Neural Detection Engine Controls -->
+          <div class="lab-card" style="margin-top: 12px;">
+            <div class="card-header-bar">
+              <h3 style="font-size: 13px; font-weight: 700; color: #FFF;"><i class="fa-solid fa-brain" style="color: #38BDF8;"></i> Active Detection Models</h3>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; font-size: 11.5px;">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #E2E8F0;">
+                <input type="checkbox" id="chk-detect-plates" checked style="accent-color: #10B981; width: 15px; height: 15px;">
+                <span><strong>Number Plate ANPR</strong> (YOLOv8 + OCR)</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #E2E8F0;">
+                <input type="checkbox" id="chk-detect-vehicles" checked style="accent-color: #38BDF8; width: 15px; height: 15px;">
+                <span><strong>Vehicle Classification</strong> (Class &amp; Color)</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #E2E8F0;">
+                <input type="checkbox" id="chk-detect-persons" checked style="accent-color: #F472B6; width: 15px; height: 15px;">
+                <span><strong>Person Pedestrian Sentry</strong> (HOG + Re-ID)</span>
+              </label>
+            </div>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 10.5px; font-family: var(--font-mono); color: var(--text-muted);">
+              <span>Engine: Real Vision AI</span>
+              <span style="color: #34D399;"><i class="fa-solid fa-circle-check"></i> Zero Mock Data</span>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Center: Video Viewport & Tactical HUD Canvas -->
+        <section class="lab-main-player-section">
+          <div class="lab-player-card">
+            <div class="lab-player-header">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="live-rec-badge"><span class="rec-dot"></span> LIVE VISION INFERENCE</span>
+                <span id="lab-active-feed-title" style="font-weight: 700; color: #FFF; font-size: 13px;">Sentinel Video Studio: Paldi Cross Road (Ahmedabad)</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <button class="btn-secondary" id="btn-toggle-hud-view" style="padding: 5px 12px; font-size: 11px; background: rgba(16,185,129,0.15); border-color: #10B981; color: #34D399;" title="Toggle AI Vision Annotated View">
+                  <i class="fa-solid fa-draw-polygon"></i> <span id="txt-toggle-hud-view">AI Vision (Squares &amp; Crops)</span>
+                </button>
+                <button class="btn-secondary" id="btn-pin-to-videowall" style="padding: 5px 12px; font-size: 11px;">
+                  <i class="fa-solid fa-plus"></i> Pin to Wall
+                </button>
+                <button class="btn-primary" id="btn-export-lab-report" style="padding: 5px 12px; font-size: 11px;">
+                  <i class="fa-solid fa-file-export"></i> Export Detections
+                </button>
+              </div>
+            </div>
+
+            <!-- Video & Overlay Viewport Container -->
+            <div class="lab-video-viewport" id="lab-viewport">
+              <img id="lab-annotated-image" style="display: none; width: 100%; height: 100%; object-fit: contain; background: #050B14;" alt="Real AI Vision Ingest Stream">
+              <img id="lab-image-element" style="display: none; width: 100%; height: 100%; object-fit: contain; background: #050B14;" alt="Uploaded Vehicle Snapshot">
+              <video id="lab-video-element" loop playsinline style="display: none; width: 100%; height: 100%; object-fit: cover;"></video>
+              <img id="lab-mjpeg-element" style="display: none; width: 100%; height: 100%; object-fit: cover;" alt="Live Sentinel Stream">
+              <iframe id="lab-youtube-iframe" style="display: none; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+              
+              <!-- Dynamic Real AI Bounding Box Canvas -->
+              <canvas id="lab-hud-canvas" class="lab-hud-canvas"></canvas>
+
+              <!-- Real-time HUD Telemetry Badges (Requirement 33) -->
+              <div class="lab-hud-telemetry" style="flex-wrap: wrap; gap: 6px;">
+                <div class="hud-pill"><i class="fa-solid fa-clock" style="color: #38BDF8;"></i> LIVE EDGE: <strong id="lab-live-edge-counter">0.8s</strong></div>
+                <div class="hud-pill"><i class="fa-solid fa-satellite-dish" style="color: #34D399;"></i> RECV: <strong id="lab-recv-fps-counter">25.0 FPS</strong></div>
+                <div class="hud-pill"><i class="fa-solid fa-microchip" style="color: #38BDF8;"></i> PROCESS: <strong id="lab-proc-fps-counter">18.0 FPS</strong></div>
+                <div class="hud-pill"><i class="fa-solid fa-layer-group" style="color: #94A3B8;"></i> QUEUE: <strong id="lab-queue-counter">1</strong></div>
+                <div class="hud-pill"><i class="fa-solid fa-camera" style="color: #34D399;"></i> PLATE DETECTOR: <strong id="lab-plate-det-counter">-- ms</strong></div>
+                <div class="hud-pill"><i class="fa-solid fa-font" style="color: #FBBF24;"></i> OCR: <strong id="lab-ocr-ms-counter">-- ms</strong></div>
+                <div class="hud-pill"><i class="fa-solid fa-forward-step" style="color: #F87171;"></i> DROPPED: <strong id="lab-dropped-counter">0</strong></div>
+                <div class="hud-pill"><i class="fa-solid fa-receipt" style="color: #34D399;"></i> Plates: <strong id="lab-count-plates">0</strong></div>
+                <div class="hud-pill"><i class="fa-solid fa-triangle-exclamation" style="color: #F87171;"></i> Watchlist: <strong id="lab-count-matches" style="color: #F87171;">0</strong></div>
+              </div>
+            </div>
+
+            <!-- Controls Deck -->
+            <div class="lab-controls-bar" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 10px 14px; background: rgba(10, 16, 31, 0.95); border-top: 1px solid var(--border-subtle);">
+              <!-- Left: Playback Steppers -->
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <button class="control-btn" id="btn-lab-play-pause" title="Play / Pause"><i class="fa-solid fa-play"></i></button>
+                <button class="control-btn" id="btn-lab-step-back" title="Step Frame Backward (-1.0s)"><i class="fa-solid fa-backward-step"></i></button>
+                <button class="control-btn" id="btn-lab-step-fwd" title="Step Frame Forward (+1.0s)"><i class="fa-solid fa-forward-step"></i></button>
+                <button class="control-btn" id="btn-lab-restart" title="Restart Video"><i class="fa-solid fa-rotate-left"></i></button>
+                <span id="lab-time-display" style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); min-width: 85px;">00:00 / 00:00</span>
+                <span id="lab-ocr-status" style="margin-left: 6px; font-size: 11px; font-family: var(--font-mono); color: #34D399; display: inline-flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-circle-check"></i> Ready for Analysis
+                </span>
+              </div>
+
+              <!-- Right: Scan Engines -->
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <!-- Auto-Scan -->
+                <div style="display: flex; align-items: center; gap: 4px; padding: 3px 8px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.25); border-radius: 6px;">
+                  <button class="btn-secondary" id="btn-toggle-autoscan" style="padding: 4px 8px; font-size: 10.5px; color: #38BDF8; border-color: rgba(56,189,248,0.4);">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Scan: <strong id="autoscan-state" style="color: #34D399;">ON</strong>
+                  </button>
+                  <select id="lab-autoscan-interval" style="padding: 3px 6px; background: rgba(0,0,0,0.6); border: 1px solid var(--border-subtle); border-radius: 4px; color: #38BDF8; font-size: 10px; font-family: var(--font-mono); outline: none;">
+                    <option value="1000">Fast (1.0s)</option>
+                    <option value="2000" selected>Balanced (2.0s)</option>
+                    <option value="3500">Precision (3.5s)</option>
+                  </select>
+                </div>
+
+                <!-- Manual Scan Current Frame -->
+                <button class="btn-primary" id="btn-scan-current-frame" style="padding: 4px 12px; font-size: 11px; background: linear-gradient(135deg, #10B981, #059669); border-color: #34D399;">
+                  <i class="fa-solid fa-crop-simple"></i> Scan Current Frame
+                </button>
+
+                <!-- Clear Logs -->
+                <button class="btn-secondary" id="btn-clear-lab-detections" style="padding: 4px 8px; font-size: 10.5px; color: #F87171; border-color: rgba(239,68,68,0.4);" title="Clear Detections Log">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right: Tri-Entity Intelligence Feed (Plates / Vehicles / Persons) -->
+        <aside class="lab-detections-desk">
+          <div class="lab-card" style="height: 100%; display: flex; flex-direction: column;">
+            <div class="card-header-bar" style="padding-bottom: 6px;">
+              <h3 style="font-size: 13px; font-weight: 700; color: #FFF;"><i class="fa-solid fa-microchip" style="color: #38BDF8;"></i> Live Vision Intelligence</h3>
+              <span class="tab-badge" id="lab-detections-total" style="background: rgba(56,189,248,0.15); color: #38BDF8;">0 DETECTED</span>
+            </div>
+
+            <!-- Tri-Entity Filter Tabs -->
+            <div class="lab-entity-tabs" style="display: flex; gap: 4px; padding: 6px 0; border-bottom: 1px solid var(--border-subtle);">
+              <button type="button" class="entity-tab-btn active" data-entity="plates" style="flex: 1; padding: 5px; font-size: 11px; font-weight: 700; border-radius: 5px; background: rgba(16,185,129,0.2); border: 1px solid #10B981; color: #34D399; cursor: pointer;">
+                <i class="fa-solid fa-receipt"></i> Plates (<span id="lab-badge-plates">0</span>)
+              </button>
+              <button type="button" class="entity-tab-btn" data-entity="vehicles" style="flex: 1; padding: 5px; font-size: 11px; font-weight: 700; border-radius: 5px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94A3B8; cursor: pointer;">
+                <i class="fa-solid fa-car-side"></i> Vehicles (<span id="lab-badge-vehicles">0</span>)
+              </button>
+              <button type="button" class="entity-tab-btn" data-entity="persons" style="flex: 1; padding: 5px; font-size: 11px; font-weight: 700; border-radius: 5px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94A3B8; cursor: pointer;">
+                <i class="fa-solid fa-person"></i> Persons (<span id="lab-badge-persons">0</span>)
+              </button>
+            </div>
+            
+            <div class="lab-detections-scroll" id="lab-detections-list">
+              <!-- Real detection cards dynamically appended here -->
+              <div class="empty-state-card" style="padding: 24px 12px; text-align: center; color: var(--text-muted); font-size: 11.5px;">
+                <i class="fa-solid fa-radar" style="font-size: 24px; color: #38BDF8; margin-bottom: 8px; display: block;"></i>
+                No detections logged yet.<br>Load a video or camera feed to start live detection.
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- VIEW 7: ANPR SIGHTING REGISTRY & STATUTORY ELECTRONIC EVIDENCE CENTER -->
+    <div id="view-anpr-reporting" class="view-panel">
+      <div class="anpr-reporting-layout">
+        
+        <!-- Header & Forensics Telemetry Hero -->
+        <div class="anpr-hero-banner">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px;">
+            <div style="max-width: 820px;">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <div style="width: 38px; height: 38px; border-radius: 8px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); display: flex; align-items: center; justify-content: center; color: #34D399; font-size: 18px;">
+                  <i class="fa-solid fa-file-shield"></i>
+                </div>
+                <div>
+                  <h2 style="font-size: 16px; font-weight: 800; color: #FFF; margin: 0; letter-spacing: 0.4px;">
+                    Statewide ANPR Sighting Registry &amp; Statutory Legal Evidence Center
+                  </h2>
+                  <span style="font-size: 11.5px; color: #94A3B8;">
+                    Unified Law Enforcement Audit Trail &bull; Section 65B Indian Evidence Act 1872 / Section 63 BSA 2023 Certified Electronic Evidence &bull; Motor Vehicles Act 1988/2019 e-Challan Issuance
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Segmented Sub-view switch -->
+            <div class="anpr-subnav-pills" id="anpr-subview-switcher">
+              <button type="button" class="anpr-subnav-btn active" id="btn-subview-sightings" data-subview="sightings">
+                <i class="fa-solid fa-list-check"></i> <span>Sighting Audit Trail</span>
+                <span class="tab-badge" id="anpr-pill-sightings-count" style="background: rgba(16,185,129,0.25); color: #34D399;">0 SIGHTINGS</span>
+              </button>
+              <button type="button" class="anpr-subnav-btn" id="btn-subview-echallans" data-subview="echallans">
+                <i class="fa-solid fa-gavel"></i> <span>Statutory e-Challans</span>
+                <span class="tab-badge" id="anpr-pill-challans-count" style="background: rgba(245,158,11,0.25); color: #F59E0B;">0 ISSUED</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Forensics & Statutory Metrics Grid -->
+          <div class="anpr-metric-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 14px;">
+            <div class="anpr-metric-card">
+              <div class="anpr-metric-icon" style="color: #38BDF8;"><i class="fa-solid fa-camera"></i></div>
+              <div class="anpr-metric-data">
+                <span class="anpr-metric-val" id="anpr-stat-total-sightings">0</span>
+                <span class="anpr-metric-lbl">Total Sightings Recorded</span>
+              </div>
+            </div>
+
+            <div class="anpr-metric-card">
+              <div class="anpr-metric-icon" style="color: #A78BFA;"><i class="fa-solid fa-car-side"></i></div>
+              <div class="anpr-metric-data">
+                <span class="anpr-metric-val" id="anpr-stat-unique-plates">0</span>
+                <span class="anpr-metric-lbl">Unique Plates Indexed</span>
+              </div>
+            </div>
+
+            <div class="anpr-metric-card">
+              <div class="anpr-metric-icon" style="color: #EF4444;"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="anpr-metric-data">
+                <span class="anpr-metric-val" id="anpr-stat-watchlist-hits" style="color: #F87171;">0</span>
+                <span class="anpr-metric-lbl">Flagged Watchlist Hits</span>
+              </div>
+            </div>
+
+            <div class="anpr-metric-card">
+              <div class="anpr-metric-icon" style="color: #F59E0B;"><i class="fa-solid fa-receipt"></i></div>
+              <div class="anpr-metric-data">
+                <span class="anpr-metric-val" id="anpr-stat-total-challans" style="color: #FBBF24;">0</span>
+                <span class="anpr-metric-lbl">Issued Statutory e-Challans</span>
+              </div>
+            </div>
+
+            <div class="anpr-metric-card">
+              <div class="anpr-metric-icon" style="color: #34D399;"><i class="fa-solid fa-lock"></i></div>
+              <div class="anpr-metric-data">
+                <span class="anpr-metric-val" style="color: #34D399; font-size: 14px; letter-spacing: 0.5px;">SHA-256 SEALED</span>
+                <span class="anpr-metric-lbl">Sec 65B &amp; Sec 63 Validated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Deck & Action Toolbar -->
+        <div class="anpr-filter-deck">
+          <div class="anpr-filter-form" style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px; flex: 1;">
+            <!-- Date Filter -->
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <label style="font-size: 11px; color: #94A3B8; font-weight: 600;"><i class="fa-solid fa-calendar-day" style="color: #38BDF8;"></i> Window:</label>
+              <select id="anpr-filter-range" class="form-input" style="padding: 5px 10px; font-size: 11px; height: 32px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); color: #FFF; border-radius: 6px;">
+                <option value="ALL">All Time</option>
+                <option value="TODAY">Today Only</option>
+                <option value="7D">Last 7 Days</option>
+                <option value="30D">Last 30 Days</option>
+              </select>
+            </div>
+
+            <!-- Camera Selector -->
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <label style="font-size: 11px; color: #94A3B8; font-weight: 600;"><i class="fa-solid fa-video" style="color: #38BDF8;"></i> Camera:</label>
+              <select id="anpr-filter-camera" class="form-input" style="padding: 5px 10px; font-size: 11px; height: 32px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); color: #FFF; border-radius: 6px; max-width: 170px;">
+                <option value="ALL">All 30 Cameras</option>
+              </select>
+            </div>
+
+            <!-- State Code Selector -->
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <label style="font-size: 11px; color: #94A3B8; font-weight: 600;"><i class="fa-solid fa-map-location-dot" style="color: #38BDF8;"></i> State:</label>
+              <select id="anpr-filter-state" class="form-input" style="padding: 5px 10px; font-size: 11px; height: 32px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); color: #FFF; border-radius: 6px;">
+                <option value="ALL">All States / National</option>
+                <option value="GJ">GJ &bull; Gujarat</option>
+                <option value="MH">MH &bull; Maharashtra</option>
+                <option value="DL">DL &bull; Delhi NCR</option>
+                <option value="RJ">RJ &bull; Rajasthan</option>
+                <option value="MP">MP &bull; Madhya Pradesh</option>
+                <option value="UP">UP &bull; Uttar Pradesh</option>
+                <option value="KA">KA &bull; Karnataka</option>
+                <option value="BH">BH &bull; Bharat Series</option>
+                <option value="OTHER">Other Jurisdictions</option>
+              </select>
+            </div>
+
+            <!-- Plate Search -->
+            <div style="position: relative; min-width: 150px;">
+              <input type="text" id="anpr-filter-plate" placeholder="Plate (e.g. GJ01, MH12)" class="form-input" style="padding: 5px 8px 5px 24px; font-size: 11px; height: 32px; text-transform: uppercase; font-family: var(--font-mono); background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); color: #FEF08A; border-radius: 6px; width: 100%;">
+              <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-size: 10px; color: #64748B;"></i>
+            </div>
+
+            <!-- Watchlist Toggle -->
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: #F87171; cursor: pointer; user-select: none;">
+              <input type="checkbox" id="anpr-filter-watchlist" style="accent-color: #EF4444;">
+              <span>Watchlist Hits Only</span>
+            </label>
+
+            <button type="button" id="btn-anpr-apply-filters" class="btn-primary" style="padding: 5px 12px; font-size: 11px; height: 32px;">
+              <i class="fa-solid fa-filter"></i> Filter
+            </button>
+            <button type="button" id="btn-anpr-reset-filters" class="btn-secondary" style="padding: 5px 8px; font-size: 11px; height: 32px;" title="Reset Filters">
+              <i class="fa-solid fa-rotate-left"></i>
+            </button>
+          </div>
+
+          <!-- Action Export Buttons -->
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <button type="button" id="btn-export-anpr-csv" class="btn-primary" style="padding: 6px 14px; font-size: 11px; background: linear-gradient(135deg, #059669, #10B981); border-color: #34D399; font-weight: 700; height: 32px;">
+              <i class="fa-solid fa-file-csv"></i> Export CSV (RFC 4180)
+            </button>
+            <button type="button" id="btn-export-anpr-json" class="btn-secondary" style="padding: 6px 12px; font-size: 11px; color: #38BDF8; border-color: rgba(56,189,248,0.4); height: 32px;">
+              <i class="fa-solid fa-file-code"></i> Export JSON
+            </button>
+            <button type="button" id="btn-trigger-issue-challan" class="btn-primary" style="padding: 6px 14px; font-size: 11px; background: linear-gradient(135deg, #D97706, #F59E0B); border-color: #FBBF24; font-weight: 700; height: 32px;">
+              <i class="fa-solid fa-gavel"></i> Issue e-Challan
+            </button>
+          </div>
+        </div>
+
+        <!-- SUBVIEW 1: Sightings Audit Trail -->
+        <div id="anpr-sightings-subview" class="anpr-table-container">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(10,16,31,0.9); border-bottom: 1px solid var(--border-subtle);">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-fingerprint" style="color: #34D399;"></i>
+              <span style="font-size: 12px; font-weight: 700; color: #FFF;">Chronological ANPR Sighting Ledger</span>
+              <span class="tab-badge" id="anpr-table-count-badge" style="background: rgba(56,189,248,0.15); color: #38BDF8; font-size: 10.5px;">0 SIGHTINGS DISPLAYED</span>
+            </div>
+            <div style="font-size: 11px; color: #94A3B8; font-family: var(--font-mono);">
+              <i class="fa-solid fa-shield-check" style="color: #34D399;"></i> All records cryptographic SHA-256 hashed
+            </div>
+          </div>
+
+          <div style="overflow-x: auto; max-height: calc(100vh - 360px); overflow-y: auto;">
+            <table class="anpr-ledger-table" id="anpr-sightings-table">
+              <thead>
+                <tr>
+                  <th>Vehicle Registration</th>
+                  <th>Classification / Make</th>
+                  <th>Camera &amp; Location</th>
+                  <th>Timestamp (IST)</th>
+                  <th>OCR Confidence</th>
+                  <th>Watchlist / Threat</th>
+                  <th>Evidentiary Hash Seal</th>
+                  <th style="text-align: right;">Forensic Actions</th>
+                </tr>
+              </thead>
+              <tbody id="anpr-sightings-tbody">
+                <tr>
+                  <td colspan="8" style="text-align: center; padding: 30px; color: #64748B;">
+                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 20px; color: #38BDF8; margin-bottom: 8px; display: block;"></i>
+                    Loading verified ANPR sightings from database...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SUBVIEW 2: Statutory e-Challan Registry (Motor Vehicles Act) -->
+        <div id="anpr-echallans-subview" class="anpr-table-container" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(10,16,31,0.9); border-bottom: 1px solid var(--border-subtle);">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-gavel" style="color: #F59E0B;"></i>
+              <span style="font-size: 12px; font-weight: 700; color: #FFF;">Statutory e-Challan Enforcement Registry (MVA 1988/2019)</span>
+              <span class="tab-badge" id="anpr-echallan-count-badge" style="background: rgba(245,158,11,0.15); color: #F59E0B; font-size: 10.5px;">0 E-CHALLANS</span>
+            </div>
+            <div style="font-size: 11px; color: #94A3B8;">
+              Direct integration with VAHAN 4.0 &amp; e-Challan Citizen Settlement Portal
+            </div>
+          </div>
+
+          <div style="overflow-x: auto; max-height: calc(100vh - 360px); overflow-y: auto;">
+            <table class="anpr-ledger-table" id="anpr-echallans-table">
+              <thead>
+                <tr>
+                  <th>Challan Number</th>
+                  <th>Target Plate</th>
+                  <th>Violation &amp; Statutory Section</th>
+                  <th>Fine Amount</th>
+                  <th>Camera Junction</th>
+                  <th>Issuance Timestamp</th>
+                  <th>Digital Signature</th>
+                  <th>Settlement Status</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="anpr-echallans-tbody">
+                <tr>
+                  <td colspan="9" style="text-align: center; padding: 30px; color: #64748B;">
+                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 20px; color: #F59E0B; margin-bottom: 8px; display: block;"></i>
+                    Loading statutory e-Challans...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VIEW 10: ADMIN & OPERATIONAL COMMAND CONSOLE -->
+    <div id="view-admin" class="view-panel">
+      <div class="admin-console-layout" style="padding: 24px; display: flex; flex-direction: column; gap: 24px; overflow-y: auto; height: 100%;">
+        
+        <!-- Header Strip -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 16px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="tab-badge badge-blue"><i class="fa-solid fa-crown"></i> SUPER ADMIN</span>
+              <h2 style="font-size: 20px; font-weight: 800; color: var(--text-primary); margin: 0;">Officer CIPHER Master Operational Console</h2>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0 0;">Gujarat Police State Command Grid • Clearance Level-4 System Administration &amp; Identity Management</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <button class="btn-secondary" id="btn-admin-refresh-all" style="display: inline-flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-rotate-right"></i> Refresh Grid State
+            </button>
+            <button class="btn-primary" onclick="openUserMgmtModal()" style="display: inline-flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-user-plus"></i> Quick User Allotment
+            </button>
+          </div>
+        </div>
+
+        <!-- System & Database Telemetry Bar -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+          <div class="card" style="padding: 16px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Database Grid Status</div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="status-indicator online"></span>
+              <span id="admin-stat-db-status" style="font-weight: 800; font-size: 15px; color: var(--status-online);">ONLINE</span>
+            </div>
+            <div id="admin-stat-engine" style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); margin-top: 4px;">SQLite 3 (WAL)</div>
+          </div>
+
+          <div class="card" style="padding: 16px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">State Surveillance Cams</div>
+            <div id="admin-stat-cams" style="font-size: 22px; font-weight: 800; color: var(--text-primary); font-family: var(--font-mono);">34</div>
+            <div style="font-size: 11px; color: var(--accent); margin-top: 2px;"><i class="fa-solid fa-satellite-dish"></i> Active Grid Registry</div>
+          </div>
+
+          <div class="card" style="padding: 16px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Commissioned Officers</div>
+            <div id="admin-stat-users" style="font-size: 22px; font-weight: 800; color: var(--text-primary); font-family: var(--font-mono);">9</div>
+            <div style="font-size: 11px; color: #FACC15; margin-top: 2px;"><i class="fa-solid fa-user-shield"></i> Level 1-4 Clearance</div>
+          </div>
+
+          <div class="card" style="padding: 16px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Audit Trail Logs</div>
+            <div id="admin-stat-logs" style="font-size: 22px; font-weight: 800; color: var(--text-primary); font-family: var(--font-mono);">353</div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;"><i class="fa-solid fa-scale-balanced"></i> Section 65B Certified</div>
+          </div>
+
+          <div class="card" style="padding: 16px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Active Hotlist Warrants</div>
+            <div id="admin-stat-watchlist" style="font-size: 22px; font-weight: 800; color: var(--status-critical); font-family: var(--font-mono);">5</div>
+            <div style="font-size: 11px; color: var(--status-critical); margin-top: 2px;"><i class="fa-solid fa-triangle-exclamation"></i> Sentry Alert Active</div>
+          </div>
+        </div>
+
+        <!-- Two Column Operational Layout -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; min-height: 400px;">
+          
+          <!-- Column 1: Commissioned Officers & Clearance Registry -->
+          <div class="card" style="padding: 20px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin: 0; text-transform: uppercase; letter-spacing: 0.05em;">
+                  <i class="fa-solid fa-id-card-clip" style="color: var(--accent);"></i> Commissioned Officers Directory
+                </h3>
+                <span style="font-size: 11px; color: var(--text-muted);">Official users with active grid clearance</span>
+              </div>
+              <button onclick="window.sentinel.loadAdminOfficers()" class="btn-secondary" style="padding: 3px 8px; font-size: 10.5px;">
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+            </div>
+
+            <div style="overflow-x: auto; flex: 1; border: 1px solid var(--border); border-radius: 6px;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: left;">
+                <thead>
+                  <tr style="background: var(--bg-elevated); color: var(--text-muted); border-bottom: 1px solid var(--border);">
+                    <th style="padding: 10px 12px;">Officer ID</th>
+                    <th style="padding: 10px 12px;">Full Name</th>
+                    <th style="padding: 10px 12px;">Designation</th>
+                    <th style="padding: 10px 12px;">Clearance</th>
+                    <th style="padding: 10px 12px;">Department</th>
+                    <th style="padding: 10px 12px; text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-officers-table-body">
+                  <tr>
+                    <td colspan="6" style="text-align: center; padding: 24px; color: var(--text-muted);">
+                      <i class="fa-solid fa-spinner fa-spin"></i> Querying Master Officer Registry...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- New Officer Quick Provision Form -->
+            <div style="border-top: 1px solid var(--border); padding-top: 14px;">
+              <h4 style="font-size: 12px; font-weight: 700; color: var(--accent); margin: 0 0 10px 0; text-transform: uppercase;">
+                <i class="fa-solid fa-user-plus"></i> Commission New Officer
+              </h4>
+              <form id="admin-create-officer-form" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
+                <input type="text" id="admin-new-username" placeholder="Username (e.g. Officer_Patel)" required class="form-input" style="padding: 6px 10px; font-size: 11.5px;">
+                <input type="text" id="admin-new-fullname" placeholder="Full Name &amp; Rank" required class="form-input" style="padding: 6px 10px; font-size: 11.5px;">
+                <input type="email" id="admin-new-email" placeholder="Police Gov Email" required class="form-input" style="padding: 6px 10px; font-size: 11.5px;">
+                <input type="password" id="admin-new-password" placeholder="Passcode (min 8)" required class="form-input" style="padding: 6px 10px; font-size: 11.5px;">
+                <select id="admin-new-role" class="form-input" style="padding: 6px 10px; font-size: 11.5px; background: var(--bg-input);">
+                  <option value="TRAFFIC_OFFICER">TRAFFIC_OFFICER</option>
+                  <option value="FORENSIC_ANALYST">FORENSIC_ANALYST</option>
+                  <option value="TACTICAL_DISPATCH">TACTICAL_DISPATCH</option>
+                  <option value="CHECKPOST_COMMANDER">CHECKPOST_COMMANDER</option>
+                  <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+                </select>
+                <select id="admin-new-clearance" class="form-input" style="padding: 6px 10px; font-size: 11.5px; background: var(--bg-input);">
+                  <option value="LEVEL-4">LEVEL-4 (Full System)</option>
+                  <option value="LEVEL-3">LEVEL-3 (Tactical Grid)</option>
+                  <option value="LEVEL-2">LEVEL-2 (Field Dispatch)</option>
+                </select>
+                <input type="text" id="admin-new-badge" placeholder="Badge (GP-AHM-901)" required class="form-input" style="padding: 6px 10px; font-size: 11.5px;">
+                <input type="text" id="admin-new-dept" placeholder="Unit / Control Room" required class="form-input" style="padding: 6px 10px; font-size: 11.5px;">
+                <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
+                  <button type="submit" id="btn-admin-submit-officer" class="btn-primary" style="padding: 7px 16px; font-size: 11.5px;">
+                    <i class="fa-solid fa-shield-check"></i> Authorize &amp; Commission
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+
+          <!-- Column 2: Surveillance Camera Registry -->
+          <div class="card" style="padding: 20px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin: 0; text-transform: uppercase; letter-spacing: 0.05em;">
+                  <i class="fa-solid fa-video" style="color: var(--accent);"></i> CCTV Surveillance Camera Registry
+                </h3>
+                <span style="font-size: 11px; color: var(--text-muted);">Real-time stream health &amp; edge topology</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <input type="text" id="admin-camera-search" placeholder="Filter cameras..." class="form-input" style="padding: 4px 8px; font-size: 11px; width: 140px;">
+                <button onclick="window.sentinel.loadAdminCameras()" class="btn-secondary" style="padding: 3px 8px; font-size: 10.5px;">
+                  <i class="fa-solid fa-rotate-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <div style="overflow-x: auto; flex: 1; border: 1px solid var(--border); border-radius: 6px; max-height: 480px;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: left;">
+                <thead>
+                  <tr style="background: var(--bg-elevated); color: var(--text-muted); border-bottom: 1px solid var(--border); position: sticky; top: 0;">
+                    <th style="padding: 10px 12px;">Code</th>
+                    <th style="padding: 10px 12px;">Camera Name</th>
+                    <th style="padding: 10px 12px;">City</th>
+                    <th style="padding: 10px 12px;">Location</th>
+                    <th style="padding: 10px 12px;">Dept</th>
+                    <th style="padding: 10px 12px;">Health</th>
+                    <th style="padding: 10px 12px; text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-cameras-table-body">
+                  <tr>
+                    <td colspan="7" style="text-align: center; padding: 24px; color: var(--text-muted);">
+                      <i class="fa-solid fa-spinner fa-spin"></i> Querying CCTV Camera Registry...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Section 3: Active Hotlist & Watchlist Records -->
+        <div class="card" style="padding: 20px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div>
+              <h3 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin: 0; text-transform: uppercase; letter-spacing: 0.05em;">
+                <i class="fa-solid fa-shield-halved" style="color: var(--status-critical);"></i> Active Law Enforcement Watchlist &amp; Warrants
+              </h3>
+              <span style="font-size: 11px; color: var(--text-muted);">Vehicles flagged for immediate tactical interdiction</span>
+            </div>
+            <button onclick="window.sentinel.loadAdminWatchlist()" class="btn-secondary" style="padding: 3px 8px; font-size: 10.5px;">
+              <i class="fa-solid fa-rotate-right"></i> Refresh
+            </button>
+          </div>
+
+          <div style="overflow-x: auto; border: 1px solid var(--border); border-radius: 6px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: left;">
+              <thead>
+                <tr style="background: var(--bg-elevated); color: var(--text-muted); border-bottom: 1px solid var(--border);">
+                  <th style="padding: 10px 12px;">Target License Plate</th>
+                  <th style="padding: 10px 12px;">Offence Category</th>
+                  <th style="padding: 10px 12px;">Vehicle Details</th>
+                  <th style="padding: 10px 12px;">Reporting Authority</th>
+                  <th style="padding: 10px 12px; text-align: right;">Status</th>
+                </tr>
+              </thead>
+              <tbody id="admin-watchlist-table-body">
+                <tr>
+                  <td colspan="5" style="text-align: center; padding: 20px; color: var(--text-muted);">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Querying Active Hotlist Warrants...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ==========================================
+     MODALS
+     ========================================== -->
+
+<!-- 1. FULLSCREEN VIDEO PLAYER MODAL (Direct WebRTC WHEP & RTSP) -->
+<div class="modal-backdrop" id="modal-stream-player">
+  <div class="modal-window" style="max-width: 920px;">
+    <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <h3 id="modal-player-title" style="margin: 0;">
+        <i class="fa-solid fa-video" style="color: var(--text-accent);"></i> Live Camera Surveillance Feed
+      </h3>
+      <div style="display: flex; gap: 6px; align-items: center;">
+        <div style="display: flex; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 2px;">
+          <button class="theme-btn active" id="btn-modal-tab-webrtc" style="font-size: 10.5px; padding: 4px 8px; border-radius: 4px; background: rgba(56,189,248,0.2); border: 1px solid #38BDF8; color: #38BDF8;">
+            <i class="fa-solid fa-bolt"></i> WebRTC (WHEP)
+          </button>
+          <button class="theme-btn" id="btn-modal-tab-rtsp" style="font-size: 10.5px; padding: 4px 8px; border-radius: 4px; border: 1px solid transparent; color: #94A3B8;">
+            <i class="fa-solid fa-tower-broadcast"></i> RTSP Stream
+          </button>
+        </div>
+        <button class="modal-close-btn" id="btn-close-player-modal">&times;</button>
+      </div>
+    </div>
+    <div class="modal-body" style="padding: 0; background: #000; position: relative;">
+      <div class="modal-video-wrapper" style="min-height: 480px; display: flex; align-items: center; justify-content: center; background: #050811;">
+        <div class="modal-video-hud">
+          <span class="cctv-rec-tag"><span class="pulse-dot" style="width: 6px; height: 6px; background: #EF4444; box-shadow: 0 0 8px #EF4444;"></span> LIVE SURVEILLANCE FEED</span>
+          <span class="cctv-time-tag modal-time-tag">--:--:-- IST</span>
+          <span id="modal-protocol-badge" style="font-size: 9px; font-family: var(--font-mono); background: rgba(16,185,129,0.2); color: #34D399; border: 1px solid #34D399; padding: 1px 6px; border-radius: 4px; margin-left: 8px;">
+            ● DIRECT PUBLIC IP (NO PASSWORD)
+          </span>
+        </div>
+        <!-- Method 1: WebRTC (WHEP) Video Player -->
+        <video id="modal-player-video" autoplay playsinline muted style="width: 100%; height: 100%; max-height: 520px; object-fit: contain; display: block;"></video>
+        <!-- Method 2: Direct RTSP Live MJPEG Stream -->
+        <img id="modal-player-mjpeg" src="" alt="Live RTSP Stream" style="width: 100%; height: 100%; max-height: 520px; object-fit: contain; display: none;">
+        <!-- Method 3: Web / Video Embed Player -->
+        <iframe id="modal-player-iframe" src="" style="width: 100%; height: 100%; max-height: 520px; border: none; display: none;"></iframe>
+
+        <!-- Real-Time Pipeline Telemetry HUD (Requirement 1, 20, 21, 33) -->
+        <div id="modal-stream-telemetry-hud" style="position: absolute; bottom: 8px; left: 8px; right: 8px; background: rgba(10, 15, 30, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 6px; padding: 6px 12px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 11px; z-index: 20; color: #E2E8F0;">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span id="hud-latency-badge" style="padding: 2px 7px; border-radius: 4px; font-weight: 700; background: #22c55e; color: #000; font-size: 10.5px;">LIVE EDGE: <span id="hud-source-lag-val">0.8s</span></span>
+            <span style="color: #94A3B8;">RECEIVE: <b id="hud-recv-fps" style="color: #F8FAFC;">25.0</b> FPS</span>
+            <span style="color: #94A3B8;">PROCESS: <b id="hud-proc-fps" style="color: #38BDF8;">--</b> FPS</span>
+            <span style="color: #94A3B8;">QUEUE: <b id="hud-queue-depth" style="color: #F8FAFC;">0/2</b></span>
+            <span style="color: #94A3B8;">PLATE DETECTOR: <b id="hud-plate-detector-ms" style="color: #34D399;">--</b>ms</span>
+            <span style="color: #94A3B8;">OCR: <b id="hud-ocr-ms" style="color: #FBBF24;">--</b>ms</span>
+            <span style="color: #94A3B8;">DROPPED: <b id="hud-dropped-frames" style="color: #F87171;">0</b></span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span style="color: #94A3B8;">Q-WAIT: <b id="hud-qwait-ms" style="color: #F8FAFC;">--</b>ms</span>
+            <span id="hud-pipeline-mode" style="padding: 1px 6px; border-radius: 4px; background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 10px;">LIVE MODE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 10px 16px; background: #0D1527; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-sans); font-size: 12px; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; gap: 8px;">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <span style="color: #F8FAFC; font-weight: 600;" id="modal-player-subinfo">Gujarat State Police Integrated Video Surveillance Network</span>
+        <span style="color: #64748B; font-family: var(--font-mono); font-size: 10.5px;" id="modal-player-endpoints-hint">RTSP: rtsp://103.250.160.189:8554/stream/cam01 • WHEP: port 8889</span>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button class="btn-primary" id="btn-modal-ai-ingest" style="padding: 5px 12px; font-size: 11px; background: linear-gradient(135deg, #10B981, #059669); border-color: #34D399;">
+          <i class="fa-solid fa-satellite-dish"></i> Send to AI Ingest (Auto & Manual Scan)
+        </button>
+        <span style="color: #34D399; font-weight: 700; font-size: 11px;">● 100% UNRESTRICTED</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. LAYOUT CAMERA SELECTION MODAL -->
+<div class="modal-backdrop" id="modal-layout-picker">
+  <div class="modal-window" style="max-width: 780px;">
+    <div class="modal-header">
+      <h3 id="layout-picker-title">
+        <i class="fa-solid fa-table-cells" style="color: #38BDF8;"></i> Configure Video Wall Feeds
+      </h3>
+      <button class="modal-close-btn" id="btn-close-layout-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <span style="font-size: 12px; color: var(--text-secondary);" id="layout-picker-instruction">
+          Please select <strong id="layout-needed-count" style="color: #FEF08A;">4</strong> cameras to monitor in this layout:
+        </span>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <button class="theme-btn" id="preset-ahmedabad" style="background: rgba(37,99,235,0.2); border: 1px solid #3B82F6;">⚡ Ahmedabad Junctions</button>
+          <button class="theme-btn" id="preset-highways" style="background: rgba(245,158,11,0.2); border: 1px solid #F59E0B;">⚡ Tolls & Highways</button>
+          <button class="theme-btn" id="preset-coastal" style="background: rgba(16,185,129,0.2); border: 1px solid #10B981;">⚡ Coastal & Ports</button>
+        </div>
+      </div>
+
+      <div class="camera-selection-grid" id="layout-cameras-checklist"></div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-subtle);">
+        <span style="font-family: var(--font-mono); font-size: 11px; color: #94A3B8;" id="layout-selected-counter">
+          Selected: 0 / 4
+        </span>
+        <button class="btn-primary" id="btn-apply-layout-selection" style="padding: 8px 18px;">
+          <i class="fa-solid fa-check"></i> Apply Selection
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. ADD SUSPECT PLATE MODAL -->
+<div class="modal-backdrop" id="modal-add-watchlist">
+  <div class="modal-window" style="max-width: 500px;">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-plus-circle" style="color: #38BDF8;"></i> Add Vehicle to Watchlist</h3>
+      <button class="modal-close-btn" id="btn-close-wl-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="form-add-watchlist">
+        <div class="form-group">
+          <label class="form-label">Vehicle Registration Number (All-India &amp; Bharat Series):</label>
+          <input type="text" id="input-new-plate" class="form-input" required placeholder="e.g. GJ01AB1234 / 22BH1234AA / GJ01EV1234" style="font-family: var(--font-display); font-size: 16px; letter-spacing: 1px; color: #FEF08A; text-transform: uppercase;">
+          <div id="new-plate-preview-wrap" style="margin-top: 8px; display: flex; align-items: center; gap: 10px;">
+            <div id="new-plate-preview-badge" style="display: inline-flex; align-items: center; border: 2px solid #1E293B; border-radius: 5px; font-family: var(--font-display); font-weight: 800; font-size: 15px; letter-spacing: 1.5px; background: #FFFFFF; color: #000000; box-shadow: 0 2px 10px rgba(0,0,0,0.4); overflow: hidden;">
+              <div id="new-plate-ind-strip" style="background: #003399; color: #FFF; padding: 3px 5px; font-size: 8.5px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1.5px solid #1E293B;">
+                <span style="color: #FF9933; font-size: 7px; line-height: 1;">●</span>
+                <span style="font-size: 7.5px; font-weight: 900;">IND</span>
+              </div>
+              <div id="new-plate-preview-text" style="padding: 3px 10px;">GJ01AB1234</div>
+            </div>
+            <span id="new-plate-series-tag" class="tab-badge badge-blue">Standard Private</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Vehicle Make / Model &amp; Color:</label>
+          <input type="text" id="input-new-make" class="form-input" required placeholder="e.g. White Mahindra Scorpio">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Suspect Name / Flagged Target:</label>
+          <input type="text" id="input-new-suspect" class="form-input" placeholder="e.g. Wanted Person / Unknown">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Crime / FIR Details:</label>
+          <input type="text" id="input-new-crime" class="form-input" required placeholder="Stolen Vehicle / FIR #542/2026">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Threat Severity:</label>
+          <select id="input-new-threat" class="form-input" style="background: #070B14; color: #FFF;">
+            <option value="CRITICAL">CRITICAL (Immediate Police Interception)</option>
+            <option value="HIGH" selected>HIGH (Drug Trafficking / Hit &amp; Run)</option>
+            <option value="MEDIUM">MEDIUM (Fake Plate / e-Challan Evasion)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 11px; margin-top: 10px;">
+          <i class="fa-solid fa-save"></i> Save to eGujCop Watchlist
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 3.1 ENROLL PERSON OF INTEREST / WANTED SUSPECT MODAL -->
+<div class="modal-backdrop" id="modal-add-person">
+  <div class="modal-window" style="max-width: 640px; max-height: 90vh; display: flex; flex-direction: column;">
+    <div class="modal-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-user-plus" style="color: #EC4899; font-size: 18px;"></i>
+        <div>
+          <h3 style="margin: 0; font-size: 15px; color: #FFF;">Enroll Person of Interest / Wanted Suspect</h3>
+          <p style="margin: 0; font-size: 11px; color: #94A3B8;">Multi-Camera Biometric Facial &amp; Body Re-ID Surveillance</p>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-person-modal">&times;</button>
+    </div>
+    <div class="modal-body" style="overflow-y: auto; padding: 20px;">
+      <form id="form-add-person">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Full Legal Name *</label>
+            <input type="text" id="input-person-name" class="form-input" required placeholder="e.g. Vikram Solanki / Unknown Suspect">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Known Alias / Nickname</label>
+            <input type="text" id="input-person-alias" class="form-input" placeholder="e.g. Vicky / Bhaiji / Shadow">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Suspect Category *</label>
+            <select id="input-person-category" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="Wanted Fugitive / Criminal" selected>Wanted Fugitive / Criminal</option>
+              <option value="Missing Person / Child">Missing Person / Child</option>
+              <option value="High-Value Target (Anti-Terror)">High-Value Target (Anti-Terror / Gang)</option>
+              <option value="Repeat Offender (Robbery/Theft)">Repeat Offender (Theft / Robbery)</option>
+              <option value="Person Under Active Surveillance">Person Under Active Surveillance</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Threat Severity Level *</label>
+            <select id="input-person-threat" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="CRITICAL" style="color: #EF4444;">CRITICAL (Immediate Armed Response)</option>
+              <option value="HIGH" style="color: #F59E0B;" selected>HIGH (High Alert Interception)</option>
+              <option value="MEDIUM" style="color: #38BDF8;">MEDIUM (Lookout / Interrogation)</option>
+              <option value="LOW" style="color: #34D399;">LOW (Monitoring Only)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Case / FIR Reference Number</label>
+            <input type="text" id="input-person-fir" class="form-input" placeholder="e.g. FIR-2026/AHM/419">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Originating Police Station</label>
+            <input type="text" id="input-person-station" class="form-input" placeholder="e.g. Navrangpura / Bodakdev PS">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Gender</label>
+            <select id="input-person-gender" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="Male" selected>Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other / Unknown</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Age Bracket</label>
+            <select id="input-person-age" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="Youth (18-25)">Youth (18-25)</option>
+              <option value="Adult (26-45)" selected>Adult (26-45)</option>
+              <option value="Middle-Aged (45-60)">Middle-Aged (45-60)</option>
+              <option value="Elderly (60+)">Elderly (60+)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Height (Approx cm)</label>
+            <input type="text" id="input-person-height" class="form-input" placeholder="e.g. 175 cm / 5'9">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Upper Clothing Color</label>
+            <select id="input-person-upper" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="Black" selected>Black</option>
+              <option value="White">White</option>
+              <option value="Red">Red</option>
+              <option value="Blue">Blue</option>
+              <option value="Green">Green</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Grey">Grey</option>
+              <option value="Dark Apparel">Dark Apparel</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Lower Clothing Color</label>
+            <select id="input-person-lower" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="Blue Denim" selected>Blue Denim</option>
+              <option value="Black">Black Pants</option>
+              <option value="Khaki">Khaki / Brown</option>
+              <option value="Grey">Grey / Cargo</option>
+              <option value="White">White</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Distinguishing Scars, Tattoos or Physical Features</label>
+          <input type="text" id="input-person-marks" class="form-input" placeholder="e.g. Scar on left cheek, tattoo on forearm, limping gait">
+        </div>
+
+        <!-- Person Photographs Upload Dropzone -->
+        <div class="form-group">
+          <label class="form-label" style="display: flex; justify-content: space-between;">
+            <span><i class="fa-solid fa-camera"></i> Reference Photographs / Mugshots *</span>
+            <span style="color: #EC4899; font-size: 11px;">Face &amp; Body Images</span>
+          </label>
+          <input type="file" id="person-photo-input" multiple accept="image/*" style="display: none;">
+          <div id="person-photo-dropzone" class="proof-upload-dropzone" style="padding: 16px; border: 1px dashed rgba(236,72,153,0.4); background: rgba(236,72,153,0.04); cursor: pointer; border-radius: 8px; text-align: center;">
+            <i class="fa-solid fa-cloud-arrow-up" style="font-size: 24px; color: #EC4899; margin-bottom: 6px;"></i>
+            <div style="font-size: 12px; font-weight: 600; color: #F8FAFC;">Click or Drag &amp; Drop Suspect Photos</div>
+            <div style="font-size: 10px; color: #94A3B8;">Upload clear frontal or multi-angle photos for facial &amp; body Re-ID matching</div>
+          </div>
+          <div id="person-photo-preview-grid" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;"></div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px; margin-top: 14px; background: linear-gradient(135deg, #BE185D, #EC4899); border-color: #F472B6; font-size: 13px;">
+          <i class="fa-solid fa-shield-halved"></i> Enroll Suspect Profile into Sentry Surveillance Grid
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 3.2 ENROLL TARGET VEHICLE MODAL WITH MULTI-ANGLE PHOTOS -->
+<div class="modal-backdrop" id="modal-add-vehicle">
+  <div class="modal-window" style="max-width: 620px; max-height: 90vh; display: flex; flex-direction: column;">
+    <div class="modal-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-car-tunnel" style="color: #A78BFA; font-size: 18px;"></i>
+        <div>
+          <h3 style="margin: 0; font-size: 15px; color: #FFF;">Enroll Target Vehicle for Finding</h3>
+          <p style="margin: 0; font-size: 11px; color: #94A3B8;">Multi-Camera Attribute Recognition &amp; Plate Correlation</p>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-vehicle-modal">&times;</button>
+    </div>
+    <div class="modal-body" style="overflow-y: auto; padding: 20px;">
+      <form id="form-add-vehicle">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Registration Plate (Optional / Known):</label>
+            <input type="text" id="input-veh-plate" class="form-input" placeholder="e.g. GJ01AB1234 (or Leave blank if unknown)" style="text-transform: uppercase; font-family: var(--font-display); letter-spacing: 1px; color: #FEF08A;">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Vehicle Class / Body Style *</label>
+            <select id="input-veh-class" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="Four-Wheeler / Car / SUV" selected>SUV / Compact SUV / Car</option>
+              <option value="Two-Wheeler (Motorcycle / Scooter)">2-Wheeler (Motorcycle / Scooter)</option>
+              <option value="Commercial Truck / Multi-Axle HGV">Commercial Heavy Truck / Container</option>
+              <option value="Auto-Rickshaw / LCV">Auto-Rickshaw / Light Commercial</option>
+              <option value="Bus / Passenger Coach">Bus / Passenger Transport</option>
+              <option value="Commercial Taxi">Commercial Taxi (Yellow Plate)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Make &amp; Model *</label>
+            <input type="text" id="input-veh-make" class="form-input" required placeholder="e.g. White Mahindra Scorpio S11 / Tata Nexon">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Primary Exterior Color *</label>
+            <select id="input-veh-color" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="White" selected>White</option>
+              <option value="Black">Black</option>
+              <option value="Silver">Silver</option>
+              <option value="Grey">Grey</option>
+              <option value="Red">Red</option>
+              <option value="Blue">Blue</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Green">Green</option>
+              <option value="Brown">Brown</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Category / Watchlist Reason *</label>
+            <select id="input-veh-category" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="Stolen Vehicle / Hotlist Target" selected>Stolen Vehicle / Hotlist Target</option>
+              <option value="Crime Getaway / Suspect Vehicle">Crime Getaway / Suspect Vehicle</option>
+              <option value="Hit &amp; Run Investigation">Hit &amp; Run Investigation</option>
+              <option value="Drug / Smuggling Vehicle">Smuggling / Contraband Transport</option>
+              <option value="Fake / Tampered Number Plate">Fake / Tampered Number Plate</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Threat Severity Level *</label>
+            <select id="input-veh-threat" class="form-input" style="background: #070B14; color: #FFF;">
+              <option value="CRITICAL" style="color: #EF4444;">CRITICAL (Immediate Police Interception)</option>
+              <option value="HIGH" style="color: #F59E0B;" selected>HIGH (Inter-City Toll Warning)</option>
+              <option value="MEDIUM" style="color: #38BDF8;">MEDIUM (Surveillance Log)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Distinguishing Physical Features &amp; Marks</label>
+          <input type="text" id="input-veh-marks" class="form-input" placeholder="e.g. Roof carrier, black bull bar, cracked windshield, custom alloys, tinted film">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Case / FIR Number</label>
+            <input type="text" id="input-veh-fir" class="form-input" placeholder="e.g. FIR-2026/SENTRY/082">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Registered Owner / Suspect Custodian</label>
+            <input type="text" id="input-veh-owner" class="form-input" placeholder="e.g. Unknown Driver / Ramesh Shah">
+          </div>
+        </div>
+
+        <!-- Vehicle Photographs Upload Dropzone -->
+        <div class="form-group">
+          <label class="form-label" style="display: flex; justify-content: space-between;">
+            <span><i class="fa-solid fa-camera"></i> Reference Photographs (Front, Rear, Side)</span>
+            <span style="color: #A78BFA; font-size: 11px;">Multi-Angle Vehicle Matching</span>
+          </label>
+          <input type="file" id="vehicle-photo-input" multiple accept="image/*" style="display: none;">
+          <div id="vehicle-photo-dropzone" class="proof-upload-dropzone" style="padding: 16px; border: 1px dashed rgba(167,139,250,0.4); background: rgba(167,139,250,0.04); cursor: pointer; border-radius: 8px; text-align: center;">
+            <i class="fa-solid fa-cloud-arrow-up" style="font-size: 24px; color: #A78BFA; margin-bottom: 6px;"></i>
+            <div style="font-size: 12px; font-weight: 600; color: #F8FAFC;">Click or Drag &amp; Drop Vehicle Photos</div>
+            <div style="font-size: 10px; color: #94A3B8;">Upload clear vehicle images showing registration, grille, or distinctive marks</div>
+          </div>
+          <div id="vehicle-photo-preview-grid" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;"></div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px; margin-top: 14px; background: linear-gradient(135deg, #6D28D9, #8B5CF6); border-color: #A78BFA; font-size: 13px;">
+          <i class="fa-solid fa-car-side"></i> Enroll Target Vehicle into ANPR &amp; Attribute Search Grid
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 4. EDIT SUSPECT RECORD MODAL -->
+<div class="modal-backdrop" id="modal-edit-watchlist">
+  <div class="modal-window" style="max-width: 500px;">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-pen-to-square" style="color: #60A5FA;"></i> Edit Suspect Vehicle Record</h3>
+      <button class="modal-close-btn" id="btn-close-edit-wl-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="form-edit-watchlist">
+        <input type="hidden" id="edit-wl-id">
+        <div class="form-group">
+          <label class="form-label">Vehicle Registration Number:</label>
+          <input type="text" id="edit-wl-plate" class="form-input" required style="font-family: var(--font-display); font-size: 16px; letter-spacing: 1px; color: #FEF08A; text-transform: uppercase;">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Vehicle Make / Model:</label>
+          <input type="text" id="edit-wl-make" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Suspect Name / Primary Target:</label>
+          <input type="text" id="edit-wl-suspect" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Crime / FIR Details:</label>
+          <input type="text" id="edit-wl-crime" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Threat Severity:</label>
+          <select id="edit-wl-threat" class="form-input" style="background: #070B14; color: #FFF;">
+            <option value="CRITICAL">CRITICAL (Immediate Police Interception)</option>
+            <option value="HIGH">HIGH (Drug Trafficking / Hit & Run)</option>
+            <option value="MEDIUM">MEDIUM (Fake Plate / e-Challan Evasion)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 10px; margin-top: 10px;">
+          <i class="fa-solid fa-check"></i> Update Record
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 5. REGISTER NEW CAMERA MODAL -->
+<div class="modal-backdrop" id="modal-add-camera">
+  <div class="modal-window" style="max-width: 520px;">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-camera" style="color: #38BDF8;"></i> Register New Surveillance Camera</h3>
+      <button class="modal-close-btn" id="btn-close-add-cam-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="form-add-camera">
+        <div class="form-group">
+          <label class="form-label">Camera Location / Junction Name:</label>
+          <input type="text" id="input-cam-name" class="form-input" required placeholder="e.g. Iscon Cross Road Flyover">
+        </div>
+        <div class="form-group">
+          <label class="form-label">District / City:</label>
+          <input type="text" id="input-cam-city" class="form-input" required placeholder="e.g. Ahmedabad">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jurisdiction Department:</label>
+          <select id="input-cam-dept" class="form-input" style="background: #070B14; color: #FFF;">
+            <option value="police">Gujarat State Police</option>
+            <option value="municipal">Municipal Corporation</option>
+            <option value="rto">RTO & Highway Tolls</option>
+            <option value="gsrtc">GSRTC State Transport</option>
+            <option value="panchayat">Gram Panchayat & Rural</option>
+            <option value="coastal">Coastal & Border Police</option>
+          </select>
+        </div>
+        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div>
+            <label class="form-label">Latitude:</label>
+            <input type="number" step="any" id="input-cam-lat" class="form-input" required placeholder="23.0225">
+          </div>
+          <div>
+            <label class="form-label">Longitude:</label>
+            <input type="number" step="any" id="input-cam-lng" class="form-input" required placeholder="72.5714">
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 10px; margin-top: 10px;">
+          <i class="fa-solid fa-save"></i> Register Camera into Grid
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 6. GUIDE & FAQS MODAL -->
+<div class="modal-backdrop" id="modal-guide-tour">
+  <div class="modal-window" style="max-width: 740px;">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-book-open" style="color: #60A5FA;"></i> Gujarat Police Sentinel - Officer Manual & Overview</h3>
+      <button class="modal-close-btn" id="btn-close-guide-modal">&times;</button>
+    </div>
+    <div class="modal-body" style="line-height: 1.6; font-size: 13px; color: var(--text-secondary);">
+      <h4 style="color: #FFF; font-size: 14px; margin-bottom: 6px;">1. What is the Purpose of Sentinel?</h4>
+      <p style="margin-bottom: 12px;">
+        Sentinel solves the Gujarat Police Hackathon problem statement by unifying CCTV camera feeds across 26 separate departments into a single, real-time command dashboard. It enables automated ANPR detection, watchlist alerts, and cross-camera route tracing.
+      </p>
+
+      <h4 style="color: #FFF; font-size: 14px; margin-bottom: 6px;">2. What Does Each Tab Do?</h4>
+      <ul style="padding-left: 20px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px;">
+        <li><strong>Tactical GIS Map</strong>: Browse camera locations across Gujarat, filter by city or department, and inspect live streams directly on the map.</li>
+        <li><strong>Multi-Camera Live Wall</strong>: Watch all 30 live camera feeds simultaneously or choose custom matrix grids (4, 9, 16) with in-place camera dropdown switching.</li>
+        <li><strong>Watchlist & Suspect Alerts</strong>: Manage flagged suspect vehicles with full Create, Edit, and Delete options, and dispatch police patrols.</li>
+        <li><strong>Vehicle Route Reconstruction</strong>: Enter any vehicle registration number to correlate camera detections chronologically and draw its travel path on the GIS map.</li>
+        <li><strong>Registry & Gap Analysis (Model 1)</strong>: Audits multi-departmental integration coverage and identifies surveillance blind spots across the state.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- 6. OFFICIAL PRE-FIR CITIZEN e-INTIMATION INVESTIGATION DOCKET MODAL -->
+<div class="modal-backdrop" id="modal-fir-docket">
+  <div class="modal-window" style="max-width: 780px;">
+    <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <h3 style="margin: 0; font-size: 15px; color: #FFF;">
+        <i class="fa-solid fa-file-contract" style="color: #38BDF8;"></i> Pre-FIR Citizen e-Intimation Docket
+      </h3>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button class="btn-primary" onclick="window.sentinel.printCurrentDocket()" style="font-size: 11px; padding: 4px 10px; background: #2563EB;">
+          <i class="fa-solid fa-print"></i> Print Official Docket
+        </button>
+        <button class="modal-close-btn" id="btn-close-fir-docket-modal">&times;</button>
+      </div>
+    </div>
+    <div class="modal-body" id="fir-docket-content" style="padding: 16px; background: #030714;">
+      <!-- Content dynamically injected by window.sentinel.openPreFirDocket() -->
+    </div>
+  </div>
+</div>
+<!-- 7. CCTV RTSP STREAM INGEST & AUTHENTICATION MODAL -->
+<div class="modal-backdrop" id="modal-rtsp-settings">
+  <div class="modal-window" style="max-width: 580px;">
+    <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-video" style="color: #38BDF8; font-size: 18px;"></i>
+        <div>
+          <h3 style="margin: 0; font-size: 15px; color: #FFF;">CCTV RTSP Stream Ingest Settings</h3>
+          <span style="font-size: 11px; color: #94A3B8;">Statewide CCTV Network • Authenticated Live Feed Ingestion</span>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-rtsp-modal">&times;</button>
+    </div>
+    <div class="modal-body" style="padding: 20px; background: #070D1A;">
+      <div style="background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 12px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <span style="font-size: 11px; color: #38BDF8; font-weight: 700; text-transform: uppercase;">
+            <i class="fa-solid fa-server"></i> Active Stream Ingest URL
+          </span>
+          <span id="rtsp-status-chip" style="font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(245, 158, 11, 0.2); color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.4);">
+            Authentication Required (401)
+          </span>
+        </div>
+        <code id="rtsp-active-url" style="font-family: var(--font-mono); font-size: 11.5px; color: #FEF08A; word-break: break-all;">
+          rtsp://103.250.160.189:8554/stream/&lt;cam_id&gt;
+        </code>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 14px;">
+        <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block;">
+          <i class="fa-solid fa-user-shield" style="color: #38BDF8;"></i> RTSP Username:
+        </label>
+        <input type="text" id="rtsp-config-user" class="form-input" placeholder="Enter camera RTSP username (e.g. admin)" style="width: 100%;">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 14px;">
+        <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block;">
+          <i class="fa-solid fa-key" style="color: #38BDF8;"></i> RTSP Password:
+        </label>
+        <input type="password" id="rtsp-config-pass" class="form-input" placeholder="Enter stream authentication password" style="width: 100%;">
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 16px;">
+        <div class="form-group">
+          <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block;">
+            <i class="fa-solid fa-network-wired" style="color: #38BDF8;"></i> RTSP Host / Server IP:
+          </label>
+          <input type="text" id="rtsp-config-host" class="form-input" value="103.250.160.189" style="width: 100%;">
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block;">
+            Port:
+          </label>
+          <input type="text" id="rtsp-config-port" class="form-input" value="8554" style="width: 100%;">
+        </div>
+      </div>
+
+      <div id="rtsp-config-alert" style="display: none; padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; font-size: 12px;"></div>
+
+      <div style="display: flex; gap: 10px; justify-content: flex-end;">
+        <button type="button" class="btn-outline" id="btn-test-rtsp-connection" style="font-size: 12px; padding: 8px 14px; border-radius: 8px; cursor: pointer;">
+          <i class="fa-solid fa-rotate"></i> Test Handshake
+        </button>
+        <button type="button" class="btn-primary" id="btn-save-rtsp-config" style="font-size: 12px; padding: 8px 18px; border-radius: 8px; cursor: pointer;">
+          <i class="fa-solid fa-check"></i> Save &amp; Reconnect
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. ISSUE STATUTORY e-CHALLAN MODAL (MVA 1988/2019) -->
+<div class="modal-backdrop" id="modal-issue-echallan">
+  <div class="modal-window" style="max-width: 600px;">
+    <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-gavel" style="color: #F59E0B; font-size: 18px;"></i>
+        <div>
+          <h3 style="margin: 0; font-size: 15px; color: #FFF;">Issue Statutory Motor Vehicles Act e-Challan</h3>
+          <span style="font-size: 11px; color: #94A3B8;">Legal Enforcement Under Motor Vehicles Act 1988/2019</span>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="btn-close-echallan-modal">&times;</button>
+    </div>
+    <div class="modal-body" style="padding: 20px; background: #070D1A;">
+      <form id="form-issue-echallan">
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block;">
+            <i class="fa-solid fa-barcode" style="color: #38BDF8;"></i> Vehicle Registration Plate:
+          </label>
+          <input type="text" id="input-echallan-plate" class="form-input" required placeholder="e.g. GJ01ER4492 / MH12DE1433 / 22BH1234AA" style="text-transform: uppercase; font-family: var(--font-mono); font-size: 15px; font-weight: 700; color: #FEF08A; letter-spacing: 1px;">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block;">
+            <i class="fa-solid fa-scale-balanced" style="color: #F59E0B;"></i> Statutory Violation &amp; Legal Section:
+          </label>
+          <select id="select-echallan-violation" class="form-input" style="background: #030714; color: #FFF; font-size: 12px;">
+            <option value="SPEEDING" data-fine="2000" selected>Over-speeding (Section 112 / 183 MVA) &bull; ₹2,000</option>
+            <option value="DANGEROUS_DRIVING" data-fine="5000">Dangerous / Reckless Driving (Section 184 MVA) &bull; ₹5,000</option>
+            <option value="NO_HELMET_TRIPLE" data-fine="1000">Without Helmet / Triple Riding (Section 129 / 194D MVA) &bull; ₹1,000</option>
+            <option value="DEFECTIVE_PLATE" data-fine="1000">Defective / Tampered Number Plate (Section 50 / 177 MVA) &bull; ₹1,000</option>
+            <option value="STOLEN_VEHICLE" data-fine="0">Sighted Stolen Vehicle (Section 379/411 IPC / Sec 303 BNS) &bull; Immediate Seizure Order</option>
+            <option value="RED_LIGHT" data-fine="1000">Red Light Signal Violation (Section 184 / 177 MVA) &bull; ₹1,000</option>
+            <option value="MOBILE_DRIVING" data-fine="5000">Mobile Phone Usage while Driving (Section 184(c) MVA) &bull; ₹5,000</option>
+            <option value="EMERGENCY_OBSTRUCTION" data-fine="10000">Obstruction to Emergency Ambulance/Fire (Section 194E MVA) &bull; ₹10,000</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+          <div class="form-group">
+            <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block;">
+              <i class="fa-solid fa-indian-rupee-sign" style="color: #34D399;"></i> Penalty Amount (₹):
+            </label>
+            <input type="number" id="input-echallan-fine" class="form-input" value="2000" required style="font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: #34D399;">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block;">
+              <i class="fa-solid fa-location-dot" style="color: #38BDF8;"></i> Sighting Location / Camera:
+            </label>
+            <input type="text" id="input-echallan-camera" class="form-input" value="Paldi Cross Road, Ahmedabad" placeholder="Camera ID / Junction">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block;">
+            <i class="fa-solid fa-comment-dots" style="color: #94A3B8;"></i> Officer Remarks &amp; Evidentiary Notes:
+          </label>
+          <textarea id="input-echallan-remarks" class="form-input" rows="2" placeholder="Vehicle sighted at high speed. Evidence logged in Sentinel ANPR database." style="resize: vertical; font-size: 12px;"></textarea>
+        </div>
+
+        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 10px 12px; margin-bottom: 16px; font-size: 11px; color: #FEF08A; line-height: 1.5;">
+          <i class="fa-solid fa-shield-halved"></i> <strong>Statutory Notice</strong>: Issuing this e-Challan will cryptographically seal the sighting record under Section 65B Indian Evidence Act / Section 63 BSA and sync citation with VAHAN 4.0 database.
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button type="button" class="btn-secondary" id="btn-cancel-echallan" style="padding: 8px 16px; font-size: 12px;">Cancel</button>
+          <button type="submit" id="btn-submit-issue-echallan" class="btn-primary" style="padding: 8px 20px; font-size: 12px; background: linear-gradient(135deg, #D97706, #F59E0B); border-color: #FBBF24; font-weight: 700;">
+            <i class="fa-solid fa-gavel"></i> Authorize &amp; Issue e-Challan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 9. SECTION 65B INDIAN EVIDENCE ACT / SECTION 63 BSA COURT CERTIFICATE MODAL -->
+<div class="modal-backdrop" id="modal-section65b-cert">
+  <div class="modal-window" style="max-width: 820px; max-height: 92vh; display: flex; flex-direction: column;">
+    <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(16,185,129,0.3);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-certificate" style="color: #34D399; font-size: 20px;"></i>
+        <div>
+          <h3 style="margin: 0; font-size: 15px; color: #FFF;">Certificate of Electronic Evidence (Sec 65B / Sec 63 BSA)</h3>
+          <span style="font-size: 11px; color: #94A3B8;">Court-Admissible Electronic Record Certification &bull; Gujarat Police Headquarters</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button type="button" class="btn-primary" id="btn-print-section65b-cert" style="padding: 5px 12px; font-size: 11px; background: linear-gradient(135deg, #059669, #10B981); border-color: #34D399; font-weight: 700;">
+          <i class="fa-solid fa-print"></i> Print Official Certificate
+        </button>
+        <button class="modal-close-btn" id="btn-close-section65b-modal">&times;</button>
+      </div>
+    </div>
+    <div class="modal-body" id="section65b-cert-content" style="padding: 24px; background: #030714; overflow-y: auto; font-family: var(--font-sans); color: #F1F5F9; line-height: 1.6;">
+      <!-- Content populated dynamically by window.sentinel.openSection65BModal() -->
+    </div>
+  </div>
+</div>
+
+<!-- 10. COMPREHENSIVE FORENSIC INCIDENT DOSSIER MODAL -->
+<div class="modal-backdrop" id="modal-anpr-dossier">
+  <div class="modal-window" style="max-width: 860px; max-height: 92vh; display: flex; flex-direction: column;">
+    <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-folder-open" style="color: #38BDF8; font-size: 20px;"></i>
+        <div>
+          <h3 style="margin: 0; font-size: 15px; color: #FFF;">Comprehensive Vehicle Intelligence &amp; Incident Dossier</h3>
+          <span style="font-size: 11px; color: #94A3B8;">Multi-Camera Chronological Journey &bull; Warrants &bull; Citations &bull; Evidence Hash</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button type="button" class="btn-primary" id="btn-print-anpr-dossier" style="padding: 5px 12px; font-size: 11px; background: #2563EB;">
+          <i class="fa-solid fa-print"></i> Print Dossier
+        </button>
+        <button class="modal-close-btn" id="btn-close-dossier-modal">&times;</button>
+      </div>
+    </div>
+    <div class="modal-body" id="anpr-dossier-content" style="padding: 24px; background: #030714; overflow-y: auto; font-family: var(--font-sans);">
+      <!-- Content populated dynamically by window.sentinel.openDossierModal() -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Cloudflare Tunnel & Google Colab Connection Settings -->
+<div class="colab-tunnel-modal-overlay" id="modal-cloud-tunnel">
+
+  <div class="colab-tunnel-modal">
+    <div class="colab-modal-header">
+      <div class="colab-modal-title-row">
+        <i class="fa-solid fa-cloud-bolt" style="color: #00F2FF; font-size: 20px;"></i>
+        <div>
+          <div class="colab-modal-title">Cloud GPU &amp; Tunnel Connection</div>
+          <span style="font-size: 11px; color: #94A3B8;">Option B: Google Colab + Cloudflare Zero-Trust Tunnel</span>
+        </div>
+      </div>
+      <button class="colab-modal-close" id="btn-close-cloud-tunnel">&times;</button>
+    </div>
+
+    <div class="colab-info-box">
+      <p style="margin: 0;">Connect your high-performance Google Colab GPU backend (Free NVIDIA T4 16GB VRAM) directly to this interface using Cloudflare Tunnel without port forwarding or credit cards.</p>
+    </div>
+
+    <div class="colab-input-group">
+      <label class="colab-input-label" for="input-tunnel-url">Backend Cloudflare Tunnel URL</label>
+      <div class="colab-input-row">
+        <input type="text" id="input-tunnel-url" class="colab-url-input" placeholder="https://xxxx-xx-xx-xx.trycloudflare.com">
+        <button class="btn-primary" id="btn-save-tunnel-url" style="padding: 8px 16px; white-space: nowrap;">
+          <i class="fa-solid fa-link"></i> Connect
+        </button>
+      </div>
+      <span style="font-size: 10px; color: #64748B; margin-top: 5px; display: block;">Leave empty to connect directly to local backend (http://localhost:8000)</span>
+    </div>
+
+    <div class="colab-status-indicator">
+      <span class="spec-label">Current Active Endpoint:</span>
+      <span id="label-active-endpoint" class="tunnel-pill local">Local Node (Auto)</span>
+      <button id="btn-test-tunnel-health" class="tile-action-btn" title="Ping Endpoint" style="width: auto; height: auto; padding: 4px 10px; font-size: 10px;">
+        <i class="fa-solid fa-heart-pulse"></i> Ping Health
+      </button>
+    </div>
+
+    <div class="colab-modal-actions">
+      <button class="btn-secondary" id="btn-reset-tunnel-url" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #E2E8F0; padding: 8px 14px; border-radius: 6px; cursor: pointer;">Reset to Local</button>
+      <button class="btn-primary" id="btn-close-tunnel-modal" style="padding: 8px 16px;">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================================
+     OFFICER CIPHER: USER ALLOTMENT & PERSONNEL MANAGEMENT MODAL
+     ========================================================================= -->
+<div id="modal-user-management" class="modal-overlay" style="display: none; position: fixed; inset: 0; z-index: 100000; background: rgba(3,7,18,0.85); backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 20px;">
+  <div class="modal-card" style="width: 100%; max-width: 900px; max-height: 90vh; background: #0F172A; border: 1px solid rgba(56,189,248,0.3); border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8), 0 0 35px rgba(56,189,248,0.15); display: flex; flex-direction: column; overflow: hidden; color: #F8FAFC;">
+    
+    <!-- Modal Header -->
+    <div style="padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; background: rgba(15,23,42,0.6);">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); display: flex; align-items: center; justify-content: center; color: #38BDF8; font-size: 18px;">
+          <i class="fa-solid fa-users-gear"></i>
+        </div>
+        <div>
+          <h3 style="margin: 0; font-size: 16px; font-weight: 800; color: #FFFFFF;">Officer CIPHER Personnel &amp; Clearance Allotment</h3>
+          <span style="font-size: 11px; color: #38BDF8; font-weight: 600;"><i class="fa-solid fa-shield-check"></i> Master Super Admin Access Control</span>
+        </div>
+      </div>
+      <button onclick="closeUserMgmtModal()" style="background: none; border: none; color: #94A3B8; font-size: 18px; cursor: pointer; padding: 4px 8px;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Quick Portal Links Bar -->
+    <div style="padding: 10px 24px; background: rgba(2,6,23,0.5); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+      <span style="font-size: 10.5px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Direct Portal Jump:</span>
+      <a href="/traffic-grid" target="_blank" style="padding: 3px 8px; font-size: 11px; background: rgba(234,179,8,0.12); color: #FACC15; border: 1px solid rgba(234,179,8,0.3); border-radius: 4px; text-decoration: none;"><i class="fa-solid fa-traffic-light"></i> Traffic Grid</a>
+      <a href="/intel-nexus" target="_blank" style="padding: 3px 8px; font-size: 11px; background: rgba(168,85,247,0.12); color: #C084FC; border: 1px solid rgba(168,85,247,0.3); border-radius: 4px; text-decoration: none;"><i class="fa-solid fa-brain"></i> Intel Nexus</a>
+      <a href="/patrol-dispatch" target="_blank" style="padding: 3px 8px; font-size: 11px; background: rgba(239,68,68,0.12); color: #F87171; border: 1px solid rgba(239,68,68,0.3); border-radius: 4px; text-decoration: none;"><i class="fa-solid fa-truck-medical"></i> 112 Dispatch</a>
+      <a href="/perimeter-sentry" target="_blank" style="padding: 3px 8px; font-size: 11px; background: rgba(34,197,94,0.12); color: #4ADE80; border: 1px solid rgba(34,197,94,0.3); border-radius: 4px; text-decoration: none;"><i class="fa-solid fa-shield"></i> Border Sentry</a>
+      <a href="/suraksha-desk" target="_blank" style="padding: 3px 8px; font-size: 11px; background: rgba(236,72,153,0.12); color: #F472B6; border: 1px solid rgba(236,72,153,0.3); border-radius: 4px; text-decoration: none;"><i class="fa-solid fa-person-dress"></i> SHE Team</a>
+      <a href="/cyber-intel" target="_blank" style="padding: 3px 8px; font-size: 11px; background: rgba(56,189,248,0.12); color: #38BDF8; border: 1px solid rgba(56,189,248,0.3); border-radius: 4px; text-decoration: none;"><i class="fa-solid fa-desktop"></i> Cyber Cell</a>
+      <a href="/audit-vault" target="_blank" style="padding: 3px 8px; font-size: 11px; background: rgba(148,163,184,0.12); color: #CBD5E1; border: 1px solid rgba(148,163,184,0.3); border-radius: 4px; text-decoration: none;"><i class="fa-solid fa-vault"></i> Audit Vault</a>
+    </div>
+
+    <!-- Modal Body (Scrollable) -->
+    <div style="padding: 20px 24px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      
+      <!-- Section 1: Active Officers Directory -->
+      <div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+          <h4 style="margin: 0; font-size: 13px; font-weight: 700; color: #E2E8F0; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-id-card-clip"></i> Active Commissioned Officers</h4>
+          <button onclick="loadOfficersList()" style="background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.3); color: #38BDF8; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; cursor: pointer;"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+        </div>
+        
+        <div style="overflow-x: auto; background: rgba(15,23,42,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 11.5px; text-align: left;">
+            <thead>
+              <tr style="background: rgba(30,41,59,0.5); color: #94A3B8; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <th style="padding: 8px 12px;">Badge / User</th>
+                <th style="padding: 8px 12px;">Officer Name</th>
+                <th style="padding: 8px 12px;">Designated Role</th>
+                <th style="padding: 8px 12px;">Clearance</th>
+                <th style="padding: 8px 12px;">Department</th>
+                <th style="padding: 8px 12px; text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="officers-table-body">
+              <tr>
+                <td colspan="6" style="text-align: center; padding: 20px; color: #64748B;"><i class="fa-solid fa-spinner fa-spin"></i> Loading officers...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 2: Commission New Officer Form -->
+      <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 13px; font-weight: 700; color: #38BDF8; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fa-solid fa-user-plus"></i> Commission New Law Enforcement Officer</h4>
+        
+        <form id="form-create-officer" onsubmit="event.preventDefault(); submitNewOfficer();" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+          <div>
+            <label style="display: block; font-size: 11px; color: #94A3B8; margin-bottom: 4px;">Username / Login ID</label>
+            <input type="text" id="new-officer-username" placeholder="e.g. Officer_Sharma" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 7px 10px; color: #FFF; font-size: 12px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; color: #94A3B8; margin-bottom: 4px;">Full Name &amp; Rank</label>
+            <input type="text" id="new-officer-fullname" placeholder="e.g. Inspector R. K. Sharma" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 7px 10px; color: #FFF; font-size: 12px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; color: #94A3B8; margin-bottom: 4px;">Official Police Email</label>
+            <input type="email" id="new-officer-email" placeholder="e.g. rk.sharma@gujaratpolice.gov.in" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 7px 10px; color: #FFF; font-size: 12px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; color: #94A3B8; margin-bottom: 4px;">Temporary Passcode</label>
+            <input type="password" id="new-officer-password" placeholder="Passcode (min 8 chars)" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 7px 10px; color: #FFF; font-size: 12px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; color: #94A3B8; margin-bottom: 4px;">Designated Role</label>
+            <select id="new-officer-role" style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 7px 10px; color: #FFF; font-size: 12px;">
+              <option value="TRAFFIC_OFFICER">TRAFFIC_OFFICER (e-Challan &amp; Radar)</option>
+              <option value="FORENSIC_ANALYST">FORENSIC_ANALYST (Re-ID &amp; MCMT Nexus)</option>
+              <option value="TACTICAL_DISPATCH">TACTICAL_DISPATCH (112 PCR Dispatch)</option>
+              <option value="CHECKPOST_COMMANDER">CHECKPOST_COMMANDER (Border Sentry)</option>
+              <option value="SHE_TEAM_OFFICER">SHE_TEAM_OFFICER (1091 Women Safety)</option>
+              <option value="CYBER_ANALYST">CYBER_ANALYST (Cyber Cell &amp; Registry)</option>
+              <option value="AUDIT_SUPERVISOR">AUDIT_SUPERVISOR (Evidence Vault)</option>
+              <option value="SUPER_ADMIN">SUPER_ADMIN (Officer CIPHER Co-Admin)</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; color: #94A3B8; margin-bottom: 4px;">Security Clearance</label>
+            <select id="new-officer-clearance" style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 7px 10px; color: #FFF; font-size: 12px;">
+              <option value="LEVEL-4">LEVEL-4 (Full System &amp; AI Grid Access)</option>
+              <option value="LEVEL-3">LEVEL-3 (Operational Tactical Unit)</option>
+              <option value="LEVEL-2">LEVEL-2 (Field Unit &amp; Dispatch)</option>
+              <option value="LEVEL-1">LEVEL-1 (Observer / Station Desk)</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; color: #94A3B8; margin-bottom: 4px;">Police Badge Number</label>
+            <input type="text" id="new-officer-badge" placeholder="e.g. GP-AHM-802" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 7px 10px; color: #FFF; font-size: 12px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 11px; color: #94A3B8; margin-bottom: 4px;">Unit / Police Station</label>
+            <input type="text" id="new-officer-dept" placeholder="e.g. Ahmedabad City Control Room" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 7px 10px; color: #FFF; font-size: 12px;">
+          </div>
+          <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end; margin-top: 6px;">
+            <button type="submit" id="btn-submit-officer" style="background: linear-gradient(135deg, #0284C7, #0369A1); color: #FFF; border: 1px solid rgba(56,189,248,0.4); border-radius: 6px; padding: 9px 20px; font-size: 12.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-user-plus"></i> Allot Clearance &amp; Commission Officer
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div style="padding: 12px 24px; background: rgba(15,23,42,0.8); border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: #64748B;">
+      <span><i class="fa-solid fa-lock"></i> All Officer Allotments Are Authenticated by Officer CIPHER Root Key</span>
+      <button onclick="closeUserMgmtModal()" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #E2E8F0; padding: 6px 14px; border-radius: 6px; cursor: pointer;">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openUserMgmtModal() {
+  const modal = document.getElementById('modal-user-management');
+  if (modal) {
+    modal.style.display = 'flex';
+    loadOfficersList();
+  }
+}
+
+function closeUserMgmtModal() {
+  const modal = document.getElementById('modal-user-management');
+  if (modal) modal.style.display = 'none';
+}
+
+async function loadOfficersList() {
+  const tbody = document.getElementById('officers-table-body');
+  if (!tbody) return;
+  tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 20px; color: #64748B;"><i class="fa-solid fa-spinner fa-spin"></i> Querying State Officer Directory...</td></tr>';
+
+  try {
+    const res = await (window.Auth ? window.Auth.apiFetch('/api/auth/admin/users') : fetch('/api/auth/admin/users'));
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || `HTTP ${res.status}: Unauthorized or session expired`);
+    }
+    const users = await res.json();
+    
+    if (!users || users.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 20px; color: #94A3B8;">No officers registered in the system.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = users.map(u => {
+      const isSuper = u.role === 'SUPER_ADMIN';
+      const roleColor = u.role === 'SUPER_ADMIN' ? '#38BDF8' : (u.role === 'TRAFFIC_OFFICER' ? '#FACC15' : (u.role === 'FORENSIC_ANALYST' ? '#C084FC' : '#4ADE80'));
+      return `
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+          <td style="padding: 10px 12px;">
+            <div style="font-weight: 700; color: #F8FAFC;">${u.username}</div>
+            <div style="font-size: 10px; color: #64748B;">${u.badge_number || 'GP-HQ'}</div>
+          </td>
+          <td style="padding: 10px 12px; color: #E2E8F0;">${u.full_name}</td>
+          <td style="padding: 10px 12px;">
+            <span style="display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; background: ${roleColor}22; color: ${roleColor}; border: 1px solid ${roleColor}44;">${u.role}</span>
+          </td>
+          <td style="padding: 10px 12px; font-size: 11px; color: #94A3B8;">${u.clearance_level || 'LEVEL-3'}</td>
+          <td style="padding: 10px 12px; font-size: 11px; color: #94A3B8;">${u.department || 'State Grid'}</td>
+          <td style="padding: 10px 12px; text-align: right;">
+            ${isSuper ? '<span style="font-size: 10px; color: #38BDF8;"><i class="fa-solid fa-crown"></i> Master</span>' : `
+              <button onclick="revokeOfficer('${u.username}')" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #F87171; border-radius: 4px; padding: 3px 8px; font-size: 10.5px; cursor: pointer;">
+                <i class="fa-solid fa-user-xmark"></i> Revoke
+              </button>
+            `}
+          </td>
+        </tr>
+      `;
+    }).join('');
+  } catch (err) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 20px; color: #F87171;"><i class="fa-solid fa-triangle-exclamation"></i> Error loading officers: ${err.message}. Ensure you are authenticated with Officer CIPHER credentials.</td></tr>`;
+  }
+}
+
+async function submitNewOfficer() {
+  const btn = document.getElementById('btn-submit-officer');
+  if (btn) btn.disabled = true;
+
+  const payload = {
+    username: document.getElementById('new-officer-username').value.trim(),
+    full_name: document.getElementById('new-officer-fullname').value.trim(),
+    email: document.getElementById('new-officer-email').value.trim(),
+    password: document.getElementById('new-officer-password').value.trim(),
+    role: document.getElementById('new-officer-role').value,
+    clearance_level: document.getElementById('new-officer-clearance').value,
+    badge_number: document.getElementById('new-officer-badge').value.trim(),
+    department: document.getElementById('new-officer-dept').value.trim()
+  };
+
+  try {
+    const res = await (window.Auth ? window.Auth.apiFetch('/api/auth/admin/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }) : fetch('/api/auth/admin/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }));
+
+    if (res.ok) {
+      alert(`Officer ${payload.username} successfully commissioned with role ${payload.role}!`);
+      document.getElementById('form-create-officer').reset();
+      loadOfficersList();
+      if (window.sentinel && typeof window.sentinel.loadAdminData === 'function') {
+        window.sentinel.loadAdminData();
+      }
+    } else {
+      const err = await res.json().catch(() => ({}));
+      alert(`Error creating officer: ${err.detail || 'Failed to save'}`);
+    }
+  } catch (e) {
+    alert(`Submission error: ${e.message}`);
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
+async function revokeOfficer(username) {
+  if (!confirm(`Are you sure you want to revoke clearance for ${username}? This officer will immediately lose access.`)) return;
+
+  try {
+    const res = await (window.Auth ? window.Auth.apiFetch(`/api/auth/admin/users/${username}`, { method: 'DELETE' }) : fetch(`/api/auth/admin/users/${username}`, { method: 'DELETE' }));
+    if (res.ok) {
+      loadOfficersList();
+      if (window.sentinel && typeof window.sentinel.loadAdminData === 'function') {
+        window.sentinel.loadAdminData();
+      }
+    } else {
+      const err = await res.json().catch(() => ({}));
+      alert(`Error revoking officer: ${err.detail || 'Failed'}`);
+    }
+  } catch (e) {
+    alert(`Error: ${e.message}`);
+  }
+}
+</script>
+
+<!-- Toast Alert Notifications -->
+<div class="toast-container" id="toast-container"></div>
+
+
+<!-- Leaflet Library -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<!-- HLS.js for Live Stream Playback -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.12/dist/hls.min.js"></script>
+<!-- Tesseract.js AI OCR Engine -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<!-- Public Interaction Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    if (window.Auth && window.Auth.isAuthenticated()) {
+      const profile = await window.Auth.getUserProfile();
+      if (profile) {
+        const badge = document.getElementById('header-officer-name') || document.getElementById('auth-officer-name');
+        if (badge) {
+          badge.textContent = (profile.full_name || profile.username) + (profile.role ? ` (${profile.role})` : '');
+        }
+      }
+    }
+  });
+</script>
+<script src="/js/dataStore.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

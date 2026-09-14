@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SENTINEL | Nexus Command Administration</title>
+  
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css?v=20260905_1305">
+</head>
+<body>
+
+<canvas id="cyber-bg-canvas" class="cyber-bg-canvas"></canvas>
+
+<!-- Auth Check before rendering -->
+<script src="js/auth.js"></script>
+<script>
+  Auth.requireAdmin();
+</script>
+
+<div class="app-container" id="admin-command-app" style="display: flex; visibility: visible; opacity: 1;">
+  
+  <!-- Header -->
+  <header class="header-top">
+    <div class="header-left">
+      <div class="logo-circle">
+        <img src="logo.png" alt="Logo" style="width: 24px; height: 24px;">
+      </div>
+      <div class="header-titles">
+        <h1 class="main-title">NEXUS COMMAND <span class="badge-red">LEVEL-5 ADMIN ONLY</span></h1>
+        <div class="sub-title">System Identity & Access Management</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="officer-badge-pill" style="display: flex; align-items: center; gap: 8px;">
+        <i class="fa-solid fa-user-shield" style="color: #60A5FA;"></i>
+        <span id="auth-admin-name">Administrator</span>
+        <button onclick="window.Auth.logout()" title="Logout" style="background: none; border: none; color: #ef4444; cursor: pointer; margin-left: 5px;"><i class="fa-solid fa-right-from-bracket"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-content" style="padding: 30px; display: flex; justify-content: center; align-items: flex-start; overflow-y: auto;">
+    
+    <div class="panel glass-panel" style="width: 100%; max-width: 800px; padding: 25px;">
+      <h2 style="font-size: 18px; color: #38BDF8; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-user-plus"></i> Provision New Credential
+      </h2>
+
+      <div id="admin-alert" style="display: none; padding: 12px; border-radius: 6px; margin-bottom: 20px; font-size: 13px; font-weight: 500;"></div>
+
+      <form id="admin-provision-form">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+          <div class="form-group">
+            <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block; text-transform: uppercase;">Username</label>
+            <input type="text" id="prov-username" class="form-input" required style="width: 100%;">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block; text-transform: uppercase;">Password</label>
+            <input type="password" id="prov-password" class="form-input" required style="width: 100%;">
+          </div>
+          <div class="form-group" style="grid-column: span 2;">
+            <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block; text-transform: uppercase;">Full Name</label>
+            <input type="text" id="prov-fullname" class="form-input" required style="width: 100%;">
+          </div>
+          <div class="form-group" style="grid-column: span 2;">
+            <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block; text-transform: uppercase;">Gov Email Address</label>
+            <input type="email" id="prov-email" class="form-input" required style="width: 100%;">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block; text-transform: uppercase;">Role</label>
+            <select id="prov-role" class="form-input" style="width: 100%; background: #030714; color: #fff;">
+              <option value="OFFICER">OFFICER (Dashboard Access)</option>
+              <option value="ADMIN">ADMIN (Full Access)</option>
+              <option value="OPERATOR">OPERATOR (Limited Access)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block; text-transform: uppercase;">Badge Number</label>
+            <input type="text" id="prov-badge" class="form-input" required style="width: 100%;">
+          </div>
+          <div class="form-group" style="grid-column: span 2;">
+            <label class="form-label" style="font-size: 12px; color: #94A3B8; margin-bottom: 6px; display: block; text-transform: uppercase;">Department</label>
+            <input type="text" id="prov-department" class="form-input" required value="Gujarat Police HQ" style="width: 100%;">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" id="btn-provision" style="width: 100%; padding: 12px; font-weight: 700; font-size: 14px;">
+          <i class="fa-solid fa-fingerprint"></i> Provision Authorized Account
+        </button>
+      </form>
+
+      <div style="margin-top: 25px; text-align: center;">
+        <a href="cipher.html" style="color: #64748B; font-size: 12px; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Back to CIPHER Dashboard</a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

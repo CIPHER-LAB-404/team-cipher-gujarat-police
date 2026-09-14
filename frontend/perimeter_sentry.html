@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PERIMETER SENTRY | Gujarat Police Border & Coastal Command</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --role-accent: #4ADE80;
+      --role-glow: rgba(74, 222, 128, 0.25);
+    }
+    body {
+      background: #030712;
+      color: #F8FAFC;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .portal-nav {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(74, 222, 128, 0.3);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .portal-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+    .portal-title-block h1 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .portal-tag {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(74, 222, 128, 0.15);
+      color: var(--role-accent);
+      border: 1px solid rgba(74, 222, 128, 0.4);
+      text-transform: uppercase;
+    }
+    .portal-subtitle {
+      margin: 2px 0 0 0;
+      font-size: 11px;
+      color: #94A3B8;
+    }
+    .officer-badge-capsule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 6px 16px;
+    }
+    .officer-meta {
+      text-align: right;
+    }
+    .officer-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #F8FAFC;
+    }
+    .officer-rank {
+      font-size: 10px;
+      color: var(--role-accent);
+      font-weight: 600;
+    }
+    .portal-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px;
+      width: 100%;
+      box-sizing: border-box;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .stat-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--role-accent);
+    }
+    .stat-num {
+      font-size: 26px;
+      font-weight: 900;
+      color: #FFFFFF;
+      font-family: 'JetBrains Mono', monospace;
+      margin: 4px 0;
+    }
+    .stat-desc {
+      font-size: 11px;
+      color: #94A3B8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .grid-layout { grid-template-columns: 1fr; }
+    }
+    .section-panel {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 12px;
+    }
+    .panel-header h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-unit-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .nav-unit-link {
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      color: #94A3B8;
+      font-size: 11px;
+      text-decoration: none;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .nav-unit-link:hover, .nav-unit-link.active {
+      background: rgba(74, 222, 128, 0.15);
+      border-color: rgba(74, 222, 128, 0.4);
+      color: #4ADE80;
+    }
+    .badge-outstate {
+      background: rgba(234, 179, 8, 0.15);
+      color: #FACC15;
+      border: 1px solid rgba(234, 179, 8, 0.4);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .action-btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .btn-sentry {
+      background: rgba(74, 222, 128, 0.15);
+      color: #4ADE80;
+      border: 1px solid rgba(74, 222, 128, 0.4);
+    }
+    .btn-sentry:hover {
+      background: #4ADE80;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="portal-nav">
+    <div class="portal-brand">
+      <img src="logo.png" alt="Gujarat Police" class="portal-logo">
+      <div class="portal-title-block">
+        <h1>PERIMETER SENTRY <span class="portal-tag">Division 04</span></h1>
+        <p class="portal-subtitle">State Border &amp; Coastal Checkpost Command Directorate</p>
+      </div>
+    </div>
+
+    <!-- Specialized Units Jump -->
+    <div class="nav-unit-strip">
+      <a href="/traffic-grid" class="nav-unit-link"><i class="fa-solid fa-traffic-light"></i> Traffic Grid</a>
+      <a href="/intel-nexus" class="nav-unit-link"><i class="fa-solid fa-brain"></i> Intel Nexus</a>
+      <a href="/patrol-dispatch" class="nav-unit-link"><i class="fa-solid fa-truck-medical"></i> 112 Dispatch</a>
+      <a href="/perimeter-sentry" class="nav-unit-link active"><i class="fa-solid fa-shield"></i> Border Sentry</a>
+      <a href="/suraksha-desk" class="nav-unit-link"><i class="fa-solid fa-person-dress"></i> SHE Team</a>
+      <a href="/cyber-intel" class="nav-unit-link"><i class="fa-solid fa-desktop"></i> Cyber Cell</a>
+      <a href="/audit-vault" class="nav-unit-link"><i class="fa-solid fa-vault"></i> Audit Vault</a>
+      <a href="/cipher" class="nav-unit-link" style="color: #38BDF8; border-color: rgba(56,189,248,0.4);"><i class="fa-solid fa-crown"></i> Master Grid</a>
+    </div>
+
+    <div class="officer-badge-capsule">
+      <div class="officer-meta">
+        <div class="officer-name">DySP Manubhai Zala</div>
+        <div class="officer-rank"><i class="fa-solid fa-shield"></i> GP-BDR-701 • LEVEL-3</div>
+      </div>
+      <a href="/cipher" class="action-btn btn-sentry" title="Officer Command Gateway"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+    </div>
+  </header>
+
+  <main class="portal-container">
+    
+    <!-- Real-Time Metrics Ribbon -->
+    <div class="stats-ribbon">
+      <div class="stat-card">
+        <div class="stat-desc"><i class="fa-solid fa-road-barrier"></i> Active Border Checkposts</div>
+        <div class="stat-num" style="color: #4ADE80;">24 / 24</div>
+        <div style="font-size: 11px; color: #34D399;"><i class="fa-solid fa-circle-check"></i> Rajasthan, MP &amp; MH Borders</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-desc"><i class="fa-solid fa-truck-front"></i> Commercial Ingress (24H)</div>
+        <div class="stat-num" style="color: #38BDF8;">18,940</div>
+        <div style="font-size: 11px; color: #7DD3FC;">FASTag &amp; E-Way Bill Verified</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-desc"><i class="fa-solid fa-car-tunnel"></i> Out-of-State Vehicles Flagged</div>
+        <div class="stat-num" style="color: #FACC15;">342</div>
+        <div style="font-size: 11px; color: #FDE047;">Commercial Permits Inspected</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-desc"><i class="fa-solid fa-anchor"></i> Coastal Radar Network</div>
+        <div class="stat-num" style="color: #10B981;">100%</div>
+        <div style="font-size: 11px; color: #34D399;">1,600 KM Coastline Guarded</div>
+      </div>
+    </div>
+
+    <div class="grid-layout">
+      <!-- Left Panel: Live Checkpost Crossings -->
+      <div class="section-panel">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-list-check" style="color: #4ADE80;"></i> Live Interstate Border Checkpost Ingress</h3>
+          <span style="font-size: 11px; color: #94A3B8;"><i class="fa-solid fa-satellite-dish"></i> Real-time AI Screening</span>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: left;">
+            <thead>
+              <tr style="background: rgba(30,41,59,0.5); color: #94A3B8; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <th style="padding: 10px 12px;">Time</th>
+                <th style="padding: 10px 12px;">Plate No</th>
+                <th style="padding: 10px 12px;">Border Checkpost</th>
+                <th style="padding: 10px 12px;">Origin State</th>
+                <th style="padding: 10px 12px;">FASTag / E-Way Status</th>
+                <th style="padding: 10px 12px; text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <td style="padding: 10px 12px;">12:44:02</td>
+                <td style="padding: 10px 12px; font-family: monospace; font-weight: 800; color: #FFF;">RJ14CV9912</td>
+                <td style="padding: 10px 12px;">Ratanpur Border (NH-48)</td>
+                <td style="padding: 10px 12px;"><span class="badge-outstate">Rajasthan</span></td>
+                <td style="padding: 10px 12px; color: #10B981;"><i class="fa-solid fa-circle-check"></i> E-Way Verified</td>
+                <td style="padding: 10px 12px; text-align: right;"><button class="action-btn btn-sentry" onclick="alert('Inspection recorded. Lane barrier opened.')"><i class="fa-solid fa-circle-check"></i> Cleared</button></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <td style="padding: 10px 12px;">12:41:19</td>
+                <td style="padding: 10px 12px; font-family: monospace; font-weight: 800; color: #EF4444;">MH04AB2199</td>
+                <td style="padding: 10px 12px;">Bhilad Checkpost (Valsad)</td>
+                <td style="padding: 10px 12px;"><span class="badge-outstate" style="border-color: #EF4444; color: #F87171;">Maharashtra</span></td>
+                <td style="padding: 10px 12px; color: #EF4444;"><i class="fa-solid fa-triangle-exclamation"></i> Manifest Mismatch</td>
+                <td style="padding: 10px 12px; text-align: right;"><button class="action-btn" style="background: rgba(239,68,68,0.2); color: #F87171;" onclick="alert('Vehicle diverted to Secondary Physical Inspection Bay!')"><i class="fa-solid fa-hand"></i> Detain</button></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                <td style="padding: 10px 12px;">12:37:44</td>
+                <td style="padding: 10px 12px; font-family: monospace; font-weight: 800; color: #FFF;">MP09GH4011</td>
+                <td style="padding: 10px 12px;">Dahod Inter-State Gate</td>
+                <td style="padding: 10px 12px;"><span class="badge-outstate">Madhya Pradesh</span></td>
+                <td style="padding: 10px 12px; color: #10B981;"><i class="fa-solid fa-circle-check"></i> FASTag Active</td>
+                <td style="padding: 10px 12px; text-align: right;"><button class="action-btn btn-sentry" onclick="alert('Cleared.')"><i class="fa-solid fa-circle-check"></i> Cleared</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Right Panel: Physical Search Inspection Logger -->
+      <div class="section-panel">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-clipboard-check" style="color: #4ADE80;"></i> Checkpost Inspection Logger</h3>
+        </div>
+        
+        <form onsubmit="event.preventDefault(); logCheckpostInspection();" style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <label style="font-size: 11px; color: #94A3B8; font-weight: 600; display: block; margin-bottom: 4px;">Intercept Checkpost</label>
+            <select id="chk-post" style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 12px; color: #FFF; font-size: 12px;">
+              <option value="RATANPUR_NH48">Ratanpur Border Checkpost (Rajasthan)</option>
+              <option value="BHILAD_VALSAD">Bhilad Border Gate (Maharashtra)</option>
+              <option value="DAHOD_INTERSTATE">Dahod Border Post (Madhya Pradesh)</option>
+              <option value="SHAMLAJI_GATE">Shamlaji Highway Gate</option>
+              <option value="MANDVI_COASTAL">Mandvi Coastal Surveillance Post</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 11px; color: #94A3B8; font-weight: 600; display: block; margin-bottom: 4px;">Vehicle Plate Number</label>
+            <input type="text" id="chk-plate" placeholder="e.g. MH04AB2199" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 12px; color: #FFF; font-family: monospace; text-transform: uppercase;">
+          </div>
+          <div>
+            <label style="font-size: 11px; color: #94A3B8; font-weight: 600; display: block; margin-bottom: 4px;">Cargo / Passenger Manifest Status</label>
+            <input type="text" id="chk-manifest" placeholder="e.g. Chemical Consignment E-Way Bill 99201" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 12px; color: #FFF; font-size: 12px;">
+          </div>
+          <div>
+            <label style="font-size: 11px; color: #94A3B8; font-weight: 600; display: block; margin-bottom: 4px;">Inspection Outcome</label>
+            <select id="chk-outcome" style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 12px; color: #FFF; font-size: 12px;">
+              <option value="CLEARED">Inspection Passed - Clearance Granted</option>
+              <option value="DETAINED">Contraband Suspicion - Detained for Search</option>
+              <option value="TURNAROUND">Invalid Documentation - Ingress Refused</option>
+            </select>
+          </div>
+          <button type="submit" class="action-btn btn-sentry" style="padding: 10px; justify-content: center; font-size: 13px;">
+            <i class="fa-solid fa-stamp"></i> Record Statutory Border Entry Log
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function logCheckpostInspection() {
+      const plate = document.getElementById('chk-plate').value;
+      const post = document.getElementById('chk-post').value;
+      const outcome = document.getElementById('chk-outcome').value;
+      alert(`Border inspection log for ${plate} at ${post} logged with status: ${outcome}! Authenticated by DySP Manubhai Zala.`);
+      document.getElementById('chk-plate').value = '';
+    }
+  </script>
+</body>
+</html>

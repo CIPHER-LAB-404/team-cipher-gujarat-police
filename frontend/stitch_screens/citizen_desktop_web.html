@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"secondary-fixed-dim":"#e9c349","tertiary":"#00dbe7","secondary-container":"#af8d11","tertiary-fixed-dim":"#00dbe7","inverse-surface":"#dde2f3","inverse-on-surface":"#2b303d","surface-dim":"#0e131f","surface-container":"#1a202c","secondary-fixed":"#ffe088","on-tertiary-fixed-variant":"#004f54","surface-container-highest":"#2f3542","tertiary-container":"#002629","primary-container":"#002147","error":"#ffb4ab","surface-tint":"#aec7f6","secondary":"#e9c349","on-secondary-fixed-variant":"#574500","surface-container-low":"#161c28","on-primary-fixed-variant":"#2d476f","surface-container-high":"#242a36","on-secondary":"#3c2f00","outline-variant":"#44474e","surface-variant":"#2f3542","on-error":"#690005","on-secondary-container":"#342800","surface-container-lowest":"#080e1a","on-primary-fixed":"#001b3d","inverse-primary":"#465f88","error-container":"#93000a","on-primary-container":"#708ab5","primary-fixed":"#d6e3ff","on-secondary-fixed":"#241a00","on-primary":"#143057","on-surface":"#dde2f3","on-tertiary-container":"#0098a0","primary-fixed-dim":"#aec7f6","tertiary-fixed":"#74f5ff","on-surface-variant":"#c4c6cf","surface":"#0e131f","surface-bright":"#343946","on-background":"#dde2f3","background":"#0e131f","on-tertiary-fixed":"#002022","on-error-container":"#ffdad6","on-tertiary":"#00363a","primary":"#aec7f6","outline":"#8e9099"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-2xl":"3rem","space-xl":"2rem","space-2xs":"0.125rem","gutter-wide":"1.5rem","space-xs":"0.25rem","gutter-standard":"1rem","margin-screen":"1.25rem","gutter-compact":"0.5rem","space-base":"1rem","space-sm":"0.5rem","space-lg":"1.5rem","space-md":"0.75rem"},"fontFamily":{"headline-xl":["inter"],"body-md":["inter"],"display-hero":["inter"],"headline-md":["inter"],"body-lg":["inter"],"headline-lg":["inter"],"body-sm":["inter"],"telemetry-md":["jetbrainsMono"],"headline-xl-mobile":["inter"],"telemetry-lg":["jetbrainsMono"],"label-caps":["jetbrainsMono"],"telemetry-sm":["jetbrainsMono"]},"fontSize":{"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"display-hero":["48px",{"lineHeight":"56px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-md":["20px",{"lineHeight":"28px","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"telemetry-md":["13px",{"lineHeight":"18px","letterSpacing":"0.02em","fontWeight":"500"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"700"}],"telemetry-lg":["18px",{"lineHeight":"24px","letterSpacing":"0.05em","fontWeight":"700"}],"label-caps":["10px",{"lineHeight":"12px","letterSpacing":"0.12em","fontWeight":"700"}],"telemetry-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.06em","fontWeight":"400"}]}}}}</script></head><body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-secondary selection:text-on-secondary"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-20 max-w-7xl mx-auto px-gutter-wide flex items-center justify-between gap-space-base"><div class="flex items-center gap-space-md"><img alt="logo.png" class="h-8 w-auto object-contain" src="/logo.png"/><div class="flex flex-col justify-center"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md text-on-surface tracking-tight font-bold">GUJARAT POLICE</span><span class="text-secondary font-headline-md text-headline-md font-bold">â¢</span><span class="font-headline-md text-headline-md text-secondary font-bold">àªà«àªàª°àª¾àª¤ àªªà«àª²à«àª¸</span></div><span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant uppercase tracking-wider">State Citizen Safety &amp; Interdiction Command Portal</span></div></div><div class="hidden xl:flex items-center gap-space-md py-space-xs px-space-md rounded bg-surface-container-low"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">DISTRICTS</span><span class="font-telemetry-md text-telemetry-md text-tertiary font-bold">33 LIVE</span></div><span class="text-outline-variant font-telemetry-sm text-telemetry-sm">|</span><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-tertiary"></span><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">AI CCTV</span><span class="font-telemetry-md text-telemetry-md text-tertiary font-bold">80K+</span></div><span class="text-outline-variant font-telemetry-sm text-telemetry-sm">|</span><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">CCTNS SYNC</span><span class="font-telemetry-md text-telemetry-md text-secondary font-bold">99.98%</span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a aria-current="page" class="px-space-md py-space-sm transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="citizen-safety-overview" href="#">Citizen Safety</a><a class="px-space-md py-space-sm text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="highway-advisories" href="#">Highway Advisories</a><a class="px-space-md py-space-sm text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="e-challan-and-verification" href="#">e-Challan &amp; Verification</a><a class="px-space-md py-space-sm text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="officer-desk-cipher" href="#">Officer Desk / CIPHER</a><a class="px-space-md py-space-sm text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" data-path="downloads-and-charters" href="#">Downloads &amp; Charters</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs font-telemetry-sm text-telemetry-sm bg-surface-container px-space-sm py-space-xs rounded text-on-surface"><span class="text-secondary font-bold">ENG</span><span class="text-outline-variant">/</span><span class="text-on-surface-variant hover:text-on-surface cursor-pointer">àªà«àª</span></div><a class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded bg-error-container text-on-error-container hover:bg-error hover:text-on-error transition-colors font-headline-md text-body-md font-bold tracking-wide shadow-lg" data-path="emergency-sos" href="#"><span class="material-symbols-outlined text-[18px]">e911_emergency</span><span>SOS 112</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface flex-1"><div class="flex flex-col w-full">
+<div class="relative w-full overflow-hidden pb-space-2xl">
+<div class="absolute inset-0 pointer-events-none opacity-20">
+<div class="absolute -top-32 left-1/4 w-96 h-96 rounded-full bg-tertiary filter blur-[100px]"></div>
+<div class="absolute top-48 right-10 w-80 h-80 rounded-full bg-secondary filter blur-[120px]"></div>
+<div class="absolute inset-0 bg-[radial-gradient(rgba(174,199,246,0.06)_1px,transparent_1px)] [background-size:24px_24px]"></div>
+</div>
+<div class="max-w-7xl mx-auto px-gutter-wide pt-space-xl flex flex-col gap-space-2xl relative z-10">
+<section class="flex flex-col gap-space-lg">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="inline-flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded shadow-sm">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+</span>
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest">LIVE CCTNS SYNC 99.98%</span>
+<span class="text-outline-variant font-telemetry-sm text-telemetry-sm">â¢</span>
+<span class="font-label-caps text-label-caps uppercase text-secondary tracking-wider">STATE SURVEILLANCE RADAR ACTIVE</span>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant font-telemetry-sm text-telemetry-sm">
+<span class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-[16px] text-tertiary">lock_clock</span>
+              ENCRYPTED SECURE PROTOCOL V4.2
+            </span>
+<span class="bg-surface-container px-space-sm py-space-2xs rounded text-primary font-bold">STATE POLICE COMMAND HQ</span>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-xl">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-xs">
+<span class="h-1.5 w-8 rounded-full bg-secondary"></span>
+<span class="font-telemetry-md text-telemetry-md text-secondary font-bold uppercase tracking-wider">Government of Gujarat Civic Safety Grid</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-extrabold">
+              Citizen Public Safety &amp; Civic Assistance Portal
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+              àª¸à«àª°àªà«àª·àª¾, àª¸à«àªµàª¾ àªàª¨à« àª¸àª¹àªàª¾àª° â¢ 24Ã7 State Civic Protection, Rapid Response &amp; Digital Law Enforcement Gateway
+            </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<a class="px-space-lg py-space-md rounded bg-surface-container-high text-on-surface hover:bg-surface-bright transition-all font-headline-md text-body-md font-semibold flex items-center gap-space-xs shadow-md" href="#quick-report">
+<span class="material-symbols-outlined text-[18px] text-primary">feed</span>
+<span>Track Lodged e-FIR</span>
+</a>
+<button class="px-space-lg py-space-md rounded bg-error-container text-on-error-container hover:bg-error hover:text-on-error transition-all font-headline-md text-body-md font-bold flex items-center gap-space-xs shadow-lg animate-pulse" onclick="document.getElementById('sosModal').classList.toggle('hidden')">
+<span class="material-symbols-outlined text-[20px]">e911_emergency</span>
+<span>112 RAPID SOS</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md pt-space-xs">
+<div class="bg-surface-container-low p-space-md rounded flex flex-col gap-space-xs shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">JURISDICTION NETWORK</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">share_location</span>
+</div>
+<span class="font-telemetry-lg text-telemetry-lg font-bold text-on-surface">33 Districts Online</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">All Commissionerates &amp; SP Offices synchronised to unified state command</p>
+<div class="w-full bg-surface-container-highest h-1 rounded overflow-hidden mt-space-xs">
+<div class="bg-tertiary h-full w-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded flex flex-col gap-space-xs shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">VISUAL RADAR &amp; ANPR</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">videocam</span>
+</div>
+<span class="font-telemetry-lg text-telemetry-lg font-bold text-on-surface">80,000+ AI CCTV Cams</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live intersection optics &amp; highway gantry nodes feeding automated mesh</p>
+<div class="w-full bg-surface-container-highest h-1 rounded overflow-hidden mt-space-xs">
+<div class="bg-secondary h-full w-[94%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded flex flex-col gap-space-xs shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">URBAN INTERVENTION</span>
+<span class="material-symbols-outlined text-primary text-[20px]">local_police</span>
+</div>
+<span class="font-telemetry-lg text-telemetry-lg font-bold text-on-surface">~4.2 Mins Avg Dispatch</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Automated CAD routing via real-time satellite GPS vehicle locator</p>
+<div class="w-full bg-surface-container-highest h-1 rounded overflow-hidden mt-space-xs">
+<div class="bg-primary h-full w-[88%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded flex flex-col gap-space-xs shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">FINANCIAL SHIELD</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">account_balance</span>
+</div>
+<span class="font-telemetry-lg text-telemetry-lg font-bold text-on-surface">&lt;15 Mins Lien Freeze</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">National 1930 Cyber switch integrated with NPCI &amp; banking gateways</p>
+<div class="w-full bg-surface-container-highest h-1 rounded overflow-hidden mt-space-xs">
+<div class="bg-tertiary h-full w-[98%]"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">contact_phone</span>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight font-bold">24Ã7 State Emergency Lifelines</h2>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant uppercase">Instant Dial &amp; Immediate CAD Intimation</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container rounded p-space-lg flex flex-col justify-between gap-space-md shadow-md hover:bg-surface-container-high transition-all">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-2xs bg-error-container text-on-error-container font-telemetry-sm text-telemetry-sm font-bold rounded">CODE RED ESCALATION</span>
+<span class="material-symbols-outlined text-error text-[20px]">fmd_good</span>
+</div>
+<div class="flex items-baseline gap-space-xs pt-space-xs">
+<span class="font-display-hero text-headline-xl text-error font-extrabold tracking-tight">112</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ 100 Dispatch</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-semibold">Police Emergency &amp; PCR Van Routing</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time CAD triangulation to nearest mobile patrol with live ETA status.</p>
+</div>
+<a class="w-full py-space-sm bg-error-container text-on-error-container hover:bg-error hover:text-on-error rounded text-center font-headline-md text-body-md font-bold transition-colors flex items-center justify-center gap-space-xs" href="tel:112">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span>Dial 112 Dispatch</span>
+</a>
+</div>
+<div class="bg-surface-container rounded p-space-lg flex flex-col justify-between gap-space-md shadow-md hover:bg-surface-container-high transition-all">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-2xs bg-secondary/20 text-secondary font-telemetry-sm text-telemetry-sm font-bold rounded">WOMEN &amp; MINORS</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">shield_person</span>
+</div>
+<div class="flex items-baseline gap-space-xs pt-space-xs">
+<span class="font-display-hero text-headline-xl text-secondary font-extrabold tracking-tight">1091</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">SHE Team Desk</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-semibold">SHE Team Squad &amp; Safe Escort</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dedicated women-led squads for rapid intervention, domestic refuge, and route escort.</p>
+</div>
+<a class="w-full py-space-sm bg-secondary text-on-secondary hover:bg-secondary-fixed-dim rounded text-center font-headline-md text-body-md font-bold transition-colors flex items-center justify-center gap-space-xs" href="tel:1091">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span>Connect SHE Team</span>
+</a>
+</div>
+<div class="bg-surface-container rounded p-space-lg flex flex-col justify-between gap-space-md shadow-md hover:bg-surface-container-high transition-all">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-2xs bg-tertiary-container text-on-tertiary-container font-telemetry-sm text-telemetry-sm font-bold rounded">FINANCIAL FRAUD</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">lock_reset</span>
+</div>
+<div class="flex items-baseline gap-space-xs pt-space-xs">
+<span class="font-display-hero text-headline-xl text-tertiary font-extrabold tracking-tight">1930</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Golden Hour</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-semibold">Cyber Financial Fraud Intercept</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instant financial freeze node blocking illicit multi-hop UPI and NEFT siphoning.</p>
+</div>
+<a class="w-full py-space-sm bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary rounded text-center font-headline-md text-body-md font-bold transition-colors flex items-center justify-center gap-space-xs" href="tel:1930">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span>Trigger Lien Freeze</span>
+</a>
+</div>
+<div class="bg-surface-container rounded p-space-lg flex flex-col justify-between gap-space-md shadow-md hover:bg-surface-container-high transition-all">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-2xs bg-surface-container-highest text-on-surface-variant font-telemetry-sm text-telemetry-sm font-bold rounded">EXPRESSWAYS</span>
+<span class="material-symbols-outlined text-primary text-[20px]">departure_board</span>
+</div>
+<div class="flex items-baseline gap-space-xs pt-space-xs">
+<span class="font-display-hero text-headline-xl text-primary font-extrabold tracking-tight">1095</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Patrol Desk</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-semibold">Highway Safety &amp; Corridor Patrol</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">State arterial breakdown assistance, heavy crane towing, and trauma ambulance dispatch.</p>
+</div>
+<a class="w-full py-space-sm bg-surface-bright text-on-surface hover:bg-surface-variant rounded text-center font-headline-md text-body-md font-bold transition-colors flex items-center justify-center gap-space-xs" href="tel:1095">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span>Highway Dispatch</span>
+</a>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px]">apps</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Civic Protection Matrix</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Direct digital interfaces for immediate crime reporting, identity verification, and community care.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="bg-surface-container p-space-lg rounded flex flex-col justify-between gap-space-md shadow-sm hover:shadow-md transition-all">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">directions_car</span>
+</span>
+<span class="bg-secondary/20 text-secondary px-space-xs py-space-2xs rounded font-label-caps text-label-caps uppercase font-bold">60 SEC SYNC</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Stolen Vehicle ANPR Intimation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instantly broadcast vehicle registration into the state's 80,000+ camera mesh for immediate automated toll and gantry roadblock intercepts.</p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">CCTNS e-Intimation</span>
+<button class="px-space-md py-space-xs rounded bg-surface-bright text-on-surface hover:text-secondary font-headline-md text-body-sm font-semibold flex items-center gap-space-2xs transition-colors" onclick="openActionModal('Stolen Vehicle ANPR')">
+<span>Broadcast Plate</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container p-space-lg rounded flex flex-col justify-between gap-space-md shadow-sm hover:shadow-md transition-all">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">female</span>
+</span>
+<span class="bg-tertiary/20 text-tertiary px-space-xs py-space-2xs rounded font-label-caps text-label-caps uppercase font-bold">ACTIVE CAD TRACK</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">SHE Team Safe Transit Escort</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Request verified police transit tracking for late-night travel or emergency escorts. Control room stays actively latched to mobile telematics.</p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">Confidential Dispatch</span>
+<button class="px-space-md py-space-xs rounded bg-surface-bright text-on-surface hover:text-tertiary font-headline-md text-body-sm font-semibold flex items-center gap-space-2xs transition-colors" onclick="openActionModal('SHE Team Transit Escort')">
+<span>Book Safe Ride</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container p-space-lg rounded flex flex-col justify-between gap-space-md shadow-sm hover:shadow-md transition-all">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">elderly</span>
+</span>
+<span class="bg-primary/20 text-primary px-space-xs py-space-2xs rounded font-label-caps text-label-caps uppercase font-bold">PRANAM CARE</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Pranam Senior Citizen Care</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Beat-constable scheduled physical welfare checks, urgent doorstep medical transport, and priority distress response for elderly citizens.</p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">Community Beat System</span>
+<button class="px-space-md py-space-xs rounded bg-surface-bright text-on-surface hover:text-primary font-headline-md text-body-sm font-semibold flex items-center gap-space-2xs transition-colors" onclick="openActionModal('Pranam Senior Register')">
+<span>Register Care</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container p-space-lg rounded flex flex-col justify-between gap-space-md shadow-sm hover:shadow-md transition-all">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">person_check</span>
+</span>
+<span class="bg-secondary/20 text-secondary px-space-xs py-space-2xs rounded font-label-caps text-label-caps uppercase font-bold">CCTNS DIGITAL VERIFIED</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Tenant &amp; Domestic Verification</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Submit maid, driver, and tenant identification for zero-visit criminal record screening across 33 state districts with digital QR stamp.</p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">Digital Certificate</span>
+<button class="px-space-md py-space-xs rounded bg-surface-bright text-on-surface hover:text-secondary font-headline-md text-body-sm font-semibold flex items-center gap-space-2xs transition-colors" onclick="openActionModal('Tenant Verification')">
+<span>Verify Now</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container p-space-lg rounded flex flex-col justify-between gap-space-md shadow-sm hover:shadow-md transition-all">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">fingerprint</span>
+</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-space-xs py-space-2xs rounded font-label-caps text-label-caps uppercase font-bold">PASSPORT &amp; VISA</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">PCC Status Reference Tracker</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live audit trail for Police Clearance Certificates required for foreign education, offshore work permits, and diplomatic passport clearance.</p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">NIC Gateway Synced</span>
+<button class="px-space-md py-space-xs rounded bg-surface-bright text-on-surface hover:text-tertiary font-headline-md text-body-sm font-semibold flex items-center gap-space-2xs transition-colors" onclick="openActionModal('PCC Tracker')">
+<span>Query Token</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container p-space-lg rounded flex flex-col justify-between gap-space-md shadow-sm hover:shadow-md transition-all">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</span>
+<span class="bg-error-container text-on-error-container px-space-xs py-space-2xs rounded font-label-caps text-label-caps uppercase font-bold">INSTANT 1930 DISPATCH</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Cyber Fraud Interception Desk</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Immediate submission of fraudulent UPI handles, SIM impersonation, OTP siphoning, and malicious APK files to CID Cyber Crime cell.</p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant">Direct CID Escalation</span>
+<button class="px-space-md py-space-xs rounded bg-surface-bright text-on-surface hover:text-error font-headline-md text-body-sm font-semibold flex items-center gap-space-2xs transition-colors" onclick="openActionModal('Cyber Intercept Desk')">
+<span>File Incident</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-xl rounded flex flex-col gap-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">download_for_offline</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Quick Verification &amp; Document Center</h3>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-secondary">OFFICIAL GAZETTE</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-tertiary text-[20px]">description</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">PDF â¢ 1.4 MB</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Lost Article Certificate</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Official report for passport/SIM insurance.</p>
+<a class="font-telemetry-sm text-telemetry-sm text-tertiary flex items-center gap-space-2xs pt-space-xs hover:underline" href="#">Download Format <span class="material-symbols-outlined text-[14px]">file_download</span></a>
+</div>
+<div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">PDF â¢ 890 KB</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Tenant e-KYC Form</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mandatory residential lessor form.</p>
+<a class="font-telemetry-sm text-telemetry-sm text-secondary flex items-center gap-space-2xs pt-space-xs hover:underline" href="#">Download Template <span class="material-symbols-outlined text-[14px]">file_download</span></a>
+</div>
+<div class="bg-surface-container p-space-md rounded flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-[20px]">policy</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">PDF â¢ 2.1 MB</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Citizen Police Charter</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rights, timelines &amp; escalation tiers.</p>
+<a class="font-telemetry-sm text-telemetry-sm text-primary flex items-center gap-space-2xs pt-space-xs hover:underline" href="#">Read Charter <span class="material-symbols-outlined text-[14px]">file_download</span></a>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<div class="bg-surface-container rounded p-space-lg flex flex-col gap-space-md shadow-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px]">hub</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">District Surveillance Telemetry</h3>
+</div>
+<span class="font-label-caps text-label-caps text-tertiary bg-tertiary/10 px-space-xs py-space-2xs rounded uppercase">Real-Time Hubs</span>
+</div>
+<div class="relative w-full h-56 bg-surface-container-lowest rounded overflow-hidden flex flex-col justify-between p-space-md">
+<div class="absolute inset-0 opacity-15">
+<svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="30" id="radarGrid" patternunits="userSpaceOnUse" width="30">
+<path class="text-tertiary" d="M 30 0 L 0 0 0 30" fill="none" stroke="currentColor" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<rect fill="url(#radarGrid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-space-2xs font-telemetry-sm text-telemetry-sm text-on-surface">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span>COMMAND RADAR: STATE CONSOLE</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-tertiary bg-surface-container px-space-xs py-space-2xs rounded">LAT 23.2156Â° N | LON 72.6369Â° E</span>
+</div>
+<div class="relative z-10 grid grid-cols-2 gap-space-xs my-auto">
+<div class="bg-surface-container-low/90 backdrop-blur p-space-xs rounded flex flex-col">
+<div class="flex items-center justify-between font-telemetry-sm text-telemetry-sm">
+<span class="text-on-surface font-bold">AHMEDABAD</span>
+<span class="text-tertiary">22,410 CAMS</span>
+</div>
+<div class="flex items-center gap-space-2xs font-label-caps text-label-caps text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>CAD DISPATCH: 3.8 MIN</span>
+</div>
+</div>
+<div class="bg-surface-container-low/90 backdrop-blur p-space-xs rounded flex flex-col">
+<div class="flex items-center justify-between font-telemetry-sm text-telemetry-sm">
+<span class="text-on-surface font-bold">SURAT URBAN</span>
+<span class="text-tertiary">18,650 CAMS</span>
+</div>
+<div class="flex items-center gap-space-2xs font-label-caps text-label-caps text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>CAD DISPATCH: 4.1 MIN</span>
+</div>
+</div>
+<div class="bg-surface-container-low/90 backdrop-blur p-space-xs rounded flex flex-col">
+<div class="flex items-center justify-between font-telemetry-sm text-telemetry-sm">
+<span class="text-on-surface font-bold">VADODARA</span>
+<span class="text-secondary">11,200 CAMS</span>
+</div>
+<div class="flex items-center gap-space-2xs font-label-caps text-label-caps text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>CAD DISPATCH: 4.4 MIN</span>
+</div>
+</div>
+<div class="bg-surface-container-low/90 backdrop-blur p-space-xs rounded flex flex-col">
+<div class="flex items-center justify-between font-telemetry-sm text-telemetry-sm">
+<span class="text-on-surface font-bold">RAJKOT RANGE</span>
+<span class="text-tertiary">9,480 CAMS</span>
+</div>
+<div class="flex items-center gap-space-2xs font-label-caps text-label-caps text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>CAD DISPATCH: 4.6 MIN</span>
+</div>
+</div>
+</div>
+<div class="relative z-10 flex items-center justify-between font-telemetry-sm text-telemetry-sm pt-space-xs">
+<span class="text-on-surface-variant">HIGHWAY CORRIDOR SURVEILLANCE</span>
+<span class="text-secondary font-bold">ZERO CRITICAL BLOCKAGES</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-2xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Live Tactical Event Feed</span>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between p-space-xs rounded bg-surface-container-low font-telemetry-sm text-telemetry-sm">
+<span class="text-on-surface">GJ-01 ANPR Camera Cluster 4A: Operational</span>
+<span class="text-tertiary font-bold">SYNCED</span>
+</div>
+<div class="flex items-center justify-between p-space-xs rounded bg-surface-container-low font-telemetry-sm text-telemetry-sm">
+<span class="text-on-surface">Ahmedabad-Vadodara Expressway NE-1 Gantry Patrol</span>
+<span class="text-primary font-bold">ROUTE CLEAR</span>
+</div>
+<div class="flex items-center justify-between p-space-xs rounded bg-surface-container-low font-telemetry-sm text-telemetry-sm">
+<span class="text-on-surface">1930 Lien Node: 48 Accounts Auto-Frozen (1 hr)</span>
+<span class="text-secondary font-bold">â¹1.84 CR SECURED</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container rounded p-space-lg flex flex-col gap-space-md shadow-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">help_center</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Public Safety Charter &amp; FAQ</h3>
+</div>
+<div class="flex flex-col gap-space-sm" id="accordionContainer">
+<div class="bg-surface-container-low rounded overflow-hidden">
+<button class="w-full text-left p-space-md flex items-center justify-between gap-space-sm hover:bg-surface-container-high transition-colors" onclick="toggleFaq('faq1')">
+<span class="font-headline-md text-body-md text-on-surface font-semibold">How fast is the urban emergency PCR van dispatched?</span>
+<span class="material-symbols-outlined text-primary text-[18px] transition-transform" id="faq1-icon">expand_more</span>
+</button>
+<div class="hidden px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant leading-relaxed" id="faq1">
+                  Calls logged via 112 are automatically routed using the centralized Computer-Aided Dispatch (CAD) engine. Live GIS and automated vehicle positioning identify the closest moving patrol unit, with average arrival time confirmed at under 4.5 minutes in municipal areas.
+                </div>
+</div>
+<div class="bg-surface-container-low rounded overflow-hidden">
+<button class="w-full text-left p-space-md flex items-center justify-between gap-space-sm hover:bg-surface-container-high transition-colors" onclick="toggleFaq('faq2')">
+<span class="font-headline-md text-body-md text-on-surface font-semibold">What happens during the Cyber Golden Hour on dialing 1930?</span>
+<span class="material-symbols-outlined text-primary text-[18px] transition-transform" id="faq2-icon">expand_more</span>
+</button>
+<div class="hidden px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant leading-relaxed" id="faq2">
+                  The National Cybercrime Reporting Portal switch instantly sends machine-to-machine lock tokens to the destination bank, payment aggregator, or merchant wallet. Dialing within 60 minutes prevents fraudsters from withdrawing or off-ramping siphoned capital.
+                </div>
+</div>
+<div class="bg-surface-container-low rounded overflow-hidden">
+<button class="w-full text-left p-space-md flex items-center justify-between gap-space-sm hover:bg-surface-container-high transition-colors" onclick="toggleFaq('faq3')">
+<span class="font-headline-md text-body-md text-on-surface font-semibold">How are domestic workers and tenants verified securely?</span>
+<span class="material-symbols-outlined text-primary text-[18px] transition-transform" id="faq3-icon">expand_more</span>
+</button>
+<div class="hidden px-space-md pb-space-md font-body-sm text-body-sm text-on-surface-variant leading-relaxed" id="faq3">
+                  Submissions are authenticated via Aadhaar e-KYC and cross-queried with national CCTNS crime records. The verified digital clearance contains an immutable cryptographic signature and QR identifier without needing in-person police station visits.
+                </div>
+</div>
+</div>
+</div>
+<div class="relative rounded overflow-hidden p-space-lg bg-surface-container-low shadow-sm">
+<div class="relative z-10 flex items-center gap-space-md">
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[28px]">shield</span>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<span class="font-headline-md text-body-md text-on-surface font-bold">State Cyber Security Alert</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Beware of fraudulent WhatsApp calls claiming custom parcel detention. Gujarat Police never demands online fund transfer for verification.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-space-md bg-surface-container-lowest/80 backdrop-blur-md" id="sosModal">
+<div class="bg-surface-container-low rounded p-space-xl max-w-lg w-full flex flex-col gap-space-md shadow-xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-error">
+<span class="material-symbols-outlined text-[24px]">crisis_alert</span>
+<span class="font-headline-md text-headline-md font-bold">EMERGENCY SOS 112 TRIGGER</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="document.getElementById('sosModal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+        You are about to transmit an immediate tactical emergency beacon with your device telemetry directly into the Gujarat Police CAD Emergency Dispatch Console.
+      </p>
+<div class="bg-surface-container p-space-md rounded font-telemetry-sm text-telemetry-sm space-y-space-2xs text-on-surface-variant">
+<div class="flex justify-between"><span>GEO LOCATION:</span><span class="text-tertiary">LAT 23.0225Â° N | LON 72.5714Â° E (EST)</span></div>
+<div class="flex justify-between"><span>ACCURACY RADAR:</span><span class="text-secondary">Â± 4.8 Meters</span></div>
+<div class="flex justify-between"><span>DISPATCH UNIT:</span><span class="text-on-surface">Nearest Urban PCR Van &amp; Beat Staff</span></div>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<button class="flex-1 py-space-md rounded bg-error-container text-on-error-container hover:bg-error hover:text-on-error font-headline-md text-body-md font-bold transition-colors flex items-center justify-center gap-space-xs" onclick="simulateSOSConfirmation()">
+<span class="material-symbols-outlined text-[18px]">emergency</span>
+<span>CONFIRM SOS TRANSMISSION</span>
+</button>
+<button class="px-space-lg py-space-md rounded bg-surface-container text-on-surface hover:bg-surface-bright font-headline-md text-body-md font-semibold" onclick="document.getElementById('sosModal').classList.add('hidden')">
+          Cancel
+        </button>
+</div>
+</div>
+</div>
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-space-md bg-surface-container-lowest/80 backdrop-blur-md" id="serviceActionModal">
+<div class="bg-surface-container rounded p-space-xl max-w-md w-full flex flex-col gap-space-md shadow-xl">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface" id="actionModalTitle">Service Initiation</h3>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="document.getElementById('serviceActionModal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter registration or mobile reference to proceed with Gujarat Police CCTNS validation node.</p>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-caps text-label-caps text-on-surface uppercase">Registration / Reference Token</label>
+<input class="w-full bg-surface-container-lowest text-on-surface p-space-sm rounded font-telemetry-md text-telemetry-md focus:outline-none" placeholder="e.g. GJ-01-XX-0000 or Mobile Number" type="text"/>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-space-sm rounded bg-surface-container-high text-on-surface text-body-md font-semibold" onclick="document.getElementById('serviceActionModal').classList.add('hidden')">Dismiss</button>
+<button class="px-space-lg py-space-sm rounded bg-primary text-on-primary hover:bg-primary-fixed text-body-md font-bold" onclick="alert('Query routed to CCTNS Gateway Node.'); document.getElementById('serviceActionModal').classList.add('hidden')">Query Gateway</button>
+</div>
+</div>
+</div>
+<script>
+    function toggleFaq(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        icon.innerText = 'expand_less';
+      } else {
+        el.classList.add('hidden');
+        icon.innerText = 'expand_more';
+      }
+    }
+
+    function openActionModal(serviceName) {
+      const modal = document.getElementById('serviceActionModal');
+      const title = document.getElementById('actionModalTitle');
+      title.innerText = serviceName;
+      modal.classList.remove('hidden');
+    }
+
+    function simulateSOSConfirmation() {
+      alert('EMERGENCY BEACON BROADCAST: Coordinates logged. Command Room CAD has alerted nearest PCR vehicle #GJ-PCR-14. Immediate dispatch in progress.');
+      document.getElementById('sosModal').classList.add('hidden');
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest text-on-surface-variant"><div class="max-w-7xl mx-auto px-gutter-wide pt-space-2xl pb-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl mb-space-2xl"><div class="flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><img alt="logo.png" class="h-8 w-auto object-contain" src="/logo.png"/><span class="font-headline-md text-headline-md text-on-surface font-bold">SENTINEL</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Government of Gujarat State Police Public Safety and Command Network. Unified citizen safety infrastructure and rapid response network across 33 jurisdictional districts.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="material-symbols-outlined text-tertiary text-[20px]">verified_user</span><span class="font-telemetry-sm text-telemetry-sm text-tertiary">CCTNS &amp; NIC Validated Gateway</span></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-caps text-label-caps text-secondary uppercase font-bold tracking-wider">Emergency Lifelines</span><div class="flex flex-col gap-space-xs font-telemetry-md text-telemetry-md"><div class="flex items-center justify-between p-space-sm rounded bg-surface-container-low"><span class="text-on-surface-variant">All Emergency Dispatch</span><span class="text-error font-bold">112</span></div><div class="flex items-center justify-between p-space-sm rounded bg-surface-container-low"><span class="text-on-surface-variant">SHE Team (Women Safety)</span><span class="text-secondary font-bold">1091</span></div><div class="flex items-center justify-between p-space-sm rounded bg-surface-container-low"><span class="text-on-surface-variant">Cyber Helpline Desk</span><span class="text-tertiary font-bold">1930</span></div><div class="flex items-center justify-between p-space-sm rounded bg-surface-container-low"><span class="text-on-surface-variant">Highway Patrol Dispatch</span><span class="text-primary font-bold">1033</span></div></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-caps text-label-caps text-secondary uppercase font-bold tracking-wider">Citizen Operations</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm"><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[14px]">arrow_forward</span>e-Challan Settlement Portal</li><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[14px]">arrow_forward</span>Domestic Staff &amp; Tenant Verification</li><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[14px]">arrow_forward</span>Lost Article Reporting (e-FIR)</li><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[14px]">arrow_forward</span>Police Clearance Certificate (PCC)</li><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[14px]">arrow_forward</span>Senior Citizen Registration Track</li></ul></div><div class="flex flex-col gap-space-sm"><span class="font-label-caps text-label-caps text-secondary uppercase font-bold tracking-wider">State Interdiction Units</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm"><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-[14px]">lock</span>State Cyber Crime Cell (CID)</li><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-[14px]">security</span>Anti-Terrorism Squad (ATS) HQ</li><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-[14px]">traffic</span>State Traffic Branch Control Room</li><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-[14px]">shield</span>Coastal Security Command Desk</li><li class="hover:text-on-surface cursor-pointer flex items-center gap-space-xs"><span class="material-symbols-outlined text-tertiary text-[14px]">terminal</span>Officer CIPHER Dispatch Terminal</li></ul></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-center md:text-left"><div class="flex flex-col gap-space-2xs"><span class="font-telemetry-sm text-telemetry-sm text-on-surface">Official Portal of Gujarat Police â¢ Home Department, Government of Gujarat</span><span class="font-body-sm text-body-sm text-outline">Crafted under Digital India &amp; CCTNS Framework. Designed for 24/7 mission-critical public welfare.</span></div><div class="flex items-center gap-space-lg font-telemetry-sm text-telemetry-sm text-on-surface-variant"><span class="hover:text-on-surface cursor-pointer">Privacy Policy</span><span class="hover:text-on-surface cursor-pointer">Terms of Use</span><span class="hover:text-on-surface cursor-pointer">Hyperlinking Policy</span><span class="hover:text-on-surface cursor-pointer">Copyright Notice</span></div></div></div></footer></body></html>

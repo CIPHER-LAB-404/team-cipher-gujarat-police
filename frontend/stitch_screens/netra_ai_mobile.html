@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NETRA-CORE INTELLIGENCE - Mobile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#050d25",
+                        "on-background": "#dbe1ff",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#b9cacb",
+                        "on-primary-fixed": "#002022",
+                        "on-tertiary": "#003824",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#291800",
+                        "secondary-container": "#ffae00",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container-low": "#131a33",
+                        "inverse-primary": "#00696f",
+                        "surface": "#0a122a",
+                        "on-tertiary-fixed": "#002113",
+                        "primary-fixed-dim": "#00dbe7",
+                        "secondary-fixed-dim": "#ffba48",
+                        "on-tertiary-container": "#006e4b",
+                        "secondary": "#ffd395",
+                        "on-primary": "#00363a",
+                        "surface-container-high": "#212942",
+                        "on-primary-container": "#006a71",
+                        "surface-container-highest": "#2c344d",
+                        "primary-fixed": "#74f5ff",
+                        "surface-container": "#171e37",
+                        "inverse-surface": "#dbe1ff",
+                        "surface-variant": "#2c344d",
+                        "primary-container": "#00f2ff",
+                        "surface-tint": "#00dbe7",
+                        "on-secondary": "#442b00",
+                        "tertiary": "#e1ffec",
+                        "error-container": "#93000a",
+                        "on-surface": "#dbe1ff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed-variant": "#614000",
+                        "tertiary-container": "#67f4b7",
+                        "primary": "#e1fdff",
+                        "inverse-on-surface": "#282f49",
+                        "on-primary-fixed-variant": "#004f54",
+                        "on-secondary-container": "#6a4600",
+                        "background": "#0a122a",
+                        "surface-dim": "#0a122a",
+                        "outline-variant": "#3a494b",
+                        "outline": "#849495",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "secondary-fixed": "#ffddb1",
+                        "surface-bright": "#313852"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "panel-padding": "20px",
+                        "margin-sm": "12px",
+                        "margin-md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "telemetry-data": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "telemetry-label": ["JetBrains Mono"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "telemetry-data": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "telemetry-label": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(11, 19, 43, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .active-glow {
+            border-color: #00f2ff;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+        .hud-bracket {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-color: #00f2ff;
+            border-style: solid;
+        }
+        .bracket-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+        .bracket-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+        .bracket-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+        .bracket-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+        
+        .scanline-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 242, 255, 0) 0%,
+                rgba(0, 242, 255, 0.1) 50%,
+                rgba(0, 242, 255, 0) 100%
+            );
+            background-size: 100% 4px;
+            animation: scan 8s linear infinite;
+        }
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation (Mobile Version) -->
+<header class="bg-surface-container-lowest/60 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(0,242,255,0.1)] fixed top-0 w-full z-50 flex justify-between items-center px-gutter h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-2xl">memory</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-black text-primary uppercase tracking-tighter">NETRA-CORE</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-telemetry-label text-telemetry-label text-on-surface-variant bg-surface-container-high px-2 py-1 rounded">GPU: 92%</span>
+<span class="font-label-caps text-label-caps bg-primary-container text-on-primary-container px-2 py-1 rounded">SUPER ADMIN</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 mt-16 mb-24 px-gutter py-margin-sm space-y-margin-md">
+<!-- Active Viewport (16:9) -->
+<section class="relative w-full aspect-video glass-panel rounded overflow-hidden">
+<div class="absolute inset-0 bg-surface-container-high animate-pulse" data-alt="A tactical surveillance camera view of a crowded street in Ahmedabad, low light, high contrast, cyber-cyan UI overlays, person in focus, dark obsidian color palette, futuristic dashboard aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmGT6bQCS9RTyxtGGQ746ZKT21nMpGjY_1mTAdWpwhwLo7zRidcLdCUoRIpTMrZKmgGI1Lj4DohGv_rjshKlXDHU0mZ7546xOHxQIpC-9nLtmTL3x6eb-zOohO-_VsXKCfUDtqlf1jqxpbmmxN4T21VkKMiNjXKkWULsiHXfGpM4QoQeqkLV5OeePdN74t-oiq-NOsEqrIcEb3rmyUu37-XwxTuN23SGK5Ik95yoi_NGZiGNQjmOsQ18OtSy4k5vWZZs1QtFR384Y'); background-size: cover; background-position: center;"></div>
+<div class="absolute inset-0 scanline-overlay pointer-events-none"></div>
+<!-- HUD Brackets -->
+<div class="hud-bracket bracket-tl m-2"></div>
+<div class="hud-bracket bracket-tr m-2"></div>
+<div class="hud-bracket bracket-bl m-2"></div>
+<div class="hud-bracket bracket-br m-2"></div>
+<!-- Telemetry Overlay -->
+<div class="absolute top-3 left-4 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="font-telemetry-data text-telemetry-data text-error tracking-wider">LIVE - CAM 04</span>
+</div>
+<div class="absolute bottom-3 right-4">
+<span class="font-telemetry-data text-telemetry-data text-primary-fixed-dim bg-black/50 px-2 py-1 rounded">FPS: 59.94 | BITRATE: 8.4MBps</span>
+</div>
+<!-- Bounding Box -->
+<div class="absolute top-1/4 left-1/3 w-1/4 h-1/2 border-2 border-primary-container active-glow">
+<div class="absolute -top-6 -left-0.5 bg-primary-container text-on-primary-container font-telemetry-data text-[10px] px-1 py-0.5 whitespace-nowrap">
+                    ID: 8842-A [94%]
+                </div>
+<div class="absolute top-0 right-[-100px] flex flex-col gap-1 pointer-events-none">
+<span class="font-telemetry-data text-[9px] bg-black/70 text-on-surface px-1 border border-primary-container/30">SHIRT: RED</span>
+<span class="font-telemetry-data text-[9px] bg-black/70 text-on-surface px-1 border border-primary-container/30">PANTS: DARK</span>
+<span class="font-telemetry-data text-[9px] bg-black/70 text-on-surface px-1 border border-primary-container/30">HGT: ~175CM</span>
+</div>
+</div>
+</section>
+<!-- Protocol Status -->
+<section class="glass-panel rounded p-unit">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-unit px-unit pt-unit">PROTOCOL STATUS</h2>
+<div class="flex flex-col gap-unit">
+<div class="flex justify-between items-center p-2 bg-surface-container-low rounded border border-white/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-container text-sm" style="font-variation-settings: 'FILL' 1;">videocam</span>
+<span class="font-telemetry-label text-telemetry-label">RTSP STREAM</span>
+</div>
+<span class="font-telemetry-data text-telemetry-data text-tertiary-container">ACTIVE</span>
+</div>
+<div class="flex justify-between items-center p-2 bg-surface-container-low rounded border border-white/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">security</span>
+<span class="font-telemetry-label text-telemetry-label text-on-surface-variant">ONVIF CORE</span>
+</div>
+<span class="font-telemetry-data text-telemetry-data text-on-surface-variant">STANDBY</span>
+</div>
+<div class="flex justify-between items-center p-2 bg-surface-container-low rounded border border-white/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-sm">lan</span>
+<span class="font-telemetry-label text-telemetry-label text-error">HLS EDGE</span>
+</div>
+<span class="font-telemetry-data text-telemetry-data text-error">FAULT</span>
+</div>
+</div>
+</section>
+<!-- RE-ID Search -->
+<section class="glass-panel rounded p-margin-sm border-l-2 border-primary-container">
+<h2 class="font-label-caps text-label-caps text-primary-container mb-unit">RE-ID SEARCH ENGINE</h2>
+<div class="flex gap-2 mb-margin-sm">
+<button class="flex-1 bg-surface-container-high border border-outline-variant rounded p-2 flex items-center justify-center gap-2 hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-primary-fixed-dim">upload_file</span>
+<span class="font-telemetry-label text-telemetry-label text-primary-fixed-dim">TARGET IMG</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between">
+<label class="font-telemetry-data text-telemetry-data text-on-surface-variant">SIMILARITY THRESHOLD</label>
+<span class="font-telemetry-data text-telemetry-data text-primary-fixed">85%</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary-container" max="100" min="0" type="range" value="85"/>
+<div class="flex justify-between text-[10px] font-telemetry-data text-on-surface-variant opacity-50 mt-1">
+<span>BROAD</span>
+<span>EXACT</span>
+</div>
+</div>
+</section>
+<!-- Sighting Log (Vertical Cards) -->
+<section>
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-margin-sm">SIGHTING LOG (LAST 24H)</h2>
+<div class="space-y-2">
+<!-- Log Entry 1 -->
+<div class="glass-panel rounded p-2 flex gap-3 active-glow">
+<div class="w-16 h-16 bg-surface-container-highest rounded overflow-hidden shrink-0 relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Close up crop of a suspect face from a security camera, gritty low resolution, cyber-cyan UI crosshairs overlay, dark background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgOW_pst_SA7x53Lqs8qZuHQEznGwdEEAXQAtDs9YVCXq_jq48g1_0y-SJWDLePJZPnlFgkabb8fgWR_X29mrFQ22DI7B0x70RXwY3P_LlzzxieT8y3-XDtL4ydKMXArIknun2G-gcW8TPIZMfzVMhr8qou-2ahKwSxL5rnEGgGvh6QF2WmgH3BJrQHhFAYBOEmyUNkZU4Z0IEQYauzJBmXViSynx84DItFSIz0uwFNSpCo8K8I5a0ZWKamOHbFCFjIlq-dFB2ErM')"></div>
+<div class="absolute top-0 right-0 bg-primary-container text-on-primary-container font-telemetry-data text-[9px] px-1">94%</div>
+</div>
+<div class="flex flex-col justify-center w-full">
+<div class="flex justify-between items-start mb-1">
+<span class="font-telemetry-label text-telemetry-label text-primary-fixed-dim">AHMEDABAD_ZONE_01</span>
+<span class="font-telemetry-data text-[10px] text-on-surface-variant">14:02:45</span>
+</div>
+<span class="font-telemetry-data text-telemetry-data text-on-surface">CAM_ID: ST_04_MARKET</span>
+</div>
+</div>
+<!-- Log Entry 2 -->
+<div class="glass-panel rounded p-2 flex gap-3 opacity-80 border-transparent">
+<div class="w-16 h-16 bg-surface-container-highest rounded overflow-hidden shrink-0 relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Security camera crop of a person walking away, blurred, dark night setting, subtle digital artifacting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZOOOYB6XHdBZLLQPEj1BQcWFifjm8sSWyriSiXyQAaSuC73Dnga1WG9JiReb9SQ90igHeMW95hyfvuCAp7DpP1S3AXzqlRf5VyBMkI6T9YC7hYs7mN-OAAA1VlVeS4c-fgh3A51Dn71MOlRgVW7ne7kbdZps3oB_4fz5XJP81umvS3fwDxAL14upbfi6_rqI8X7lNQDaAr9qT9XCF8OT0XoObALb8N_23AtsRE3hVzh0st41jnGFntmKlnpn1Dvs-NS1vYnSH_OU')"></div>
+<div class="absolute top-0 right-0 bg-primary-container text-on-primary-container font-telemetry-data text-[9px] px-1">82%</div>
+</div>
+<div class="flex flex-col justify-center w-full">
+<div class="flex justify-between items-start mb-1">
+<span class="font-telemetry-label text-telemetry-label text-on-surface">SURAT_TRANSIT_HUB</span>
+<span class="font-telemetry-data text-[10px] text-on-surface-variant">09:15:22</span>
+</div>
+<span class="font-telemetry-data text-telemetry-data text-on-surface-variant">CAM_ID: TERMINAL_B</span>
+</div>
+</div>
+<!-- Log Entry 3 -->
+<div class="glass-panel rounded p-2 flex gap-3 opacity-60 border-transparent">
+<div class="w-16 h-16 bg-surface-container-highest rounded overflow-hidden shrink-0 relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Security camera view of a suspect profile in an alleyway, low light, high contrast, monochrome surveillance style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAOSgCG4u9pZPkOkLjYAatiuHNCO6YD8vYKJvzrm3BriMnB6hGNptUIu2fsfgGNh2OmUkdm6q7RoNqYtyUZoHpVPCCMWpoUo9uo5GCyUFVUVJFctNP1UdlBN7e6S5dLrtCH0053vBriwNy8fV4vdxjcx3HxooiO7qedK12A6Bp_x_OBBXrg2nrr4u-4AqfvWQa_iaVqg4DNdPiwlU_XfJC5cf6iCIuguPBm4xWgCBU8D6sRitUIR0toN-safvGkoEI3n2g-xA3li4w')"></div>
+<div class="absolute top-0 right-0 bg-primary-container text-on-primary-container font-telemetry-data text-[9px] px-1">78%</div>
+</div>
+<div class="flex flex-col justify-center w-full">
+<div class="flex justify-between items-start mb-1">
+<span class="font-telemetry-label text-telemetry-label text-on-surface">VADODARA_HIGHWAY</span>
+<span class="font-telemetry-data text-[10px] text-on-surface-variant">02:44:10</span>
+</div>
+<span class="font-telemetry-data text-telemetry-data text-on-surface-variant">CAM_ID: TOLL_GATE_03</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom spacing for sticky button -->
+<div class="h-8"></div>
+</main>
+<!-- Sticky Bottom Action -->
+<div class="fixed bottom-0 w-full z-50 p-gutter bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent">
+<button class="w-full bg-primary-container text-on-primary-container font-headline-lg-mobile text-body-md font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-[0_0_20px_rgba(0,242,255,0.2)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+            GENERATE DOCKET
+        </button>
+</div>
+</body></html>

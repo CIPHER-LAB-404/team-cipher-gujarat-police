@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "public": true,
+  "name": "team-cipher-gujarat-police",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/frontend/index.html" },
+    { "source": "/cipher", "destination": "/frontend/cipher.html" },
+    { "source": "/slides", "destination": "/Submission_Package/CIPHER_Gujarat_Police_Hackathon_2026_Slides.html" },
+    { "source": "/presentation", "destination": "/Submission_Package/CIPHER_Gujarat_Police_Hackathon_2026_Slides.html" },
+    { "source": "/deck", "destination": "/Submission_Package/CIPHER_Gujarat_Police_Hackathon_2026_Slides.html" },
+    { "source": "/demo", "destination": "/Submission_Package/CIPHER_Full_Solution_Demo.mp4" },
+    { "source": "/traffic-grid", "destination": "/frontend/traffic_grid.html" },
+    { "source": "/intel-nexus", "destination": "/frontend/intel_nexus.html" },
+    { "source": "/patrol-dispatch", "destination": "/frontend/patrol_dispatch.html" },
+    { "source": "/perimeter-sentry", "destination": "/frontend/perimeter_sentry.html" },
+    { "source": "/suraksha-desk", "destination": "/frontend/suraksha_desk.html" },
+    { "source": "/cyber-intel", "destination": "/frontend/cyber_intel.html" },
+    { "source": "/audit-vault", "destination": "/frontend/audit_vault.html" },
+    { "source": "/echallan", "destination": "/frontend/index.html" },
+    { "source": "/highway", "destination": "/frontend/index.html" },
+    { "source": "/assets/(.*)", "destination": "/frontend/assets/$1" },
+    { "source": "/css/(.*)", "destination": "/frontend/css/$1" },
+    { "source": "/js/(.*)", "destination": "/frontend/js/$1" },
+    { "source": "/Screenshots/(.*)", "destination": "/Submission_Package/Screenshots/$1" },
+    { "source": "/(sample_.*|test_.*|logo\\.png|public\\.css|public\\.js|styles\\.css|app\\.js)", "destination": "/frontend/$1" },
+    { "source": "/(.*)\\.(html|css|js|png|jpg|jpeg|svg|webp|ico|json|mp4|pptx)", "destination": "/frontend/$1.$2" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Authorization" }
+      ]
+    }
+  ]
+}
