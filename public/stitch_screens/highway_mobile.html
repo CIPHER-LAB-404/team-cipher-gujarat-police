@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0e131f;color:#dde2f3;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "tertiary-container": "#002629", "on-background": "#dde2f3", "tertiary": "#00dbe7", "error-container": "#93000a", "on-primary-fixed-variant": "#2d476f", "primary": "#aec7f6", "on-primary": "#143057", "on-primary-fixed": "#001b3d", "on-error": "#690005", "on-tertiary-fixed": "#002022", "primary-fixed": "#d6e3ff", "surface-container-high": "#242a36", "primary-container": "#002147", "surface-container-low": "#161c28", "outline-variant": "#44474e", "on-tertiary": "#00363a", "on-secondary-container": "#342800", "on-primary-container": "#708ab5", "inverse-on-surface": "#2b303d", "surface-dim": "#0e131f", "on-surface-variant": "#c4c6cf", "on-secondary-fixed-variant": "#574500", "error": "#ffb4ab", "surface-container": "#1a202c", "secondary-fixed-dim": "#e9c349", "tertiary-fixed-dim": "#00dbe7", "inverse-surface": "#dde2f3", "background": "#0e131f", "secondary": "#e9c349", "tertiary-fixed": "#74f5ff", "on-tertiary-fixed-variant": "#004f54", "inverse-primary": "#465f88", "secondary-container": "#af8d11", "surface-bright": "#343946", "primary-fixed-dim": "#aec7f6", "surface-container-lowest": "#080e1a", "on-tertiary-container": "#0098a0", "on-secondary-fixed": "#241a00", "on-surface": "#dde2f3", "on-secondary": "#3c2f00", "secondary-fixed": "#ffe088", "surface-tint": "#aec7f6", "surface-container-highest": "#2f3542", "surface-variant": "#2f3542", "outline": "#8e9099", "on-error-container": "#ffdad6", "surface": "#0e131f" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "gutter-standard": "1rem", "gutter-compact": "0.5rem", "space-sm": "0.5rem", "space-md": "0.75rem", "margin-screen": "1.25rem", "space-lg": "1.5rem", "gutter-wide": "1.5rem", "space-2xl": "3rem", "space-xl": "2rem", "space-base": "1rem", "space-2xs": "0.125rem", "space-xs": "0.25rem" }, fontFamily: { "body-md": ["Inter"], "headline-xl-mobile": ["Inter"], "body-sm": ["Inter"], "telemetry-lg": ["JetBrains Mono"], "telemetry-md": ["JetBrains Mono"], "headline-xl": ["Inter"], "headline-md": ["Inter"], "headline-lg": ["Inter"], "body-lg": ["Inter"], "label-caps": ["JetBrains Mono"], "display-hero": ["Inter"], "telemetry-sm": ["JetBrains Mono"] }, fontSize: { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "telemetry-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "700" }], "telemetry-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-caps": ["10px", { "lineHeight": "12px", "letterSpacing": "0.12em", "fontWeight": "700" }], "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "telemetry-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "400" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+
+    /* Radar Scanning Light Beam */
+    @keyframes radarScan {
+      0% { transform: translateX(-120%) skewX(-20deg); opacity: 0; }
+      20% { opacity: 0.65; }
+      80% { opacity: 0.65; }
+      100% { transform: translateX(250%) skewX(-20deg); opacity: 0; }
+    }
+    .radar-sweep-bar {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 45%;
+      background: linear-gradient(90deg, transparent, rgba(0, 219, 231, 0.22), rgba(233, 195, 73, 0.28), transparent);
+      animation: radarScan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      pointer-events: none;
+    }
+
+    /* Subtle Holographic Iridescence for HSRP Emblem */
+    @keyframes chakraSheen {
+      0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+      50% { filter: hue-rotate(35deg) brightness(1.25); }
+    }
+    .holo-sheen {
+      animation: chakraSheen 6s ease-in-out infinite;
+    }
+
+    /* Shimmering Button Beam */
+    @keyframes btnShimmer {
+      0% { transform: translateX(-120%); }
+      60%, 100% { transform: translateX(180%); }
+    }
+    .btn-shimmer-effect::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 50%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      animation: btnShimmer 3.5s infinite;
+      pointer-events: none;
+    }
+
+    /* Entrance cascade for cards */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-cascade-1 { animation: fadeInUp 0.4s ease-out forwards; }
+    .animate-cascade-2 { animation: fadeInUp 0.45s ease-out 0.08s forwards; }
+    .animate-cascade-3 { animation: fadeInUp 0.5s ease-out 0.16s forwards; }
+
+    /* Interactive Plate character pop-in */
+    .char-pop {
+      display: inline-block;
+      animation: charPopIn 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes charPopIn {
+      from { transform: scale(0.65) translateY(-3px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    /* Dropzone animated boundary pulse */
+    .dropzone-pulse:hover {
+      box-shadow: 0 0 0 2px rgba(174, 199, 246, 0.4), 0 4px 20px rgba(0, 219, 231, 0.15);
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .radar-sweep-bar { display: none; }
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.12)] border-b border-outline-variant/20 transition-all"><div class="h-20 px-gutter-standard flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="logo.png" class="h-8 w-auto object-contain shrink-0 transition-transform duration-300 hover:scale-105" src="/logo.png"/><div class="flex flex-col min-w-0 leading-tight"><div class="flex items-center gap-space-xs"><span class="font-label-caps text-label-caps text-secondary uppercase truncate tracking-wider">GUJARAT POLICE</span><span class="font-label-caps text-label-caps text-outline">â¢</span><span class="font-body-sm text-body-sm text-on-surface-variant font-medium truncate">àªà«àªàª°àª¾àª¤ àªªà«àª²à«àª¸</span></div><span class="font-headline-md text-headline-md text-on-surface tracking-tight truncate">Highway Bulletins &amp; Safety</span><span class="font-label-caps text-label-caps text-outline truncate">GOVT OF GUJARAT</span></div></div><div class="flex items-center gap-space-xs shrink-0"><a class="h-11 px-space-sm rounded-xl bg-error-container/30 text-error flex items-center gap-space-2xs min-w-[44px] justify-center hover:bg-error-container/50 active:scale-95 transition-all duration-200 shadow-sm" href="tel:112"><span class="material-symbols-outlined text-[18px] animate-pulse">e911_emergency</span><span class="font-telemetry-sm text-telemetry-sm font-bold">112</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center transition-transform hover:scale-110 cursor-pointer shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-20 pb-20 bg-surface"><div class="flex flex-col w-full">
+<!-- Gujarat Emblem Watermark & Civic Status Bar -->
+<div class="px-margin-screen pt-space-md pb-space-sm bg-surface-container-low shadow-sm border-b border-outline-variant/15">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary shadow-[0_0_8px_#e9c349]"></span>
+</span>
+<span class="font-telemetry-sm text-telemetry-sm text-secondary uppercase font-bold tracking-wider">STATE TRAFFIC OPS â¢ LIVE ANPR FEED ACTIVE</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-outline font-medium">REV: 2025.04.11</span>
+</div>
+</div>
+<!-- SECTION 1: Highway Traffic Bulletins -->
+<div class="px-margin-screen py-space-md">
+<!-- Section Title & Meta -->
+<div class="flex items-end justify-between mb-space-sm">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider block">Real-Time Transit Telemetry</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Highway Advisories &amp; Corridors</h2>
+</div>
+<button class="flex items-center gap-space-2xs text-secondary hover:text-secondary-fixed transition-all duration-200 font-telemetry-sm text-telemetry-sm cursor-pointer active:scale-95 px-2 py-1 rounded bg-secondary-container/20 border border-secondary/30 group" id="refreshBulletinsBtn" title="Sync live sensor telemetry">
+<span class="relative flex h-2 w-2 mr-0.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="material-symbols-outlined text-[15px] group-hover:rotate-180 transition-transform duration-500">sync</span>
+<span class="font-bold tracking-wider">LIVE</span>
+</button>
+</div>
+<!-- Corridor Filter Scroll Strip -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs -mx-margin-screen px-margin-screen no-scrollbar scroll-smooth" id="corridorFilters">
+<button class="corridor-btn shrink-0 px-space-md py-space-xs rounded-full font-telemetry-sm text-telemetry-sm font-semibold bg-secondary text-on-secondary-container shadow-[0_2px_8px_rgba(233,195,73,0.25)] transition-all duration-200 active:scale-90 select-none border border-secondary" data-filter="all">
+        All Corridors (14)
+      </button>
+<button class="corridor-btn shrink-0 px-space-md py-space-xs rounded-full font-telemetry-sm text-telemetry-sm font-medium bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 active:scale-90 select-none border border-outline-variant/30" data-filter="sg">
+        S.G. Highway
+      </button>
+<button class="corridor-btn shrink-0 px-space-md py-space-xs rounded-full font-telemetry-sm text-telemetry-sm font-medium bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 active:scale-90 select-none border border-outline-variant/30" data-filter="nh48">
+        NH-48 VadodaraâSurat
+      </button>
+<button class="corridor-btn shrink-0 px-space-md py-space-xs rounded-full font-telemetry-sm text-telemetry-sm font-medium bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 active:scale-90 select-none border border-outline-variant/30" data-filter="spring">
+        SP Ring Road
+      </button>
+<button class="corridor-btn shrink-0 px-space-md py-space-xs rounded-full font-telemetry-sm text-telemetry-sm font-medium bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 active:scale-90 select-none border border-outline-variant/30" data-filter="rajkot">
+        Rajkot Bypass
+      </button>
+<button class="corridor-btn shrink-0 px-space-md py-space-xs rounded-full font-telemetry-sm text-telemetry-sm font-medium bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 active:scale-90 select-none border border-outline-variant/30" data-filter="coastal">
+        Coastal Belt (SH-6)
+      </button>
+</div>
+<!-- Corridor Status Cards Stack -->
+<div class="flex flex-col gap-space-sm mt-space-sm" id="bulletinCards">
+<!-- Card 1: S.G. Highway -->
+<div class="bulletin-card animate-cascade-1 bg-surface-container rounded-xl p-space-md shadow-md hover:bg-surface-container-high transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-transparent hover:border-secondary/40 group cursor-pointer" data-category="sg">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="p-space-xs rounded-lg bg-secondary-container/20 text-secondary flex items-center justify-center transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[20px]">traffic</span>
+</span>
+<div>
+<h3 class="font-headline-md text-[16px] leading-[22px] font-semibold text-on-surface group-hover:text-secondary transition-colors">S.G. Highway</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Iskcon Flyover to Vaishnodevi Circle</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-space-xs py-space-2xs rounded bg-secondary-container/30 text-secondary font-telemetry-sm text-telemetry-sm font-bold uppercase border border-secondary/30 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+  MODERATE
+</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs mt-space-md pt-space-xs bg-surface-container-lowest/40 rounded-lg p-space-xs border border-outline-variant/10">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">AVG SPEED</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-on-surface">48 km/h</span>
+<div class="w-full bg-surface-container h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 58%;"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">INTERCEPTORS</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-primary">6 PCR Units</span>
+<div class="w-full bg-surface-container h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 80%;"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">ANPR STATUS</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-secondary">Optimal</span>
+<div class="w-full bg-surface-container h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 95%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs mt-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">info</span>
+<p class="font-body-sm text-body-sm leading-tight">Peak evening transit. Gantry camera speed checks enforced at Thaltej &amp; Gota.</p>
+</div>
+</div>
+<!-- Card 2: NH-48 Vadodara-Surat -->
+<div class="bulletin-card animate-cascade-2 bg-surface-container rounded-xl p-space-md shadow-md hover:bg-surface-container-high transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-transparent hover:border-tertiary/40 group cursor-pointer" data-category="nh48">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="p-space-xs rounded-lg bg-primary-container/40 text-primary flex items-center justify-center transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[20px]">alt_route</span>
+</span>
+<div>
+<h3 class="font-headline-md text-[16px] leading-[22px] font-semibold text-on-surface group-hover:text-tertiary transition-colors">NH-48 Corridor</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bharuch Golden Bridge Approach (Km 192)</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-space-xs py-space-2xs rounded bg-tertiary-container text-tertiary font-telemetry-sm text-telemetry-sm font-bold uppercase border border-tertiary/30 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+  CLEAR FLOW
+</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs mt-space-md pt-space-xs bg-surface-container-lowest/40 rounded-lg p-space-xs border border-outline-variant/10">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">FLOW INDEX</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-tertiary">Smooth (82%)</span>
+<div class="w-full bg-surface-container h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-tertiary h-full rounded-full transition-all duration-500" style="width: 82%;"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">HEAVY VEHICLES</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-on-surface">Lane 3 Mandate</span>
+<div class="w-full bg-surface-container h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 45%;"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">HIGHWAY PATROL</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-primary">2 Units On-Site</span>
+<div class="w-full bg-surface-container h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 70%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs mt-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-tertiary">verified_user</span>
+<p class="font-body-sm text-body-sm leading-tight">Zero congestion reported on Narmada cable-stayed bridge. Wind speed normal.</p>
+</div>
+</div>
+<!-- Card 3: SP Ring Road -->
+<div class="bulletin-card animate-cascade-3 bg-surface-container rounded-xl p-space-md shadow-md hover:bg-surface-container-high transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-transparent hover:border-error/40 group cursor-pointer" data-category="spring">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="p-space-xs rounded-lg bg-error-container/30 text-error flex items-center justify-center transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</span>
+<div>
+<h3 class="font-headline-md text-[16px] leading-[22px] font-semibold text-on-surface group-hover:text-error transition-colors">Sardar Patel Ring Road</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bopal Junction to Sanand Crossroad</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-space-xs py-space-2xs rounded bg-error-container/40 text-error font-telemetry-sm text-telemetry-sm font-bold uppercase border border-error/30 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+  DIVERSION
+</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs mt-space-md pt-space-xs bg-surface-container-lowest/40 rounded-lg p-space-xs border border-outline-variant/10">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">SPEED CEILING</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-error">30 km/h Limit</span>
+<div class="w-full bg-surface-container h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-error h-full rounded-full transition-all duration-500" style="width: 35%;"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">CAUSE</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-on-surface">Flyover Works</span>
+<div class="w-full bg-surface-container h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-outline h-full rounded-full transition-all duration-500" style="width: 60%;"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">DELAY EST.</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-secondary">+12 mins</span>
+<div class="w-full bg-surface-container h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 75%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs mt-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-error">turn_right</span>
+<p class="font-body-sm text-body-sm leading-tight">AUDA construction underway. Light motor vehicles redirected to South Service Bay.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Lost & Stolen Vehicle e-Intimation Module -->
+<div class="px-margin-screen py-space-lg mt-space-xs">
+<!-- State ANPR Integration Alert Banner with Radar Scanning Sweep -->
+<div class="p-space-md rounded-xl bg-primary-container text-on-primary-container shadow-md flex items-start gap-space-md relative overflow-hidden mb-space-lg border border-primary/20">
+<div class="radar-sweep-bar"></div>
+<div class="p-space-xs rounded-lg bg-surface-container-lowest/50 text-primary shrink-0 z-10 shadow-inner">
+<span class="material-symbols-outlined text-[24px] animate-pulse">satellite_alt</span>
+</div>
+<div class="flex flex-col min-w-0 z-10">
+<div class="flex items-center gap-space-xs mb-space-2xs">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-bold">STATEWIDE SURVEILLANCE RADAR</span>
+<span class="font-telemetry-sm text-[10px] px-space-2xs py-0.5 rounded bg-secondary-container/50 text-secondary font-bold border border-secondary/40 animate-pulse">60 SEC SYNC</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+          Instantly broadcasts your intimation to <strong class="text-primary-fixed font-semibold tracking-wide">80,000+ AI CCTV Cameras</strong> statewide with Automated Number Plate Recognition (ANPR) within 60 seconds of verification.
+        </p>
+</div>
+</div>
+<!-- Form Section Heading -->
+<div class="mb-space-md">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider block">Citizen Emergency Desk</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Vehicle Theft &amp; Misplacement e-Intimation</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs">
+        Generate an immediate statewide radar alert. This pre-FIR notice triggers instant highway barricade intercepts.
+      </p>
+</div>
+<!-- Interactive HSRP Plate Generator Preview Component -->
+<div class="bg-surface-container p-space-md rounded-xl shadow-lg mb-space-md border border-outline-variant/30 hover:border-secondary/30 transition-all duration-300">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-caps text-label-caps text-outline uppercase">LIVE HIGH-SECURITY PLATE PREVIEW (HSRP)</span>
+<span class="font-telemetry-sm text-telemetry-sm text-secondary flex items-center gap-space-2xs">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+          STATE OCR READY
+        </span>
+</div>
+<!-- Real-time Embossed Indian HSRP Plate Element -->
+<div class="flex items-center justify-center p-space-sm bg-surface-container-lowest rounded-lg shadow-inner">
+<div class="w-full max-w-[340px] h-16 bg-surface-bright rounded shadow-md flex items-stretch overflow-hidden px-1 py-1 border border-outline/30 hover:shadow-secondary/20 transition-all duration-300 group" id="hsrpPlateWrapper">
+<!-- Left Blue Stripe with Ashoka Chakra & IND -->
+<div class="w-10 bg-[#002147] rounded-l flex flex-col items-center justify-between py-1 shrink-0 text-center relative overflow-hidden group-hover:brightness-110 transition-all">
+<!-- Ashoka Chakra Vector Replica with Holographic Sheen -->
+<svg class="w-4 h-4 text-[#FED65B] holo-sheen transition-transform duration-500 group-hover:scale-125" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10" stroke="#aec7f6"></circle>
+<circle cx="12" cy="12" fill="#aec7f6" r="3"></circle>
+<path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"></path>
+</svg>
+<span class="font-telemetry-md text-[11px] leading-tight font-black tracking-widest text-[#FFFFFF]">IND</span>
+</div>
+<!-- Plate Letters Visual Center -->
+<div class="flex-1 flex items-center justify-center bg-[#FFFFFF] rounded-r px-space-xs overflow-hidden transition-colors">
+<span class="font-telemetry-lg text-[22px] tracking-[0.18em] font-extrabold text-[#080E1A] uppercase select-none drop-shadow-sm truncate flex items-center justify-center flex-wrap" id="hsrpPlateDisplay">
+<span>G</span><span>J</span><span class="mx-1"></span><span>0</span><span>1</span><span class="mx-1"></span><span>B</span><span>P</span><span class="mx-1"></span><span>1</span><span>9</span><span>4</span><span>7</span>
+</span>
+</div>
+</div>
+</div>
+<div class="text-center mt-space-xs">
+<span class="font-telemetry-sm text-[11px] text-outline font-medium">Standard High Security Registration Plate â¢ Ministry of Road Transport &amp; Highways compliant</span>
+</div>
+</div>
+<!-- Registration Form -->
+<form class="flex flex-col gap-space-md" id="stolenVehicleForm" onsubmit="event.preventDefault(); triggerIntimationAlert();">
+<!-- Field 1: Vehicle Reg Number -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface flex items-center justify-between" for="plateInput">
+<span>Vehicle Registration Number</span>
+<span class="text-secondary font-telemetry-sm text-telemetry-sm font-normal">Format: GJ-01-XX-0000</span>
+</label>
+<div class="relative group">
+<input class="w-full h-12 bg-surface-container-high rounded-lg px-space-md font-telemetry-md text-telemetry-md text-on-surface placeholder:text-outline border border-outline-variant/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none focus:bg-surface-container-highest uppercase transition-all duration-200 shadow-sm" id="plateInput" maxlength="14" placeholder="e.g. GJ 01 AB 1234" required="" type="text" value="GJ 01 BP 1947"/>
+<span class="material-symbols-outlined absolute right-space-md top-1/2 -translate-y-1/2 text-primary group-focus-within:text-secondary group-focus-within:scale-110 transition-all duration-200">directions_car</span>
+</div>
+</div>
+<!-- Field 2 & 3: Chassis & Engine in Dual Column -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface truncate" for="chassisInput">
+            Chassis No. (Last 5)
+          </label>
+<input class="w-full h-11 bg-surface-container-high rounded-lg px-space-sm font-telemetry-sm text-telemetry-sm text-on-surface placeholder:text-outline border border-outline-variant/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none focus:bg-surface-container-highest uppercase transition-all duration-200 shadow-sm" id="chassisInput" maxlength="17" placeholder="e.g. MA3E1..." required="" type="text"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface truncate" for="engineInput">
+            Engine Number
+          </label>
+<input class="w-full h-11 bg-surface-container-high rounded-lg px-space-sm font-telemetry-sm text-telemetry-sm text-on-surface placeholder:text-outline border border-outline-variant/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none focus:bg-surface-container-highest uppercase transition-all duration-200 shadow-sm" id="engineInput" maxlength="12" placeholder="e.g. K12MN..." required="" type="text"/>
+</div>
+</div>
+<!-- Field 4: Incident Location -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface flex items-center justify-between" for="locationInput">
+<span>Incident / Last Parked Location</span>
+<button class="text-primary hover:text-tertiary font-telemetry-sm text-telemetry-sm flex items-center gap-space-2xs cursor-pointer active:scale-95 transition-all" id="gpsBtn" onclick="detectGPSLocation()" type="button">
+<span class="material-symbols-outlined text-[15px]" id="gpsIcon">my_location</span> <span>Use GPS</span>
+</button>
+</label>
+<div class="relative group">
+<input class="w-full h-12 bg-surface-container-high rounded-lg px-space-md font-body-md text-body-md text-on-surface placeholder:text-outline border border-outline-variant/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none focus:bg-surface-container-highest transition-all duration-200 shadow-sm" id="locationInput" placeholder="e.g. Prahlad Nagar Garden Gate 2, Ahmedabad" required="" type="text"/>
+<span class="material-symbols-outlined absolute right-space-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary group-focus-within:scale-110 transition-all duration-200">pin_drop</span>
+</div>
+</div>
+<!-- Field 5: Date & Time of Incident -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="dateInput">Incident Date</label>
+<input class="w-full h-11 bg-surface-container-high rounded-lg px-space-sm font-telemetry-sm text-telemetry-sm text-on-surface border border-outline-variant/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none focus:bg-surface-container-highest transition-all duration-200 shadow-sm" id="dateInput" required="" type="date" value="2025-04-11"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="timeInput">Approx. Time</label>
+<input class="w-full h-11 bg-surface-container-high rounded-lg px-space-sm font-telemetry-sm text-telemetry-sm text-on-surface border border-outline-variant/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none focus:bg-surface-container-highest transition-all duration-200 shadow-sm" id="timeInput" required="" type="time" value="18:30"/>
+</div>
+</div>
+<!-- Field 6: FIR / Police Document Dropzone -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">FIR Copy / Purchase Receipt / RC Book</span>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">PDF or JPG (Max 5MB)</span>
+</div>
+<div class="dropzone-pulse bg-surface-container-low rounded-xl p-space-md flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container transition-all duration-300 border-2 border-dashed border-outline-variant/40 hover:border-primary group relative overflow-hidden" id="dropzoneArea">
+<span class="material-symbols-outlined text-[32px] text-primary mb-space-2xs group-hover:-translate-y-1 group-hover:text-secondary transition-all duration-300">cloud_upload</span>
+<p class="font-body-md text-body-md text-on-surface font-medium group-hover:text-primary transition-colors">Tap to upload proof of ownership</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs transition-colors" id="fileStatusText">Vehicle RC, digital invoice, or filed station complaint</p>
+<input accept=".pdf,.jpg,.jpeg,.png" class="hidden" id="fileUpload" type="file"/>
+</div>
+</div>
+<!-- Legal Declaration -->
+<div class="flex items-start gap-space-sm p-space-sm bg-surface-container-lowest/60 rounded-lg border border-outline-variant/10">
+<input class="mt-1 accent-secondary w-4 h-4 cursor-pointer transition-transform active:scale-90" id="legalAgree" required="" type="checkbox"/>
+<label class="font-body-sm text-[11px] leading-tight text-on-surface-variant select-none cursor-pointer" for="legalAgree">
+          I declare under Section 182 of IPC that the vehicle details furnished above are accurate. False reports of auto theft carry statutory penal sanctions under Gujarat State Police Act.
+        </label>
+</div>
+<!-- Submit Action Button with Ripple/Sheen -->
+<button class="btn-shimmer-effect relative overflow-hidden w-full h-12 bg-secondary hover:bg-secondary-fixed text-on-secondary font-headline-md text-[15px] font-bold rounded-xl shadow-[0_4px_16px_rgba(233,195,73,0.3)] flex items-center justify-center gap-space-xs transition-all duration-200 active:scale-[0.97] cursor-pointer" id="submitBtn" type="submit">
+<span class="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:rotate-90">radar</span>
+<span>Submit Intimation &amp; Alert Highway PCRs</span>
+</button>
+</form>
+<!-- Success Confirmation Drawer / Panel -->
+<div class="hidden mt-space-md p-space-md rounded-xl bg-surface-container-high text-on-surface shadow-2xl border border-secondary/30 transition-all duration-500" id="successPanel">
+<div class="flex items-start gap-space-sm">
+<span class="p-space-xs rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0 shadow-md animate-bounce">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</span>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-label-caps text-label-caps text-secondary uppercase font-bold tracking-wider">STATE POLICE DISPATCH COMMENCED</span>
+<h4 class="font-headline-md text-[16px] font-semibold text-on-surface mt-space-2xs tracking-wide" id="successRefNum">TOKEN: GP-ANPR-849204</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs leading-normal">
+            Hotlist alert pushed across <strong class="text-on-surface">33 Police Control Rooms</strong> and toll plazas along NH-48, NE-1, and State Highways. If the vehicle is spotted, automated gantry interlocks will trigger instant intercept patrol deployment.
+          </p>
+<div class="flex items-center gap-space-sm mt-space-sm">
+<a class="px-space-sm py-space-xs rounded-lg bg-error-container/40 text-error font-telemetry-sm text-telemetry-sm font-bold flex items-center gap-space-2xs hover:bg-error-container/60 active:scale-95 transition-all" href="tel:112">
+<span class="material-symbols-outlined text-[16px]">call</span>
+              Direct PCR 112
+            </a>
+<button class="px-space-sm py-space-xs rounded-lg bg-surface-container text-on-surface font-telemetry-sm text-telemetry-sm font-medium flex items-center gap-space-2xs hover:bg-surface-bright active:scale-95 transition-all border border-outline-variant/30" onclick="window.print()">
+<span class="material-symbols-outlined text-[16px]">print</span>
+              Print Slip
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Emergency Contact Strip -->
+<div class="mt-space-lg pt-space-md bg-surface-container-low rounded-xl p-space-md shadow-sm border border-outline-variant/15">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-caps text-label-caps text-outline uppercase">STATE HIGHWAY HELPLINE</span>
+<p class="font-headline-md text-[16px] font-bold text-on-surface">1033 (Toll Free Highway Support)</p>
+</div>
+<a class="h-10 px-space-md rounded-lg bg-primary hover:bg-primary-fixed text-on-primary font-telemetry-sm text-telemetry-sm font-bold flex items-center gap-space-2xs active:scale-90 hover:shadow-[0_0_12px_rgba(174,199,246,0.5)] transition-all duration-200" href="tel:1033">
+<span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+          DIAL
+        </a>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Live Dynamic HSRP Plate Preview Synchronizer with Character Transitions
+  const plateInput = document.getElementById('plateInput');
+  const hsrpPlateDisplay = document.getElementById('hsrpPlateDisplay');
+
+  function renderPlate(rawVal) {
+    if (!hsrpPlateDisplay) return;
+    const clean = rawVal.toUpperCase().replace(/[^A-Z0-9 ]/g, '').trim() || 'GJ 01 XX 0000';
+    hsrpPlateDisplay.innerHTML = '';
+    
+    // Create animated individual character spans
+    for (let char of clean) {
+      if (char === ' ') {
+        const spacer = document.createElement('span');
+        spacer.className = 'mx-1 inline-block';
+        hsrpPlateDisplay.appendChild(spacer);
+      } else {
+        const charSpan = document.createElement('span');
+        charSpan.className = 'char-pop inline-block';
+        charSpan.textContent = char;
+        hsrpPlateDisplay.appendChild(charSpan);
+      }
+    }
+  }
+
+  if (plateInput) {
+    plateInput.addEventListener('input', (e) => {
+      let val = e.target.value.toUpperCase();
+      val = val.replace(/[^A-Z0-9 ]/g, '');
+      e.target.value = val;
+      renderPlate(val);
+    });
+  }
+
+  // Corridor Filter Selection Logic with Animation State
+  const corridorFilterBtns = document.querySelectorAll('.corridor-btn');
+  const bulletinCards = document.querySelectorAll('.bulletin-card');
+
+  corridorFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      corridorFilterBtns.forEach(b => {
+        b.classList.remove('bg-secondary', 'text-on-secondary-container', 'font-semibold', 'border-secondary', 'shadow-[0_2px_8px_rgba(233,195,73,0.25)]');
+        b.classList.add('bg-surface-container', 'text-on-surface-variant', 'font-medium', 'border-outline-variant/30');
+      });
+      btn.classList.add('bg-secondary', 'text-on-secondary-container', 'font-semibold', 'border-secondary', 'shadow-[0_2px_8px_rgba(233,195,73,0.25)]');
+      btn.classList.remove('bg-surface-container', 'text-on-surface-variant', 'font-medium', 'border-outline-variant/30');
+
+      const filter = btn.getAttribute('data-filter');
+      bulletinCards.forEach((card, idx) => {
+        const cardCat = card.getAttribute('data-category');
+        if (filter === 'all' || cardCat === filter) {
+          card.style.display = 'block';
+          card.style.animation = 'none';
+          card.offsetHeight; // trigger reflow
+          card.style.animation = `fadeInUp 0.35s ease-out ${idx * 0.05}s forwards`;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Dropzone File Selector Simulation & Hover/Drop Effects
+  const dropzoneArea = document.getElementById('dropzoneArea');
+  const fileUpload = document.getElementById('fileUpload');
+  const fileStatusText = document.getElementById('fileStatusText');
+
+  if (dropzoneArea && fileUpload) {
+    dropzoneArea.addEventListener('click', () => fileUpload.click());
+    fileUpload.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        fileStatusText.textContent = `Attached: ${e.target.files[0].name}`;
+        fileStatusText.classList.add('text-secondary', 'font-bold');
+        dropzoneArea.classList.add('border-secondary', 'bg-surface-container-high');
+      }
+    });
+  }
+
+  // Simulated GPS Location Detection with animated locator icon feedback
+  function detectGPSLocation() {
+    const locInput = document.getElementById('locationInput');
+    const gpsIcon = document.getElementById('gpsIcon');
+    if (gpsIcon) gpsIcon.classList.add('animate-spin', 'text-secondary');
+    
+    locInput.value = 'Acquiring GPS fix via Gujarat Police Gantry Geo-fence...';
+    setTimeout(() => {
+      locInput.value = 'Near Vaishnodevi Circle, Khoraj, S.G. Highway, Gandhinagar';
+      if (gpsIcon) gpsIcon.classList.remove('animate-spin', 'text-secondary');
+      locInput.classList.add('border-secondary');
+      setTimeout(() => locInput.classList.remove('border-secondary'), 1200);
+    }, 750);
+  }
+
+  // Refresh Telemetry Feedback with live rotation
+  const refreshBtn = document.getElementById('refreshBulletinsBtn');
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      const icon = refreshBtn.querySelector('.material-symbols-outlined');
+      icon.classList.add('animate-spin');
+      setTimeout(() => {
+        icon.classList.remove('animate-spin');
+      }, 900);
+    });
+  }
+
+  // Form Submission & ANPR Broadcast Confirmation
+  function triggerIntimationAlert() {
+    const btn = document.getElementById('submitBtn');
+    const panel = document.getElementById('successPanel');
+    const plateVal = document.getElementById('plateInput').value.trim();
+    
+    btn.disabled = true;
+    btn.innerHTML = `
+      <span class="material-symbols-outlined text-[20px] animate-spin">sync</span>
+      <span>Broadcasting to 80,000 ANPR Units...</span>
+    `;
+
+    setTimeout(() => {
+      btn.innerHTML = `
+        <span class="material-symbols-outlined text-[20px]">check_circle</span>
+        <span>Broadcast Active Statewide</span>
+      `;
+      btn.classList.remove('bg-secondary', 'text-on-secondary');
+      btn.classList.add('bg-tertiary-container', 'text-tertiary', 'border', 'border-tertiary/40');
+
+      const randomCode = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('successRefNum').textContent = `TOKEN: GP-ANPR-${randomCode} â¢ ${plateVal}`;
+      panel.classList.remove('hidden');
+      panel.style.animation = 'fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+      panel.scrollIntoView({ behavior: 'smooth' });
+    }, 1300);
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.25)] border-t border-outline-variant/15" data-active-classes="text-secondary"><div class="flex justify-around items-stretch h-16 px-space-xs"><a class="flex-1 min-w-[44px] min-h-[44px] flex flex-col items-center justify-center gap-space-2xs text-on-surface-variant hover:text-on-surface active:scale-95 transition-all duration-150" data-path="citizen-home" href="#"><span class="material-symbols-outlined text-[20px]">shield</span><span class="font-label-caps text-label-caps uppercase tracking-wider">Sentinel</span></a><a class="flex-1 min-w-[44px] min-h-[44px] flex flex-col items-center justify-center gap-space-2xs text-on-surface-variant hover:text-on-surface active:scale-95 transition-all duration-150" data-path="echallan-digital-tools" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-caps text-label-caps uppercase tracking-wider">e-Challan</span></a><a class="flex-1 min-w-[44px] min-h-[44px] flex flex-col items-center justify-center gap-space-2xs text-secondary active:scale-95 transition-all duration-150 relative" data-path="highway-bulletins-safety" href="#"><span class="material-symbols-outlined text-[20px]">traffic</span><span class="font-label-caps text-label-caps uppercase tracking-wider font-bold">Advisories</span><span class="absolute bottom-1 w-5 h-0.5 bg-secondary rounded-full"></span></a><a class="flex-1 min-w-[44px] min-h-[44px] flex flex-col items-center justify-center gap-space-2xs text-on-surface-variant hover:text-tertiary active:scale-95 transition-all duration-150" data-path="cipher-command-hud" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span><span class="font-label-caps text-label-caps uppercase tracking-wider">CIPHER</span></a></div></nav></body></html>

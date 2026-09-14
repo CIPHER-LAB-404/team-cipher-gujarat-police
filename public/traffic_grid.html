@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRAFFIC GRID | Gujarat Police State Traffic Directorate</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --role-accent: #FACC15;
+      --role-glow: rgba(250, 204, 21, 0.25);
+    }
+    body {
+      background: #030712;
+      color: #F8FAFC;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .portal-nav {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(250, 204, 21, 0.3);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .portal-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+    .portal-title-block h1 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .portal-tag {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(250, 204, 21, 0.15);
+      color: var(--role-accent);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      text-transform: uppercase;
+    }
+    .portal-subtitle {
+      margin: 2px 0 0 0;
+      font-size: 11px;
+      color: #94A3B8;
+    }
+    .officer-badge-capsule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 6px 16px;
+    }
+    .officer-meta {
+      text-align: right;
+    }
+    .officer-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #F8FAFC;
+    }
+    .officer-rank {
+      font-size: 10px;
+      color: var(--role-accent);
+      font-weight: 600;
+    }
+    .portal-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px;
+      width: 100%;
+      box-sizing: border-box;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .stat-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--role-accent);
+    }
+    .stat-num {
+      font-size: 26px;
+      font-weight: 900;
+      color: #FFFFFF;
+      font-family: 'JetBrains Mono', monospace;
+      margin: 4px 0;
+    }
+    .stat-desc {
+      font-size: 11px;
+      color: #94A3B8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .grid-layout { grid-template-columns: 1fr; }
+    }
+    .section-panel {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 12px;
+    }
+    .panel-header h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .table-responsive {
+      overflow-x: auto;
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+    table.data-table th {
+      background: rgba(30, 41, 59, 0.5);
+      color: #94A3B8;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      white-space: nowrap;
+    }
+    table.data-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #E2E8F0;
+      vertical-align: middle;
+    }
+    .badge-plate {
+      display: inline-flex;
+      align-items: center;
+      background: #000;
+      border: 1.5px solid #FACC15;
+      border-radius: 5px;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      font-size: 12px;
+      color: #FFF;
+      box-shadow: 0 0 10px rgba(250,204,21,0.25);
+    }
+    .badge-plate-ind {
+      background: #1E3A8A;
+      color: #FACC15;
+      padding: 2px 4px;
+      font-size: 8px;
+    }
+    .badge-plate-no {
+      padding: 2px 8px;
+      color: #FACC15;
+    }
+    .action-btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .btn-review {
+      background: rgba(250, 204, 21, 0.15);
+      color: #FACC15;
+      border: 1px solid rgba(250, 204, 21, 0.4);
+    }
+    .btn-review:hover {
+      background: #FACC15;
+      color: #000;
+    }
+    .nav-unit-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .nav-unit-link {
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      color: #94A3B8;
+      font-size: 11px;
+      text-decoration: none;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .nav-unit-link:hover, .nav-unit-link.active {
+      background: rgba(250, 204, 21, 0.15);
+      border-color: rgba(250, 204, 21, 0.4);
+      color: #FACC15;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="portal-nav">
+    <div class="portal-brand">
+      <img src="logo.png" alt="Gujarat Police" class="portal-logo">
+      <div class="portal-title-block">
+        <h1>TRAFFIC GRID <span class="portal-tag">Division 01</span></h1>
+        <p class="portal-subtitle">Gujarat Police State Traffic Enforcement &amp; e-Challan Directorate</p>
+      </div>
+    </div>
+
+    <!-- Specialized Units Jump -->
+    <div class="nav-unit-strip">
+      <a href="/traffic-grid" class="nav-unit-link active"><i class="fa-solid fa-traffic-light"></i> Traffic Grid</a>
+      <a href="/intel-nexus" class="nav-unit-link"><i class="fa-solid fa-brain"></i> Intel Nexus</a>
+      <a href="/patrol-dispatch" class="nav-unit-link"><i class="fa-solid fa-truck-medical"></i> 112 Dispatch</a>
+      <a href="/perimeter-sentry" class="nav-unit-link"><i class="fa-solid fa-shield"></i> Border Sentry</a>
+      <a href="/suraksha-desk" class="nav-unit-link"><i class="fa-solid fa-person-dress"></i> SHE Team</a>
+      <a href="/cyber-intel" class="nav-unit-link"><i class="fa-solid fa-desktop"></i> Cyber Cell</a>
+      <a href="/audit-vault" class="nav-unit-link"><i class="fa-solid fa-vault"></i> Audit Vault</a>
+      <a href="/cipher" class="nav-unit-link" style="color: #38BDF8; border-color: rgba(56,189,248,0.4);"><i class="fa-solid fa-crown"></i> Master Grid</a>
+    </div>
+
+    <div class="officer-badge-capsule">
+      <div class="officer-meta">
+        <div class="officer-name">Inspector Vikram Patel</div>
+        <div class="officer-rank"><i class="fa-solid fa-shield-halved"></i> GP-TRF-402 • LEVEL-3</div>
+      </div>
+      <a href="/cipher" class="action-btn btn-review" title="Officer Command Gateway"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+    </div>
+  </header>
+
+  <main class="portal-container">
+    
+    <!-- Real-Time Metrics Ribbon -->
+    <div class="stats-ribbon">
+      <div class="stat-card">
+        <div class="stat-desc"><i class="fa-solid fa-camera"></i> Highway Radars Active</div>
+        <div class="stat-num" id="stat-active-radars">30 / 30</div>
+        <div style="font-size: 11px; color: #10B981;"><i class="fa-solid fa-circle-dot"></i> 100% Optical Calibrated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-desc"><i class="fa-solid fa-gauge-high"></i> Over-Speed Detections (24H)</div>
+        <div class="stat-num" style="color: #EF4444;">1,428</div>
+        <div style="font-size: 11px; color: #F87171;"><i class="fa-solid fa-arrow-trend-up"></i> +12% on NE-1 Expressway</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-desc"><i class="fa-solid fa-receipt"></i> e-Challans Issued (Today)</div>
+        <div class="stat-num" style="color: #FACC15;">₹ 4,82,000</div>
+        <div style="font-size: 11px; color: #E2E8F0;">241 Statutory Notices</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-desc"><i class="fa-solid fa-circle-check"></i> Instant Online Recovery</div>
+        <div class="stat-num" style="color: #10B981;">68.4%</div>
+        <div style="font-size: 11px; color: #34D399;">eGujCop Real-time Clearing</div>
+      </div>
+    </div>
+
+    <div class="grid-layout">
+      <!-- Left Panel: Live Radars & Violation Review -->
+      <div class="section-panel">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-video" style="color: #FACC15;"></i> Live Radar Speed Stream &amp; Violation Ingestion</h3>
+          <span style="font-size: 11px; color: #94A3B8;"><i class="fa-solid fa-bolt" style="color: #FACC15;"></i> Zero-Lag Edge AI</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Time (IST)</th>
+                <th>Plate Number</th>
+                <th>Radar Junction</th>
+                <th>Speed / Limit</th>
+                <th>Violation Type</th>
+                <th>Penalty</th>
+                <th>Adjudication</th>
+              </tr>
+            </thead>
+            <tbody id="violations-tbody">
+              <tr>
+                <td>12:44:18</td>
+                <td><span class="badge-plate"><span class="badge-plate-ind">IND</span><span class="badge-plate-no">GJ01KA5521</span></span></td>
+                <td>Sarkhej-Gandhinagar Flyover</td>
+                <td><span style="color: #EF4444; font-weight: 800;">118 km/h</span> / 80</td>
+                <td>Section 183 (Dangerous Speed)</td>
+                <td style="color: #FACC15; font-weight: 800;">₹ 2,000</td>
+                <td><button class="action-btn btn-review" onclick="confirmViolation('GJ01KA5521', 2000)"><i class="fa-solid fa-gavel"></i> Issue</button></td>
+              </tr>
+              <tr>
+                <td>12:43:02</td>
+                <td><span class="badge-plate"><span class="badge-plate-ind">IND</span><span class="badge-plate-no">GJ01ER4492</span></span></td>
+                <td>Adalaj NH-8C Toll Gate</td>
+                <td><span style="color: #EF4444; font-weight: 800;">104 km/h</span> / 70</td>
+                <td>Section 194 (Lane Cut + Speed)</td>
+                <td style="color: #FACC15; font-weight: 800;">₹ 1,500</td>
+                <td><button class="action-btn btn-review" onclick="confirmViolation('GJ01ER4492', 1500)"><i class="fa-solid fa-gavel"></i> Issue</button></td>
+              </tr>
+              <tr>
+                <td>12:41:55</td>
+                <td><span class="badge-plate"><span class="badge-plate-ind">IND</span><span class="badge-plate-no">GJ27AB1002</span></span></td>
+                <td>Paldi Cross Road Junction</td>
+                <td><span style="color: #10B981; font-weight: 800;">44 km/h</span> / 50</td>
+                <td>Signal Jump (RLVD Red)</td>
+                <td style="color: #FACC15; font-weight: 800;">₹ 1,000</td>
+                <td><button class="action-btn btn-review" onclick="confirmViolation('GJ27AB1002', 1000)"><i class="fa-solid fa-gavel"></i> Issue</button></td>
+              </tr>
+              <tr>
+                <td>12:39:10</td>
+                <td><span class="badge-plate"><span class="badge-plate-ind">IND</span><span class="badge-plate-no">GJ03BW9914</span></span></td>
+                <td>Rajkot Ring Road Toll</td>
+                <td><span style="color: #EF4444; font-weight: 800;">96 km/h</span> / 70</td>
+                <td>Section 183 (Over-Speeding)</td>
+                <td style="color: #FACC15; font-weight: 800;">₹ 1,500</td>
+                <td><button class="action-btn btn-review" onclick="confirmViolation('GJ03BW9914', 1500)"><i class="fa-solid fa-gavel"></i> Issue</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Right Panel: Section 183/194 Quick Issue Form -->
+      <div class="section-panel">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-pen-to-square" style="color: #FACC15;"></i> Instant e-Challan Issuance</h3>
+        </div>
+        
+        <form onsubmit="event.preventDefault(); issueManualChallan();" style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <label style="font-size: 11px; color: #94A3B8; font-weight: 600; display: block; margin-bottom: 4px;">Vehicle Registration No</label>
+            <input type="text" id="manual-plate" placeholder="e.g. GJ01KA5521" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 12px; color: #FFF; font-family: 'JetBrains Mono', monospace; font-size: 13px; text-transform: uppercase;">
+          </div>
+          <div>
+            <label style="font-size: 11px; color: #94A3B8; font-weight: 600; display: block; margin-bottom: 4px;">Registered Owner Name</label>
+            <input type="text" id="manual-owner" placeholder="e.g. Ketanbhai M. Shah" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 12px; color: #FFF; font-size: 12px;">
+          </div>
+          <div>
+            <label style="font-size: 11px; color: #94A3B8; font-weight: 600; display: block; margin-bottom: 4px;">Enforcement Camera Node</label>
+            <input type="text" id="manual-loc" value="CAM_01_SG_HIGHWAY" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 12px; color: #FFF; font-size: 12px;">
+          </div>
+          <div>
+            <label style="font-size: 11px; color: #94A3B8; font-weight: 600; display: block; margin-bottom: 4px;">Violation Statutory Clause</label>
+            <select id="manual-violation" style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 12px; color: #FFF; font-size: 12px;">
+              <option value="Over-Speeding (> 100 km/h) - Section 183 MV Act">Over-Speeding (> 100 km/h) - Section 183</option>
+              <option value="Dangerous Lane Drifting - Section 184 MV Act">Dangerous Lane Drifting - Section 184</option>
+              <option value="Red Light Signal Violation (RLVD) - Section 194 MV Act">Red Light Signal Violation (RLVD)</option>
+              <option value="Riding Without Mandatory HSRP Plate - Section 177">Riding Without HSRP Plate - Section 177</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 11px; color: #94A3B8; font-weight: 600; display: block; margin-bottom: 4px;">Compounding Penalty Amount (INR)</label>
+            <input type="number" id="manual-fine" value="2000" required style="width: 100%; background: #0B132B; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 12px; color: #FACC15; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 800;">
+          </div>
+          
+          <button type="submit" class="action-btn btn-review" style="padding: 10px; justify-content: center; font-size: 13px; margin-top: 8px;">
+            <i class="fa-solid fa-stamp"></i> Dispatch Statutory e-Challan
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function confirmViolation(plate, fine) {
+      if (confirm(`Authorize statutory e-Challan of ₹${fine} for vehicle ${plate}? Notice will be dispatched via SMS & Parivahan grid.`)) {
+        fetch('/api/public/echallan-lookup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: plate })
+        }).then(r => r.json()).then(d => {
+          alert(`e-Challan successfully recorded for ${plate}! Case assigned to Traffic Enforcement Division.`);
+        }).catch(e => alert("Notice queued in traffic ledger."));
+      }
+    }
+
+    function issueManualChallan() {
+      const plate = document.getElementById('manual-plate').value.trim().toUpperCase();
+      const fine = document.getElementById('manual-fine').value;
+      alert(`Statutory e-Challan issued for ${plate} (Penalty: ₹${fine}) by Inspector Vikram Patel (GP-TRF-402).`);
+      document.getElementById('manual-plate').value = '';
+    }
+  </script>
+</body>
+</html>

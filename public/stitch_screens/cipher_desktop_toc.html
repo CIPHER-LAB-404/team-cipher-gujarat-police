@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=inter:wght@100..900&family=jetbrainsMono:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {"darkMode":"class","theme":{"extend":{"colors":{"on-secondary-container":"#342800","on-secondary-fixed-variant":"#574500","outline-variant":"#44474e","on-tertiary-fixed-variant":"#004f54","background":"#0e131f","surface-bright":"#343946","secondary-fixed":"#ffe088","error":"#ffb4ab","surface-tint":"#aec7f6","surface-container-low":"#161c28","tertiary-fixed":"#74f5ff","on-surface":"#dde2f3","on-error":"#690005","on-primary-container":"#708ab5","surface-dim":"#0e131f","primary-fixed-dim":"#aec7f6","on-primary-fixed":"#001b3d","inverse-primary":"#465f88","surface-variant":"#2f3542","tertiary-fixed-dim":"#00dbe7","tertiary-container":"#002629","on-background":"#dde2f3","on-primary":"#143057","secondary-container":"#af8d11","tertiary":"#00dbe7","surface-container":"#1a202c","on-tertiary":"#00363a","on-error-container":"#ffdad6","outline":"#8e9099","on-secondary":"#3c2f00","on-primary-fixed-variant":"#2d476f","inverse-on-surface":"#2b303d","surface-container-high":"#242a36","on-tertiary-fixed":"#002022","error-container":"#93000a","primary-container":"#002147","secondary-fixed-dim":"#e9c349","on-secondary-fixed":"#241a00","surface-container-lowest":"#080e1a","secondary":"#e9c349","on-surface-variant":"#c4c6cf","on-tertiary-container":"#0098a0","primary":"#aec7f6","primary-fixed":"#d6e3ff","surface":"#0e131f","surface-container-highest":"#2f3542","inverse-surface":"#dde2f3"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-lg":"1.5rem","space-xl":"2rem","space-xs":"0.25rem","space-2xl":"3rem","gutter-wide":"1.5rem","gutter-standard":"1rem","space-sm":"0.5rem","space-base":"1rem","margin-screen":"1.25rem","space-2xs":"0.125rem","gutter-compact":"0.5rem","space-md":"0.75rem"},"fontFamily":{"headline-md":["inter"],"body-sm":["inter"],"telemetry-sm":["jetbrainsMono"],"body-md":["inter"],"body-lg":["inter"],"headline-xl":["inter"],"display-hero":["inter"],"label-caps":["jetbrainsMono"],"telemetry-lg":["jetbrainsMono"],"headline-xl-mobile":["inter"],"telemetry-md":["jetbrainsMono"],"headline-lg":["inter"]},"fontSize":{"headline-md":["20px",{"lineHeight":"28px","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"telemetry-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.06em","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-hero":["48px",{"lineHeight":"56px","letterSpacing":"-0.03em","fontWeight":"800"}],"label-caps":["10px",{"lineHeight":"12px","letterSpacing":"0.12em","fontWeight":"700"}],"telemetry-lg":["18px",{"lineHeight":"24px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"700"}],"telemetry-md":["13px",{"lineHeight":"18px","letterSpacing":"0.02em","fontWeight":"500"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface select-none antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col justify-between py-space-md px-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="flex flex-col gap-space-md"><div class="px-space-sm py-space-xs flex items-center gap-space-sm bg-surface-container-low rounded-lg"><span class="material-symbols-outlined text-tertiary text-[20px]">security</span><div class="flex flex-col"><span class="font-label-caps text-label-caps text-tertiary uppercase">DEFENSE LEVEL</span><span class="font-telemetry-md text-telemetry-md text-secondary font-bold">SEC-CON II // GUARD</span></div></div><div class="px-space-sm"><span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Jurisdiction Nodes</span></div><nav class="flex flex-col gap-space-2xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-[0_0_12px_rgba(0,219,231,0.2)]"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-all bg-primary-container text-on-primary font-bold rounded-lg shadow-[0_0_12px_rgba(0,219,231,0.2)]" data-path="gis-command-map" href="#"><span class="material-symbols-outlined text-[18px]">map</span><span class="font-body-md text-body-md">GIS Command Map</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="live-surveillance-wall" href="#"><span class="material-symbols-outlined text-[18px]">videocam</span><span class="font-body-md text-body-md">Surveillance Wall</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="anpr-hotlist-warrants" href="#"><span class="material-symbols-outlined text-[18px]">license</span><span class="font-body-md text-body-md">ANPR Hotlist</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="intercept-dispatch-queue" href="#"><span class="material-symbols-outlined text-[18px]">emergency</span><span class="font-body-md text-body-md">Intercept Queue</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="highway-transit-corridors" href="#"><span class="material-symbols-outlined text-[18px]">alt_route</span><span class="font-body-md text-body-md">Transit Corridors</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="audit-logs-telemetry" href="#"><span class="material-symbols-outlined text-[18px]">terminal</span><span class="font-body-md text-body-md">Audit & Logs</span></a></nav></div><div class="flex flex-col gap-space-xs px-space-xs bg-surface-container-low p-space-sm rounded-lg"><div class="flex items-center justify-between"><span class="font-label-caps text-label-caps text-outline">AUDIO SENTRY</span><span class="font-telemetry-sm text-telemetry-sm text-tertiary">MONITORED</span></div><div class="flex items-center justify-between"><span class="font-label-caps text-label-caps text-outline">GEO-FENCE</span><span class="font-telemetry-sm text-telemetry-sm text-secondary">ARMED (33)</span></div><div class="pt-space-xs flex items-center justify-between"><span class="font-telemetry-sm text-telemetry-sm text-tertiary font-bold">HQ LINK ACTIVE</span><span class="h-2 w-2 rounded-full bg-tertiary animate-pulse"></span></div></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.3)]"><div class="flex items-center gap-space-md"><img alt="logo.png" class="h-8 w-auto object-contain" src="/logo.png"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md font-bold text-on-surface tracking-wide uppercase">CIPHER</span><span class="font-telemetry-sm text-telemetry-sm px-space-xs py-space-2xs bg-surface-container-high rounded text-tertiary font-bold">V4.2.0</span></div><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Gujarat Police Command Hub â¢ Gandhinagar</span></div></div><nav class="hidden xl:flex items-center gap-space-sm bg-surface-container-low px-space-sm py-space-xs rounded-xl" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a aria-current="page" class="px-space-sm py-space-xs transition-colors bg-primary-container text-on-primary font-bold rounded-lg" data-path="gis-command-map" href="#">GIS Command Map</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface px-space-sm py-space-xs transition-colors" data-path="live-surveillance-wall" href="#">Live Surveillance</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface px-space-sm py-space-xs transition-colors" data-path="anpr-hotlist-warrants" href="#">ANPR Hotlist</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface px-space-sm py-space-xs transition-colors" data-path="intercept-dispatch-queue" href="#">Dispatch Queue</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface px-space-sm py-space-xs transition-colors" data-path="highway-transit-corridors" href="#">Transit Corridors</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface px-space-sm py-space-xs transition-colors" data-path="audit-logs-telemetry" href="#">Audit Logs</a></nav><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg"><div class="flex flex-col"><span class="font-label-caps text-label-caps text-outline uppercase">OPTICAL STREAMS</span><span class="font-telemetry-md text-telemetry-md text-tertiary">3,420 ACTIVE</span></div><div class="h-6 w-px bg-surface-variant"></div><div class="flex flex-col"><span class="font-label-caps text-label-caps text-outline uppercase">LATENCY</span><span class="font-telemetry-md text-telemetry-md text-on-surface">14ms â¢ 99.8%</span></div></div><div class="flex flex-col text-right"><span class="font-label-caps text-label-caps text-outline uppercase">STANDARD TIME</span><span class="font-telemetry-md text-telemetry-md text-secondary font-bold">14:22:08 IST</span></div><button class="flex items-center gap-space-2xs px-space-sm py-space-xs bg-error-container text-on-error rounded-lg font-label-caps text-label-caps uppercase hover:bg-error transition-all"><span class="material-symbols-outlined text-[16px]">campaign</span>PANIC</button><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right hidden sm:flex"><span class="font-body-sm text-body-sm font-bold text-on-surface leading-none">L-4 SUPER ADMIN</span><span class="font-label-caps text-label-caps text-tertiary leading-tight">CYBER HQ // GANDHINAGAR</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full text-on-surface select-none pb-space-lg">
+<!-- TOP MISSION TELEMETRY BAR -->
+<header class="w-full bg-surface-container-lowest px-space-base py-space-sm flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-sm shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
+<!-- Left: Identity & Critical State Badge -->
+<div class="flex items-center gap-space-md">
+<div class="relative flex items-center justify-center w-11 h-11 rounded-lg bg-surface-container-high p-space-2xs shadow-inner">
+<img alt="Gujarat Police Command Crest" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,219,231,0.5)]" src="/logo.png"/>
+<span class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-error animate-ping"></span>
+<span class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-error"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md tracking-wider text-on-surface font-black uppercase">CIPHER COMMAND DESK</span>
+<span class="px-space-xs py-space-2xs bg-error-container text-on-error font-label-caps text-label-caps rounded font-bold tracking-widest animate-pulse">CODE RED // INTERCEPT ACTIVE</span>
+</div>
+<div class="flex items-center gap-space-sm font-telemetry-sm text-telemetry-sm text-outline">
+<span>CONSOLE: TOC-GND-04</span>
+<span>â¢</span>
+<span class="text-tertiary">SESSION: #SEC-99824-OPR</span>
+<span>â¢</span>
+<span class="text-secondary font-semibold">GRID: GUJARAT STATE POLICE CENTRAL</span>
+</div>
+</div>
+</div>
+<!-- Middle: Distributed Optical Node Telemetry Stream -->
+<div class="flex flex-wrap items-center gap-space-xs bg-surface-container-low p-space-xs rounded-xl">
+<div class="flex flex-col px-space-sm py-space-2xs bg-surface-container rounded-lg">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-caps text-label-caps text-outline uppercase">ONLINE GANTRY CAMS</span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+</div>
+<div class="flex items-baseline gap-space-2xs">
+<span class="font-telemetry-lg text-telemetry-lg text-tertiary font-bold">3,420</span>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">/ 3,450</span>
+</div>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs px-space-xs font-telemetry-sm text-telemetry-sm text-on-surface-variant">
+<div class="px-space-xs py-space-2xs rounded bg-surface-container">
+<span class="text-outline">AMD:</span> <span class="text-on-surface font-semibold">1,240</span>
+</div>
+<div class="px-space-xs py-space-2xs rounded bg-surface-container">
+<span class="text-outline">SRT:</span> <span class="text-on-surface font-semibold">890</span>
+</div>
+<div class="px-space-xs py-space-2xs rounded bg-surface-container">
+<span class="text-outline">BDQ:</span> <span class="text-on-surface font-semibold">640</span>
+</div>
+<div class="px-space-xs py-space-2xs rounded bg-surface-container">
+<span class="text-outline">RJK:</span> <span class="text-on-surface font-semibold">410</span>
+</div>
+<div class="px-space-xs py-space-2xs rounded bg-surface-container">
+<span class="text-outline">NH-48:</span> <span class="text-secondary font-semibold">240</span>
+</div>
+</div>
+<div class="h-8 w-px bg-surface-variant hidden lg:block"></div>
+<div class="flex items-center gap-space-md px-space-xs">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">OPTICAL DELAY</span>
+<span class="font-telemetry-md text-telemetry-md text-tertiary font-bold">14ms</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">NEURAL INFER</span>
+<span class="font-telemetry-md text-telemetry-md text-on-surface font-bold">380 FPS</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline uppercase">AI THRESHOLD</span>
+<span class="font-telemetry-md text-telemetry-md text-secondary font-bold">98.5%</span>
+</div>
+</div>
+</div>
+<!-- Right: Tactical System Controls -->
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-space-xs bg-surface-container hover:bg-surface-container-high rounded-lg text-tertiary flex items-center gap-space-2xs transition-all shadow-sm" id="btnSoundSentry" onclick="toggleSentryAudio()">
+<span class="material-symbols-outlined text-[18px]" id="sentryIcon">volume_up</span>
+<span class="font-label-caps text-label-caps uppercase" id="sentryStatusText">SENTRY AUDIO: ON</span>
+</button>
+<button class="px-space-sm py-space-xs bg-surface-container hover:bg-surface-container-high rounded-lg text-on-surface flex items-center gap-space-2xs transition-all shadow-sm" onclick="toggleWallMode()">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+<span class="font-label-caps text-label-caps uppercase">30-WALL</span>
+</button>
+<button class="px-space-sm py-space-xs bg-secondary-container hover:bg-secondary text-on-secondary-container rounded-lg font-label-caps text-label-caps font-bold tracking-wider uppercase flex items-center gap-space-2xs shadow-md transition-all" onclick="triggerAmberAlert()">
+<span class="material-symbols-outlined text-[16px]">podcasts</span>
+<span>STATE AMBER</span>
+</button>
+<button class="px-space-sm py-space-xs bg-primary-container hover:bg-primary text-on-primary rounded-lg font-label-caps text-label-caps font-bold tracking-wider uppercase flex items-center gap-space-2xs shadow-md transition-all" onclick="exportDossier()">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>DOSSIER</span>
+</button>
+</div>
+</header>
+<!-- MAIN CONSOLE GRID (3-COLUMN TACTICAL WORKSTATION) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-sm px-space-base pt-space-sm w-full">
+<!-- ==================== LEFT COLUMN: ANPR & HOTLIST PRIORITY (3.5 cols) ==================== -->
+<section class="lg:col-span-4 xl:col-span-3 flex flex-col gap-space-sm">
+<!-- FLASH INTERCEPT CARD -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm relative overflow-hidden shadow-xl shadow-error-container/20">
+<!-- Card Top Accents -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-error via-secondary to-error animate-pulse"></div>
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-error text-[20px] animate-pulse">warning</span>
+<span class="font-label-caps text-label-caps text-error font-bold uppercase tracking-widest">PRIORITY TARGET INTERCEPT</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm bg-error-container text-on-error px-space-xs py-space-2xs rounded font-bold">CRITICAL</span>
+</div>
+<!-- Case Metadata -->
+<div class="flex items-center justify-between pt-space-2xs text-outline">
+<span class="font-label-caps text-label-caps uppercase">CASE ID:</span>
+<span class="font-telemetry-sm text-telemetry-sm text-tertiary font-bold">#FIR-2025-GJ-8841</span>
+</div>
+<div class="text-outline font-telemetry-sm text-telemetry-sm">Offense: Aggravated Carjacking // Armed Transit</div>
+<!-- Authentic High-Security Indian License Plate Graphic -->
+<div class="my-space-sm p-space-xs bg-surface-container-low rounded-lg flex flex-col items-center">
+<span class="font-label-caps text-label-caps text-outline mb-space-2xs uppercase tracking-wider">NEURAL OCR EXTRACTED PLATE</span>
+<div class="w-full max-w-[280px] h-12 bg-white rounded-md flex items-center px-space-xs shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+<!-- Left HSRP Blue Band -->
+<div class="w-7 h-full flex flex-col items-center justify-between py-1 bg-primary-container rounded-l text-center">
+<span class="font-telemetry-sm text-[9px] text-white font-bold tracking-tighter">IND</span>
+<div class="w-3.5 h-3.5 rounded-full border border-tertiary/60 flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+</div>
+<span class="font-telemetry-sm text-[7px] text-primary-fixed leading-none">HSRP</span>
+</div>
+<!-- Embossed Indian Plate Typography -->
+<div class="flex-1 flex items-center justify-center">
+<span class="font-telemetry-lg text-telemetry-lg font-black tracking-widest text-slate-950 px-2 drop-shadow-sm">
+                GJ 01 CW 9920
+              </span>
+</div>
+<!-- Hotlist Match Stamp -->
+<div class="px-1.5 py-0.5 bg-error text-white font-label-caps text-[8px] rounded uppercase font-bold">
+              STOLEN
+            </div>
+</div>
+</div>
+<!-- Vehicle Details Grid -->
+<div class="grid grid-cols-2 gap-space-2xs bg-surface-container-low p-space-xs rounded-lg font-body-sm text-body-sm">
+<div>
+<span class="font-label-caps text-label-caps text-outline uppercase block">VEHICLE PROFILE</span>
+<span class="font-telemetry-sm text-telemetry-sm font-semibold text-on-surface">Toyota Fortuner 4x4</span>
+<span class="text-outline text-xs block">White Pearl â¢ Sigma 2023</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-outline uppercase block">AI MATCH CONFIDENCE</span>
+<span class="font-telemetry-lg text-telemetry-lg font-bold text-tertiary">99.4%</span>
+<span class="text-outline text-xs block">Plate OCR + Driver Face</span>
+</div>
+<div class="col-span-2 pt-space-2xs">
+<span class="font-label-caps text-label-caps text-outline uppercase block">LAST OPTICAL FIX</span>
+<span class="font-telemetry-sm text-telemetry-sm text-secondary font-medium">CAM_14 â¢ Sindhu Bhavan Crossroad Gantry</span>
+<span class="text-outline text-xs block">Ahmedabad (Live Fix: 17:12:14 IST)</span>
+</div>
+<div class="col-span-2 flex items-center justify-between pt-space-2xs bg-surface-container p-space-xs rounded">
+<div>
+<span class="font-label-caps text-label-caps text-outline block uppercase">RADAR VELOCITY</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-error">78 KM/H</span>
+<span class="text-outline text-xs font-telemetry-sm">(Limit: 60)</span>
+</div>
+<div class="text-right">
+<span class="font-label-caps text-label-caps text-outline block uppercase">HEADING VECTOR</span>
+<span class="font-telemetry-md text-telemetry-md font-bold text-secondary">214Â° SW</span>
+<span class="text-outline text-xs block">Towards SP Ring Rd</span>
+</div>
+</div>
+</div>
+<!-- Rapid Tactical Actions -->
+<div class="flex flex-col gap-space-xs pt-space-sm">
+<button class="w-full py-space-xs px-space-sm bg-error hover:bg-error-container text-on-error rounded-lg flex items-center justify-center gap-space-2xs font-telemetry-sm text-telemetry-sm font-bold uppercase transition-all shadow-[0_0_15px_rgba(239,68,68,0.4)] animate-pulse" onclick="dispatchPrimaryUnit()">
+<span class="material-symbols-outlined text-[18px]">fmd_good</span>
+<span>LOCK INTERSECTION // PCR-18 (1.1 KM)</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="py-space-xs px-space-xs bg-surface-container-high hover:bg-surface-bright text-secondary font-label-caps text-label-caps rounded flex items-center justify-center gap-space-2xs uppercase" onclick="freezeSignal()">
+<span class="material-symbols-outlined text-[16px]">traffic</span>
+<span>FREEZE RED SIGNAL</span>
+</button>
+<button class="py-space-xs px-space-xs bg-surface-container-high hover:bg-surface-bright text-tertiary font-label-caps text-label-caps rounded flex items-center justify-center gap-space-2xs uppercase" onclick="alertHighwayPatrol()">
+<span class="material-symbols-outlined text-[16px]">shield</span>
+<span>ALERT HWY PATROL</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SECONDARY HOTLIST FEED -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex flex-col gap-space-xs shadow-lg">
+<div class="flex items-center justify-between pb-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">checklist</span>
+<span class="font-label-caps text-label-caps text-secondary font-bold uppercase">HOTLIST WARRANTS QUEUE</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">LIVE SYNC (4)</span>
+</div>
+<!-- Hotlist Item 1 -->
+<div class="p-space-xs bg-surface-container-low hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-telemetry-md text-telemetry-md font-bold text-on-surface bg-surface-container-highest px-space-xs py-space-2xs rounded">GJ 05 AB 4412</span>
+<span class="font-label-caps text-[9px] bg-secondary-container text-on-secondary-container px-space-2xs rounded font-bold">SMUGGLING BOLO</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-tertiary font-bold">94.2%</span>
+</div>
+<div class="flex items-center justify-between pt-space-2xs font-telemetry-sm text-telemetry-sm text-outline">
+<span>Black Scorpio â¢ Surat Ring Rd</span>
+<span class="text-secondary font-medium">CAM_08 (3m ago)</span>
+</div>
+</div>
+<!-- Hotlist Item 2 -->
+<div class="p-space-xs bg-surface-container-low hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-telemetry-md text-telemetry-md font-bold text-on-surface bg-surface-container-highest px-space-xs py-space-2xs rounded">GJ 27 CD 1109</span>
+<span class="font-label-caps text-[9px] bg-error-container text-on-error px-space-2xs rounded font-bold">HIT & RUN</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-tertiary font-bold">91.8%</span>
+</div>
+<div class="flex items-center justify-between pt-space-2xs font-telemetry-sm text-telemetry-sm text-outline">
+<span>Silver Maruti Swift â¢ Gandhinagar Infocity</span>
+<span class="text-outline">CAM_33 (7m ago)</span>
+</div>
+</div>
+<!-- Hotlist Item 3 -->
+<div class="p-space-xs bg-surface-container-low hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-telemetry-md text-telemetry-md font-bold text-on-surface bg-surface-container-highest px-space-xs py-space-2xs rounded">GJ 06 EQ 8011</span>
+<span class="font-label-caps text-[9px] bg-surface-variant text-on-surface-variant px-space-2xs rounded font-bold">EXPIRED PERMIT</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">88.1%</span>
+</div>
+<div class="flex items-center justify-between pt-space-2xs font-telemetry-sm text-telemetry-sm text-outline">
+<span>Tanker â¢ NH-48 Vadodara Outskirts</span>
+<span>CAM_19 (12m ago)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== CENTER COLUMN: GIS TACTICAL VECTOR RADAR & MAP (5 cols) ==================== -->
+<section class="lg:col-span-8 xl:col-span-5 flex flex-col gap-space-sm">
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex flex-col flex-1 relative overflow-hidden shadow-xl min-h-[560px]">
+<!-- HUD Coordinate Header -->
+<div class="flex items-center justify-between pb-space-xs z-10">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px]">radar</span>
+<div>
+<span class="font-label-caps text-label-caps text-tertiary uppercase tracking-widest font-bold">GIS VECTOR RADAR MATRIX</span>
+<span class="font-telemetry-sm text-telemetry-sm text-outline block">TARGET LOCK: 23.0225Â° N, 72.5714Â° E (SINDHU BHAVAN SECTOR)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-2xs bg-surface-container-low px-space-xs py-space-2xs rounded-lg">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="font-telemetry-sm text-telemetry-sm text-secondary font-bold">RADAR SWEEP ACTIVE</span>
+</div>
+</div>
+<!-- Radar Canvas Container -->
+<div class="relative flex-1 w-full bg-surface-container-lowest rounded-lg overflow-hidden flex items-center justify-center p-space-sm min-h-[440px]">
+<!-- Real GIS Map Underlay in Low Saturation -->
+<div class="absolute inset-0 w-full h-full opacity-30 mix-blend-luminosity filter contrast-125 brightness-75 scale-105" data-location="Sindhu Bhavan Marg Ahmedabad Gujarat" style=""></div>
+<!-- Radar SVG Overlay with Animated Sweep & Range Rings -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" fill="none" viewbox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="sweepGradient" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#00dbe7" stop-opacity="0.35"></stop>
+<stop offset="60%" stop-color="#00dbe7" stop-opacity="0.05"></stop>
+<stop offset="100%" stop-color="#00dbe7" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Coordinate Grid Lines -->
+<line stroke="#2f3542" stroke-dasharray="4 4" stroke-width="1" x1="250" x2="250" y1="20" y2="480"></line>
+<line stroke="#2f3542" stroke-dasharray="4 4" stroke-width="1" x1="20" x2="480" y1="250" y2="250"></line>
+<!-- Concentric Range Rings -->
+<circle cx="250" cy="250" r="70" stroke="#44474e" stroke-dasharray="2 4" stroke-width="1"></circle>
+<circle cx="250" cy="250" r="140" stroke="#44474e" stroke-dasharray="3 6" stroke-width="1"></circle>
+<circle cx="250" cy="250" r="210" stroke="#2f3542" stroke-width="1"></circle>
+<!-- Range Labels -->
+<text fill="#8e9099" font-family="monospace" font-size="9" x="255" y="185">RANGE 1.0 KM</text>
+<text fill="#8e9099" font-family="monospace" font-size="9" x="255" y="115">RANGE 3.0 KM</text>
+<text fill="#8e9099" font-family="monospace" font-size="9" x="255" y="45">RANGE 5.0 KM (PERIMETER)</text>
+<!-- Rotating Radar Sweep Line -->
+<g class="origin-center" style="transform-origin: 250px 250px; animation: spin 5s linear infinite;">
+<path d="M250 250 L250 40 A210 210 0 0 1 430 145 Z" fill="url(#sweepGradient)"></path>
+<line stroke="#00dbe7" stroke-width="1.5" x1="250" x2="250" y1="250" y2="40"></line>
+</g>
+<!-- Target Intercept Vector Line & Arrow towards Sanand -->
+<line class="animate-pulse" stroke="#ffb4ab" stroke-dasharray="6 4" stroke-width="2.5" x1="230" x2="160" y1="210" y2="340"></line>
+<polygon fill="#ffb4ab" points="160,340 168,328 152,332"></polygon>
+</svg>
+<!-- Interactive Node Anchors (HTML pinned elements over radar) -->
+<!-- Target Vehicle (Fortuner) Pin -->
+<div class="absolute top-[42%] left-[46%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
+<div class="relative flex items-center justify-center">
+<span class="w-8 h-8 rounded-full bg-error/30 animate-ping absolute"></span>
+<div class="w-5 h-5 rounded-full bg-error flex items-center justify-center shadow-[0_0_12px_#ef4444]">
+<span class="material-symbols-outlined text-[13px] text-white">navigation</span>
+</div>
+</div>
+<div class="mt-1 bg-surface-container-lowest/90 px-space-xs py-space-2xs rounded border border-error/50 flex flex-col items-center shadow-lg">
+<span class="font-telemetry-sm text-[10px] text-error font-bold tracking-wider">TARGET: GJ01CW9920</span>
+<span class="font-telemetry-sm text-[9px] text-secondary">78 KM/H â¢ SW 214Â°</span>
+</div>
+</div>
+<!-- PCR-18 (Alpha Interceptor) Pin -->
+<div class="absolute top-[32%] left-[58%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
+<div class="relative flex items-center justify-center">
+<span class="w-6 h-6 rounded-full bg-tertiary/30 animate-ping absolute"></span>
+<div class="w-4 h-4 rounded-full bg-tertiary flex items-center justify-center shadow-[0_0_10px_#00dbe7]">
+<span class="material-symbols-outlined text-[10px] text-on-tertiary">local_police</span>
+</div>
+</div>
+<div class="mt-1 bg-surface-container-lowest/90 px-space-xs py-space-2xs rounded border border-tertiary/40">
+<span class="font-telemetry-sm text-[9px] text-tertiary font-bold">PCR-18 (1.1 KM)</span>
+</div>
+</div>
+<!-- Bike Squad 04 Pin -->
+<div class="absolute top-[62%] left-[34%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
+<div class="w-3.5 h-3.5 rounded-full bg-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[9px] text-on-primary">two_wheeler</span>
+</div>
+<div class="mt-1 bg-surface-container-lowest/90 px-1 py-0.5 rounded">
+<span class="font-telemetry-sm text-[8px] text-on-surface">BIKE-04 (2.4 KM)</span>
+</div>
+</div>
+<!-- Sanand Toll Cordon Point -->
+<div class="absolute top-[68%] left-[26%] -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
+<div class="w-3.5 h-3.5 rounded bg-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[9px] text-on-secondary">block</span>
+</div>
+<div class="mt-1 bg-surface-container-lowest/90 px-1 py-0.5 rounded">
+<span class="font-telemetry-sm text-[8px] text-secondary font-bold">SPIKE CORDON 1</span>
+</div>
+</div>
+<!-- SG Highway Gantry-14 Cam Beacon -->
+<div class="absolute top-[48%] left-[54%] -translate-x-1/2 -translate-y-1/2 z-20">
+<span class="material-symbols-outlined text-tertiary text-[14px]">videocam</span>
+</div>
+</div>
+<!-- Radar Bottom Telemetry Strip & HUD Controls -->
+<div class="pt-space-xs flex flex-wrap items-center justify-between gap-space-xs z-10 border-t border-surface-variant/40">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-caps text-label-caps text-outline uppercase">LAYER CONTROL:</span>
+<button class="px-space-xs py-space-2xs bg-tertiary-container text-tertiary rounded font-label-caps text-[10px] font-bold">GANTRY CAMS [ON]</button>
+<button class="px-space-xs py-space-2xs bg-surface-container text-on-surface rounded font-label-caps text-[10px]">PCR GPS [ON]</button>
+<button class="px-space-xs py-space-2xs bg-surface-container text-outline rounded font-label-caps text-[10px]">SPEED HEATMAP</button>
+</div>
+<div class="flex items-center gap-space-sm font-telemetry-sm text-telemetry-sm">
+<div class="flex items-center gap-space-2xs text-secondary">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+<span>INTERCEPT ETA: 17:14:02 IST (~78s)</span>
+</div>
+<div class="flex items-center gap-space-2xs bg-surface-container px-space-xs py-space-2xs rounded">
+<span class="text-outline">ZOOM:</span>
+<span class="text-on-surface font-bold">x3.4</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== RIGHT COLUMN: SURVEILLANCE QUAD-WALL & FLEET DISPATCH (4 cols) ==================== -->
+<section class="lg:col-span-12 xl:col-span-4 flex flex-col gap-space-sm">
+<!-- QUAD CCTV MONITOR WALL (2x2) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex flex-col gap-space-xs shadow-xl">
+<div class="flex items-center justify-between pb-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]">view_quilt</span>
+<span class="font-label-caps text-label-caps text-tertiary font-bold uppercase">OPTICAL STREAM QUAD-WALL</span>
+</div>
+<div class="flex items-center gap-space-2xs">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="font-telemetry-sm text-telemetry-sm text-error font-bold">LIVE SYNC 60 FPS</span>
+</div>
+</div>
+<!-- 2x2 Grid Feeds -->
+<div class="grid grid-cols-2 gap-space-xs">
+<!-- Cam Feed 1: Primary Target Optical Cam -->
+<div class="relative bg-surface-container-high rounded-lg overflow-hidden h-36 flex flex-col justify-between p-space-2xs border border-error/50 group">
+<div class="absolute inset-0 bg-cover bg-center opacity-85" data-alt="Dark high-contrast surveillance CCTV view from an elevated highway gantry in Gandhinagar, capturing a white Toyota Fortuner moving through an illuminated intersection with vehicle headlights, ambient cyan streetlights, digital detection reticles, and security timestamp overlays." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2VdfjD4RYfe3htv9wKtf0CcPCGtGaCq79TXG_sGEgdM_UYbUhE8RwpEfsX_Qg84cHaRu80xYyWTZPa6dIPTCx0V2-oPn9L9PaQFpRVB7uh24Lvh-QjDBSDPqvOveXq3rjyjX7WCQso7fqybO_C7p4C4K6N4tTbC34SNI7hqG2UkINdmAXqGvK7xRDR-p4p7Kb5sS0FLYUMHdIMWtN9q1aJRCkgWstGcpAZg5NrV0uZ3FCGa_aJt_p')"></div>
+<!-- Optical Bounding Box Graphic Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-28 h-16 border-2 border-tertiary rounded relative shadow-[0_0_8px_rgba(0,219,231,0.6)]">
+<span class="absolute -top-4 -left-1 font-label-caps text-[8px] bg-tertiary text-on-tertiary font-bold px-1 rounded">MATCH: 99.4%</span>
+<span class="absolute -bottom-4 -right-1 font-telemetry-sm text-[8px] bg-surface-container-lowest text-secondary font-bold px-1 rounded">78 KM/H</span>
+</div>
+</div>
+<!-- Header Telemetry Overlay -->
+<div class="relative z-10 flex items-center justify-between bg-surface-container-lowest/80 px-1 py-0.5 rounded">
+<span class="font-label-caps text-[9px] text-error font-bold">CAM_14 â¢ SINDHU BHAVAN</span>
+<span class="font-telemetry-sm text-[9px] text-on-surface">60.2 FPS</span>
+</div>
+<!-- Footer Timestamp -->
+<div class="relative z-10 flex items-center justify-between bg-surface-container-lowest/80 px-1 py-0.5 rounded text-[8px] font-telemetry-sm text-outline">
+<span class="text-error font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>REC</span>
+<span>17:12:14 IST</span>
+</div>
+</div>
+<!-- Cam Feed 2: Surat Varachha Chowk -->
+<div class="relative bg-surface-container-high rounded-lg overflow-hidden h-36 flex flex-col justify-between p-space-2xs border border-surface-variant group">
+<div class="absolute inset-0 bg-cover bg-center opacity-75" data-alt="High angle surveillance camera monitor showing heavy evening commuter traffic at Varachha Chowk intersection in Surat, India with fluorescent sodium lights, police traffic poles, and multi-vehicle movement." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDv99EfWOoqc0dCBP28fkoIWh_wr82k4JED7_QXg4nX3X70sxWFH5rh-8xhHRL6iQxYxCX93qW4dKOLiQlIZrDoni-1MDqYiGeXbe9dPQw9w632Sw9yQJOQ4jZFNscASJsx9Eun3wNFwMpAZEnfgL-a1oLEcBuW2RcB00KFWwjVvBGPhYtDMGpMCL1eNdoU7hxl-1AurzvPWa2HUWdtStUVJ7j8iRkzkCDaalLvHjOwFBTNjC98xOzd')"></div>
+<div class="relative z-10 flex items-center justify-between bg-surface-container-lowest/80 px-1 py-0.5 rounded">
+<span class="font-label-caps text-[9px] text-on-surface font-semibold">CAM_02 â¢ SURAT VARACHHA</span>
+<span class="font-telemetry-sm text-[9px] text-tertiary">59.8 FPS</span>
+</div>
+<div class="relative z-10 flex items-center justify-between bg-surface-container-lowest/80 px-1 py-0.5 rounded text-[8px] font-telemetry-sm text-outline">
+<span class="text-tertiary">FLOW: NORMAL</span>
+<span>17:12:14 IST</span>
+</div>
+</div>
+<!-- Cam Feed 3: Vadodara Alkapuri Circle -->
+<div class="relative bg-surface-container-high rounded-lg overflow-hidden h-36 flex flex-col justify-between p-space-2xs border border-surface-variant group">
+<div class="absolute inset-0 bg-cover bg-center opacity-75" data-alt="CCTV security feed of Alkapuri traffic circle in Vadodara at twilight with city lighting, police surveillance cameras mounted on gantries, and clear road lane indicators." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-iMvJGvUqoGMEscGmWquzzuyVEBLIgulNT6LAdaeuwiLnXLU-6bVVOhOq7ycWo8IvqbK5QQ8y8Zl1LCt0p9gdvlfCXd4n-WQy4CT93j8vT5DK05nIpGSJxMajAke0MBC9ygrJzdrZef2e65Xz30aa_1vg7uGewa_TGod5GzXbimFv72ZkGgEY_q3FbKn_Kth3-l9sVjozZPIx-MTleTgGx7AnQa8sVwwgCOnCHmObdcP5WygL6Ons')"></div>
+<div class="relative z-10 flex items-center justify-between bg-surface-container-lowest/80 px-1 py-0.5 rounded">
+<span class="font-label-caps text-[9px] text-on-surface font-semibold">CAM_09 â¢ VADODARA ALKAPURI</span>
+<span class="font-telemetry-sm text-[9px] text-tertiary">60.0 FPS</span>
+</div>
+<div class="relative z-10 flex items-center justify-between bg-surface-container-lowest/80 px-1 py-0.5 rounded text-[8px] font-telemetry-sm text-outline">
+<span class="text-outline">SCN ACTIVE</span>
+<span>17:12:14 IST</span>
+</div>
+</div>
+<!-- Cam Feed 4: NH-48 Anand Toll Plaza ANPR -->
+<div class="relative bg-surface-container-high rounded-lg overflow-hidden h-36 flex flex-col justify-between p-space-2xs border border-surface-variant group">
+<div class="absolute inset-0 bg-cover bg-center opacity-75" data-alt="Highway toll plaza CCTV angle on National Highway 48 near Anand, Gujarat showing ANPR overhead cameras, illuminated toll barrier gates, and commercial freight transit lanes." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIJmN-1HMCiPA4inES52KrRt9anawxgDMDdaE1kaalvviL-nxcfGA3mgWew0w8UE8RECZWOdMUJl4U-dp5bNYkt6reDc7lQY-MjmGL_6VrQUvlxpvfS3sm9NpQbV_YMH_8hsAYBTKKJJIIs_zspOxEl_D0AX5_z9v-rovaqSPR9FTiK__-J3bjB6viV8ZkvTMs7qhZHpLEqWBgNqfdt5egXw8q9Se6_316OMQ8-bdnauXvSboWFxHs')"></div>
+<div class="relative z-10 flex items-center justify-between bg-surface-container-lowest/80 px-1 py-0.5 rounded">
+<span class="font-label-caps text-[9px] text-secondary font-semibold">CAM_21 â¢ NH-48 ANAND TOLL</span>
+<span class="font-telemetry-sm text-[9px] text-tertiary">58.9 FPS</span>
+</div>
+<div class="relative z-10 flex items-center justify-between bg-surface-container-lowest/80 px-1 py-0.5 rounded text-[8px] font-telemetry-sm text-outline">
+<span class="text-secondary font-bold">FASTAG OCR</span>
+<span>17:12:14 IST</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PCR ACTIVE PATROL FLEET DISPATCH QUEUE -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm flex flex-col gap-space-xs shadow-lg">
+<div class="flex items-center justify-between pb-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">local_police</span>
+<span class="font-label-caps text-label-caps text-secondary font-bold uppercase">PCR INTERCEPT FLEET DISPATCH</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-tertiary">3 UNITS GEO-LOCKED</span>
+</div>
+<!-- Patrol Unit 1: Interceptor Alpha -->
+<div class="p-space-xs bg-surface-container-low rounded-lg border-l-4 border-error flex flex-col gap-space-2xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-telemetry-md text-telemetry-md font-bold text-on-surface">#PCR-18</span>
+<span class="font-label-caps text-[9px] bg-error-container text-on-error px-space-xs rounded font-bold uppercase">EN ROUTE INTERCEPT</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-error font-bold">1.1 KM (ETA 90s)</span>
+</div>
+<div class="flex items-center justify-between text-outline font-telemetry-sm text-telemetry-sm">
+<span>Vehicle: Scorpio Interceptor (62 km/h)</span>
+<span class="text-on-surface font-semibold">Ahmedabad Sector 1</span>
+</div>
+<div class="flex items-center justify-between pt-space-2xs text-xs text-outline">
+<span>Crew: SI R. Jadeja + 2 Armed Constables</span>
+<button class="text-tertiary hover:underline flex items-center gap-1 font-label-caps text-[9px] uppercase" onclick="radioComms('PCR-18')">
+<span class="material-symbols-outlined text-[12px]">mic</span> RADIO COMMS
+            </button>
+</div>
+</div>
+<!-- Patrol Unit 2: Bike Squad 04 -->
+<div class="p-space-xs bg-surface-container-low rounded-lg border-l-4 border-secondary flex flex-col gap-space-2xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-telemetry-md text-telemetry-md font-bold text-on-surface">#BIKE-SQUAD-04</span>
+<span class="font-label-caps text-[9px] bg-secondary-container text-on-secondary-container px-space-xs rounded font-bold uppercase">PERIMETER CORDON LOCK</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-secondary font-bold">2.4 KM (ETA 3m)</span>
+</div>
+<div class="flex items-center justify-between text-outline font-telemetry-sm text-telemetry-sm">
+<span>2x Royal Enfield 350 Quick-Response</span>
+<span>SG Highway Flyover</span>
+</div>
+</div>
+<!-- Patrol Unit 3: Sanand Toll Unit -->
+<div class="p-space-xs bg-surface-container-low rounded-lg border-l-4 border-tertiary flex flex-col gap-space-2xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-telemetry-md text-telemetry-md font-bold text-on-surface">#PCR-09</span>
+<span class="font-label-caps text-[9px] bg-tertiary-container text-tertiary rounded px-space-xs font-bold uppercase">SPIKE STRIP STANDBY</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-tertiary font-bold">4.8 KM</span>
+</div>
+<div class="flex items-center justify-between text-outline font-telemetry-sm text-telemetry-sm">
+<span>Bolero Tactical Support</span>
+<span>Sanand Toll Barrier</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- LOWER SYSTEM AUDIT & REAL-TIME COMMAND LOG -->
+<footer class="mt-space-sm mx-space-base bg-surface-container-lowest rounded-xl p-space-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-sm shadow-xl">
+<!-- Live Cryptographic Ticker & CCTNS Log -->
+<div class="flex items-center gap-space-sm flex-1 min-w-0">
+<div class="flex items-center gap-space-2xs px-space-xs py-space-2xs bg-surface-container-high rounded text-tertiary font-telemetry-sm text-telemetry-sm font-bold flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+<span>CCTNS STREAM LOG:</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<div class="font-telemetry-sm text-telemetry-sm text-on-surface-variant truncate" id="liveTelemetryTicker">
+<span class="text-tertiary">[17:12:14.082]</span> Optical Cam CAM_14 triggered ANPR Match ID: <span class="text-secondary font-bold">99420-GJ</span> â¢ CCTNS central repository hit confirmed â¢ PCR-18 geo-fence handshake ACK (Lat: 23.0225, Lon: 72.5714).
+        </div>
+</div>
+</div>
+<!-- Gandhinagar Cyber HQ Escalation Hotline Link -->
+<div class="flex items-center gap-space-md flex-shrink-0 pt-space-xs lg:pt-0 border-t lg:border-t-0 border-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<div class="flex flex-col">
+<span class="font-label-caps text-[9px] text-outline uppercase">ENCRYPTED CIPHER LINK</span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface font-bold">GANDHINAGAR HQ DIRECT</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-space-xs bg-surface-container-high hover:bg-surface-bright rounded text-on-surface flex items-center gap-space-2xs font-label-caps text-label-caps uppercase transition-all" onclick="emergencyBroadcast('COMMISSIONER')">
+<span class="material-symbols-outlined text-[16px] text-secondary">phone_in_talk</span>
+<span>COMMISSIONER HOTLINE</span>
+</button>
+<button class="px-space-sm py-space-xs bg-error-container hover:bg-error text-on-error rounded font-label-caps text-label-caps uppercase flex items-center gap-space-2xs font-bold transition-all shadow-md" onclick="emergencyBroadcast('ALL_CHANNELS')">
+<span class="material-symbols-outlined text-[16px]">broadcast_on_home</span>
+<span>BROADCAST ALL</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- TACTICAL TOAST NOTIFICATION OVERLAY (JS Controlled) -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="tacticalToast">
+<div class="bg-surface-container-highest border border-tertiary px-space-base py-space-sm rounded-xl shadow-2xl flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-[22px]" id="toastIcon">info</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-tertiary uppercase font-bold" id="toastTitle">COMMAND DIRECTIVE EXECUTED</span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface" id="toastMessage">Intersection freeze dispatched.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- INLINE TACTICAL INTERACTIVE SCRIPTS -->
+<script>
+  function showToast(title, message, icon = 'check_circle') {
+    const toast = document.getElementById('tacticalToast');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastMsg = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+
+    if (!toast) return;
+    toastTitle.textContent = title;
+    toastMsg.textContent = message;
+    toastIcon.textContent = icon;
+
+    toast.classList.remove('translate-y-24', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    setTimeout(() => {
+      toast.classList.add('translate-y-24', 'opacity-0');
+      toast.classList.remove('translate-y-0', 'opacity-100');
+    }, 3800);
+  }
+
+  function dispatchPrimaryUnit() {
+    showToast('DISPATCH PRIORITY ACTIVE', 'PCR-18 instructed to deploy precision box cordon at Sindhu Bhavan Jn.', 'fmd_good');
+    updateTicker('[17:12:30.114] DISPATCH DIRECTIVE: PCR-18 vector locked on target GJ 01 CW 9920. Speed 68 km/h.');
+  }
+
+  function freezeSignal() {
+    showToast('SCATS SIGNAL FREEZE', 'SG Highway Gantry-14 traffic signal frozen RED for SW corridor.', 'traffic');
+    updateTicker('[17:12:35.402] SCATS COMMAND: Red freeze initiated at intersection SG-14. Sanand bypass cleared.');
+  }
+
+  function alertHighwayPatrol() {
+    showToast('HIGHWAY PATROL ALERTED', 'NH-48 Corridor Patrol Units and Toll gates placed on Level-1 Cordon.', 'shield');
+    updateTicker('[17:12:41.890] TRANSIT CORRIDOR: NH-48 alert broadcasted. FASTag barricade armed.');
+  }
+
+  function toggleSentryAudio() {
+    const statusText = document.getElementById('sentryStatusText');
+    const icon = document.getElementById('sentryIcon');
+    if (statusText.textContent.includes('ON')) {
+      statusText.textContent = 'SENTRY AUDIO: OFF';
+      icon.textContent = 'volume_off';
+      showToast('AUDIO SENTRY MUTED', 'Auditory sirens suppressed. Visual telemetry active.', 'volume_off');
+    } else {
+      statusText.textContent = 'SENTRY AUDIO: ON';
+      icon.textContent = 'volume_up';
+      showToast('AUDIO SENTRY ARMED', 'Sonic chimes active for high priority matches >95%.', 'volume_up');
+    }
+  }
+
+  function toggleWallMode() {
+    showToast('WALL LAYOUT SWITCH', 'Toggling command wall to 30-Stream Matrix view.', 'grid_view');
+  }
+
+  function triggerAmberAlert() {
+    showToast('STATEWIDE AMBER BROADCAST', 'Emergency bulletin pushed to all mobile highway signboards and PCR radios.', 'podcasts');
+    updateTicker('[17:12:48.012] STATE BROADCAST: Amber Alert published. Target GJ 01 CW 9920 logged across Gujarat.');
+  }
+
+  function exportDossier() {
+    showToast('DOSSIER GENERATED', 'Cryptographically signed PDF case report #FIR-2025-GJ-8841 downloaded.', 'file_download');
+  }
+
+  function radioComms(unitId) {
+    showToast('TACTICAL INTERCOM', `Connecting low-latency encrypted line with ${unitId}...`, 'mic');
+  }
+
+  function emergencyBroadcast(target) {
+    showToast('EMERGENCY ESCALATION', `Secure satellite uplink established with ${target}.`, 'phone_in_talk');
+  }
+
+  function updateTicker(newText) {
+    const ticker = document.getElementById('liveTelemetryTicker');
+    if (ticker) {
+      ticker.innerHTML = `<span class="text-tertiary font-bold">${newText}</span>`;
+    }
+  }
+
+  // Realistic telemetry cycle
+  setInterval(() => {
+    const randomMs = 12 + Math.floor(Math.random() * 4);
+    const randomFps = 378 + Math.floor(Math.random() * 8);
+    // Subtle periodic background telemetry update
+  }, 4000);
+</script></main></div></body></html>

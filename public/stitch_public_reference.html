@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gujarat Police Citizen Safety Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#574500",
+                        "tertiary-fixed": "#ffe088",
+                        "on-primary-fixed": "#001b3d",
+                        "on-primary-container": "#708ab5",
+                        "secondary-fixed-dim": "#e9c34a",
+                        "background": "#f4faff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-container-highest": "#cfe6f2",
+                        "on-surface-variant": "#44474e",
+                        "primary": "#000a1e",
+                        "on-background": "#071e27",
+                        "inverse-primary": "#aec7f6",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f4faff",
+                        "secondary": "#735c00",
+                        "secondary-container": "#fed65b",
+                        "surface-container-high": "#d5ecf8",
+                        "on-surface": "#071e27",
+                        "surface-container": "#daf1fe",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "surface-variant": "#cfe6f2",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#cca830",
+                        "surface-dim": "#c7ddea",
+                        "surface": "#f4faff",
+                        "on-secondary-container": "#745c00",
+                        "surface-tint": "#465f88",
+                        "inverse-on-surface": "#e0f4ff",
+                        "primary-container": "#002147",
+                        "on-tertiary-container": "#4f3e00",
+                        "tertiary": "#735c00",
+                        "primary-fixed-dim": "#aec7f6",
+                        "secondary-fixed": "#ffe088",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#e7f6ff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "inverse-surface": "#1e333d",
+                        "primary-fixed": "#d6e3ff",
+                        "on-secondary-fixed": "#241a00",
+                        "outline": "#74777f",
+                        "outline-variant": "#c4c6cf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max-width": "1280px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant shadow-sm w-full sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 max-w-container-max-width mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Gujarat Police Logo" class="h-12 w-12 object-contain" data-alt="Official Gujarat Police Logo seal with the national emblem of India, circular design in deep navy blue and gold accents, crisp, institutional style." src="/logo.png"/>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">GUJARAT POLICE</span>
+<span class="text-xs text-on-surface-variant font-medium">àªà«àªàª°àª¾àª¤ àªªà«àª²à«àª¸ â¢ Government of Gujarat</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Services</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">e-Challan</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Bulletins</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">e-Intimation</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="#">Stations</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center text-label-sm text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">schedule</span>
+<span id="live-clock">10:42 AM IST</span>
+</div>
+<button class="bg-[#DC2626] text-white px-4 py-2 rounded-full font-label-md text-label-md font-bold shadow-sm hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">sos</span> SOS 100
+                </button>
+<button class="hidden md:block text-primary font-label-md text-label-md border border-outline-variant px-4 py-2 rounded-full hover:bg-surface-container transition-colors">Login</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full">
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-br from-surface-container-lowest to-surface-container-low border-b border-outline-variant overflow-hidden">
+<div class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-24 relative z-10 flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 text-left space-y-6">
+<h1 class="font-display text-display font-extrabold text-primary leading-tight">
+                        Securing Gujarat,<br/>Serving Citizens.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Official Citizen Safety and e-Governance Portal of the Gujarat Police. Report incidents, verify challans, and access emergency services instantly.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary-container text-on-primary rounded-full px-6 py-3 font-label-md text-label-md flex items-center gap-2 shadow-sm hover:opacity-90 transition-opacity">
+                            File Theft Intimation
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="bg-surface-container-lowest text-primary-container border border-outline-variant rounded-full px-6 py-3 font-label-md text-label-md flex items-center gap-2 shadow-sm hover:bg-surface-container transition-colors">
+                            Pay e-Challan
+                        </button>
+</div>
+</div>
+<div class="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary-container text-3xl">videocam</span>
+<h3 class="font-headline-md text-headline-md text-primary">30+</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Statewide CCTV Nodes</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary-container text-3xl">shield</span>
+<h3 class="font-headline-md text-headline-md text-primary">24x7</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Sentry Protection</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col gap-3 sm:col-span-2">
+<span class="material-symbols-outlined text-primary-container text-3xl">assignment</span>
+<h3 class="font-headline-md text-headline-md text-primary">Instant</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">e-Intimation Processing</p>
+</div>
+</div>
+</div>
+<!-- Decorative gradient orb -->
+<div class="absolute top-[-20%] right-[-10%] w-96 h-96 bg-primary-fixed-dim rounded-full mix-blend-multiply filter blur-3xl opacity-30 z-0 pointer-events-none"></div>
+</section>
+<!-- Emergency Helplines Matrix -->
+<section class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 font-bold">Emergency Helplines</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- 112 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 border-l-4 border-l-[#DC2626] flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-[#DC2626] text-3xl">emergency</span>
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded text-xs font-bold">Primary</span>
+</div>
+<div>
+<h3 class="font-display text-4xl font-bold text-primary mb-1">112</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">All-in-One Emergency</p>
+</div>
+</div>
+<!-- 1091 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 border-l-4 border-l-[#D97706] flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-[#D97706] text-3xl">woman</span>
+</div>
+<div>
+<h3 class="font-display text-4xl font-bold text-primary mb-1">1091</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">SHE Team Women Helpline</p>
+</div>
+</div>
+<!-- 1930 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 border-l-4 border-l-[#2563EB] flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-[#2563EB] text-3xl">gavel</span>
+</div>
+<div>
+<h3 class="font-display text-4xl font-bold text-primary mb-1">1930</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">Cyber Fraud</p>
+</div>
+</div>
+<!-- 1095 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 border-l-4 border-l-[#16A34A] flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-[#16A34A] text-3xl">traffic</span>
+</div>
+<div>
+<h3 class="font-display text-4xl font-bold text-primary mb-1">1095</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">Traffic Control</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Citizen Services & Lookup -->
+<section class="bg-surface-container-low py-16 border-t border-outline-variant">
+<div class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- Services Grid -->
+<div class="lg:col-span-2">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 font-bold">Citizen Services</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<a class="group bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-start gap-4 hover:border-primary-container transition-colors" href="#">
+<div class="p-3 bg-surface-container rounded-lg group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary-container text-2xl">receipt_long</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary text-lg mb-1">e-Challan Lookup</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">View and pay your pending traffic fines online securely.</p>
+</div>
+</a>
+<a class="group bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col items-start gap-4 hover:border-primary-container transition-colors" href="#">
+<div class="flex items-center gap-4 w-full">
+<div class="p-3 bg-surface-container rounded-lg group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary-container text-2xl">directions_car</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary text-lg mb-1">Stolen Vehicle e-Intimation</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Report a stolen vehicle instantly.</p>
+</div>
+</div>
+<!-- Mock License Plate -->
+<div class="mt-2 w-full flex justify-center">
+<div class="border-2 border-gray-400 bg-white rounded flex items-center px-2 py-1 shadow-inner h-10 min-w-[140px]">
+<div class="flex flex-col items-center justify-center mr-2 border-r border-gray-300 pr-2">
+<div class="w-2 h-2 rounded-full bg-blue-800 mb-[2px]"></div>
+<span class="text-[6px] font-bold text-gray-500 uppercase leading-none">IND</span>
+</div>
+<span class="font-bold text-gray-800 tracking-wider text-sm">GJ 01 XX 1234</span>
+</div>
+</div>
+</a>
+<a class="group bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-start gap-4 hover:border-primary-container transition-colors" href="#">
+<div class="p-3 bg-surface-container rounded-lg group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary-container text-2xl">local_police</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary text-lg mb-1">Police Station Jurisdiction Finder</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Locate your nearest station based on your current area.</p>
+</div>
+</a>
+<a class="group bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-start gap-4 hover:border-primary-container transition-colors" href="#">
+<div class="p-3 bg-surface-container rounded-lg group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary-container text-2xl">commute</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary text-lg mb-1">Live Highway Traffic Bulletins</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Real-time updates on highway conditions and diversions.</p>
+</div>
+</a>
+</div>
+</div>
+<!-- e-Challan Widget -->
+<div class="lg:col-span-1">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 font-bold">Quick Check</h2>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-6 flex flex-col h-full">
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant pb-4">
+<span class="material-symbols-outlined text-primary-container">search</span>
+<h3 class="font-headline-md text-headline-md text-primary text-xl">Search e-Challan</h3>
+</div>
+<div class="space-y-4 flex-grow">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1" for="vehicle-no">Vehicle Registration Number</label>
+<input class="w-full border border-outline-variant rounded-lg px-4 py-2 font-body-md focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] outline-none transition-shadow uppercase" id="vehicle-no" placeholder="e.g. GJ01AB1234" type="text"/>
+</div>
+<button class="w-full bg-primary-container text-white font-label-md text-label-md py-3 rounded-lg font-bold shadow-sm hover:bg-primary transition-colors">
+                                Check Status
+                            </button>
+</div>
+<!-- Sample Layout Area -->
+<div class="mt-8 pt-4 border-t border-outline-variant opacity-50 pointer-events-none">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-2 text-center uppercase tracking-wider">Example Result</p>
+<div class="bg-surface-container p-3 rounded-lg flex justify-between items-center border border-outline-variant">
+<div>
+<div class="font-bold text-sm text-primary">GJ01AB1234</div>
+<div class="text-xs text-on-surface-variant">Pending Amount</div>
+</div>
+<div class="text-[#DC2626] font-bold font-mono">â¹ 1,500</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container full-width">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-12 w-full max-w-container-max-width mx-auto">
+<div class="flex flex-col gap-4">
+<span class="font-headline-md text-headline-md text-on-primary font-bold">GUJARAT POLICE</span>
+<p class="font-body-md text-body-md text-sm opacity-80 max-w-xs">
+                    Committed to maintaining law and order, preventing crime, and ensuring the safety of all citizens in Gujarat.
+                </p>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider mb-2 opacity-60">About Us</h4>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">About Gujarat Police</a>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Vision &amp; Mission</a>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Organizational Chart</a>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Right to Information (RTI)</a>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider mb-2 opacity-60">Quick Portals</h4>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Citizen Portal Login</a>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">File e-FIR</a>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Traffic e-Challan</a>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Missing Persons</a>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider mb-2 opacity-60">Govt Portals</h4>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Government of Gujarat</a>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Home Department</a>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">Ministry of Home Affairs</a>
+<a class="font-body-md text-body-md text-sm hover:text-secondary-fixed transition-colors opacity-80 hover:opacity-100" href="#">National Cyber Crime Portal</a>
+</div>
+</div>
+<div class="border-t border-on-primary/20 px-margin-mobile md:px-margin-desktop py-6">
+<div class="max-w-container-max-width mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+<p class="font-label-sm text-label-sm opacity-60">Â© 2024 Gujarat Police, Home Department, Government of Gujarat. All Rights Reserved.</p>
+<div class="flex gap-4 opacity-60 font-label-sm text-label-sm">
+<a class="hover:text-secondary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-secondary-fixed transition-colors" href="#">Terms of Use</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple live clock update
+        function updateClock() {
+            const clockEl = document.getElementById('live-clock');
+            if(clockEl) {
+                const now = new Date();
+                let hours = now.getHours();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                clockEl.textContent = `${hours}:${minutes} ${ampm} IST`;
+            }
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body></html>

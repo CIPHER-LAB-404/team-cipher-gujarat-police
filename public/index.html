@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gujarat Police | Official Citizen Safety & Public Information Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Single Unified Canvas Styling -->
+  <link rel="stylesheet" href="public.css?v=20260914_seamless_v2">
+
+  <!-- Tactical Placeholders & Telemetry Engine -->
+  <script src="assets/placeholders.js"></script>
+</head>
+<body>
+
+
+<!-- Interactive Particle & Constellation Grid Canvas -->
+<canvas id="cyber-bg-canvas" class="cyber-bg-canvas"></canvas>
+
+<div class="public-wrapper">
+  
+  <!-- ==========================================
+       SINGLE UNIFIED FLOATING HEADER & NAVIGATION
+       ========================================== -->
+  <header class="main-header" id="header">
+    <div class="header-inner">
+      <!-- Logo & Government Branding -->
+      <a href="#" class="brand-link">
+        <div class="logo-wrapper">
+          <img src="logo.png" alt="Gujarat Police Sentinel Emblem" class="brand-logo-img">
+        </div>
+        <div class="brand-copy">
+          <div class="brand-title-row">
+            <h1 class="brand-name">GUJARAT POLICE</h1>
+            <span class="state-pill">ગુજરાત પોલીસ</span>
+          </div>
+          <p class="brand-motto">Government of Gujarat • Home Department</p>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#services" class="nav-item"><i class="fa-solid fa-hand-holding-hand"></i> Services</a>
+        <a href="#citizen-tools" class="nav-item"><i class="fa-solid fa-receipt"></i> e-Challan &amp; Tools</a>
+        <a href="#traffic" class="nav-item"><i class="fa-solid fa-traffic-light"></i> Highway Bulletins</a>
+        <a href="#stations" class="nav-item"><i class="fa-solid fa-building-shield"></i> Police Stations</a>
+        <a href="#report" class="nav-item"><i class="fa-solid fa-car-burst"></i> Report Stolen Vehicle</a>
+      </nav>
+
+      <!-- Telemetry & Actions -->
+      <div class="header-cta-group">
+        <span class="live-clock-badge"><i class="fa-solid fa-clock"></i> <span id="public-live-clock">--:--:-- IST</span></span>
+        <a href="tel:112" class="header-sos-pill"><span class="sos-pulse-dot"></span> 112 / 100 SOS</a>
+        <a href="#report" class="btn-emergency-action">
+          <i class="fa-solid fa-car-burst"></i> Report Theft
+        </a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HERO SECTION (Citizen First Command)
+       ========================================== -->
+  <section class="hero-banner">
+    <div class="container hero-container">
+      <div class="hero-badge-tag">
+        <span class="pulse-dot"></span>
+        <span>Official Gujarat Police Citizen Protection Network</span>
+      </div>
+
+      <h2 class="hero-main-title">
+        Empowering Gujarat with <span class="gradient-text">Prompt, Transparent &amp; Intelligent</span> Citizen Policing
+      </h2>
+
+      <p class="hero-subtitle">
+        Access 24x7 emergency helplines, check automated CCTV e-Challan status, find your jurisdictional police station, track real-time state highway traffic advisories, and file vehicle theft e-intimations with instant ANPR synchronization.
+      </p>
+
+      <!-- 4 Symmetric Emergency SOS Cards -->
+      <div class="sos-cards-row">
+        <!-- 112 Police -->
+        <div class="sos-action-card emergency-red" data-modal="modal-sos-police" role="button" tabindex="0">
+          <div class="sos-card-header">
+            <div class="sos-card-icon"><i class="fa-solid fa-phone-volume"></i></div>
+            <span class="sos-type-tag">24x7 TOLL-FREE</span>
+          </div>
+          <div class="sos-card-body">
+            <span class="sos-number">112 / 100</span>
+            <span class="sos-title">Police Emergency &amp; PCR</span>
+            <p class="sos-desc">Instant dispatch of nearest highway &amp; urban patrol vans across all 33 districts.</p>
+          </div>
+          <div class="sos-card-footer">
+            <span>View Response Protocol &rarr;</span>
+          </div>
+        </div>
+
+        <!-- 1091 SHE Team -->
+        <div class="sos-action-card women-pink" data-modal="modal-sos-she" role="button" tabindex="0">
+          <div class="sos-card-header">
+            <div class="sos-card-icon"><i class="fa-solid fa-person-dress"></i></div>
+            <span class="sos-type-tag">WOMEN SAFETY</span>
+          </div>
+          <div class="sos-card-body">
+            <span class="sos-number">1091</span>
+            <span class="sos-title">SHE Team Helpline</span>
+            <p class="sos-desc">Dedicated women officers for prompt assistance, crisis response, and safe transit escort.</p>
+          </div>
+          <div class="sos-card-footer">
+            <span>Connect with SHE Team &rarr;</span>
+          </div>
+        </div>
+
+        <!-- 1930 Cyber Fraud -->
+        <div class="sos-action-card cyber-blue" data-modal="modal-sos-cyber" role="button" tabindex="0">
+          <div class="sos-card-header">
+            <div class="sos-card-icon"><i class="fa-solid fa-desktop"></i></div>
+            <span class="sos-type-tag">FINANCIAL FRAUD</span>
+          </div>
+          <div class="sos-card-body">
+            <span class="sos-number">1930</span>
+            <span class="sos-title">Cyber Crime Cell</span>
+            <p class="sos-desc">Instant lien on fraudulent bank/UPI transactions during Golden Hour financial fraud.</p>
+          </div>
+          <div class="sos-card-footer">
+            <span>Cyber Crime Guidance &rarr;</span>
+          </div>
+        </div>
+
+        <!-- 1095 Traffic Help -->
+        <div class="sos-action-card traffic-amber" data-modal="modal-sos-traffic" role="button" tabindex="0">
+          <div class="sos-card-header">
+            <div class="sos-card-icon"><i class="fa-solid fa-road-circle-exclamation"></i></div>
+            <span class="sos-type-tag">ROAD HELPLINE</span>
+          </div>
+          <div class="sos-card-body">
+            <span class="sos-number">1095</span>
+            <span class="sos-title">State Traffic Control</span>
+            <p class="sos-desc">Highway breakdowns, crane towing assistance, and road accident medical coordination.</p>
+          </div>
+          <div class="sos-card-footer">
+            <span>Highway Assistance Info &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Police Infrastructure Telemetry Ticker -->
+      <div class="hero-stats-strip">
+        <div class="stat-pill">
+          <i class="fa-solid fa-map-location-dot stat-icon"></i>
+          <div>
+            <strong>33 Districts</strong>
+            <span>Covered 24x7 Statewide</span>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <i class="fa-solid fa-video stat-icon"></i>
+          <div>
+            <strong>80,000+ CCTV</strong>
+            <span>Surveillance Grid</span>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <i class="fa-solid fa-car-on stat-icon"></i>
+          <div>
+            <strong>&lt; 8 Mins</strong>
+            <span>Urban PCR Response</span>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <i class="fa-solid fa-shield-halved stat-icon"></i>
+          <div>
+            <strong>100% Digital</strong>
+            <span>eGujCop CCTNS Integration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 1: SYMMETRIC CITIZEN TOOLS (e-Challan & Jurisdiction)
+       ========================================== -->
+  <section class="section-block" id="citizen-tools">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> Direct Citizen Utilities</span>
+        <h2 class="section-heading">Instant Public Verification Tools</h2>
+        <p class="section-subtext">Check automated traffic violations or instantly locate your jurisdictional police station and designated Station House Officer (SHO).</p>
+      </div>
+
+      <div class="dual-tools-grid">
+        <!-- Tool 1: e-Challan Checker -->
+        <div class="tool-banner-card">
+          <div class="tool-header">
+            <div class="tool-icon-circle"><i class="fa-solid fa-receipt"></i></div>
+            <div>
+              <span class="section-kicker"><i class="fa-solid fa-camera"></i> ANPR INTELLIGENCE</span>
+              <h3 class="tool-title">e-Challan Status Checker</h3>
+              <p class="tool-desc">Enter vehicle number to check pending CCTV speeding violations across Gujarat.</p>
+            </div>
+          </div>
+
+          <div class="tool-search-row">
+            <div class="tool-input-wrap">
+              <i class="fa-solid fa-car tool-input-icon"></i>
+              <input type="text" id="challan-search-input" placeholder="e.g. GJ01ER4492" class="tool-input">
+            </div>
+            <button class="btn-tool-search" id="btn-check-challan">
+              <i class="fa-solid fa-magnifying-glass"></i> Check Status
+            </button>
+          </div>
+
+          <div id="challan-result-box" class="challan-result-box" style="display: none;"></div>
+        </div>
+
+        <!-- Tool 2: Jurisdiction Finder -->
+        <div class="tool-banner-card bg-surface-alt">
+          <div class="tool-header">
+            <div class="tool-icon-circle bg-blue-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <div>
+              <span class="section-kicker"><i class="fa-solid fa-compass"></i> JURISDICTION LOCATOR</span>
+              <h3 class="tool-title">Find Your Police Station</h3>
+              <p class="tool-desc">Select your locality to find designated Station House Officer (SHO) &amp; Beat Phone.</p>
+            </div>
+          </div>
+
+          <div class="tool-search-row">
+            <div class="tool-input-wrap">
+              <i class="fa-solid fa-location-crosshairs tool-input-icon"></i>
+              <select id="locality-select" class="tool-input custom-select">
+                <option value="">-- Select Locality in Gujarat --</option>
+                <option value="ahmedabad-paldi">Paldi / Ellisbridge / VS Hospital (Ahmedabad)</option>
+                <option value="ahmedabad-chandkheda">Chandkheda / Visat / Sabarmati (Ahmedabad)</option>
+                <option value="ahmedabad-shahibaug">Shahibaug / Camp Sadar / Airport Road (Ahmedabad)</option>
+                <option value="gandhinagar-sec27">Sector 21 to 28 / Infocity / CH Road (Gandhinagar)</option>
+                <option value="gandhinagar-adalaj">Adalaj / Tri Mandir / Koba Highway (Gandhinagar)</option>
+                <option value="rajkot-trikon">Trikon Baug / Race Course (Rajkot)</option>
+                <option value="junagadh-majewadi">Majewadi Gate / Girnar Foothills (Junagadh)</option>
+                <option value="navsari-dhanori">Khaparia / Dhanori Highway (Navsari)</option>
+                <option value="bilimora-town">Bilimora Town / Coastal Corridor (Bilimora)</option>
+                <option value="kutch-gandhidham">Gandhidham Port / Kandla (Kutch)</option>
+              </select>
+            </div>
+            <button class="btn-tool-search" id="btn-find-station">
+              <i class="fa-solid fa-building-shield"></i> Locate Station
+            </button>
+          </div>
+
+          <div id="station-result-box" class="station-result-box" style="display: none;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 2: CITIZEN SERVICES MATRIX
+       ========================================== -->
+  <section id="services" class="section-block">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-kicker"><i class="fa-solid fa-hand-holding-hand"></i> Citizen Facilitation</span>
+        <h2 class="section-heading">Gujarat Police Digital Services</h2>
+        <p class="section-subtext">Quick, transparent, and hassle-free police services delivered under the Gujarat Digital Governance charter.</p>
+      </div>
+
+      <div class="services-modern-grid">
+        <!-- Service 1 -->
+        <div class="service-tile">
+          <div class="tile-icon-box bg-blue"><i class="fa-solid fa-car-burst"></i></div>
+          <h3>Lost &amp; Stolen Vehicle Intimation</h3>
+          <p>Submit immediate vehicle theft details with chassis/registration plate. Instantly feeds into state ANPR CCTV cameras for automated tracking.</p>
+          <a href="#report" class="tile-action-link">File Report Online <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-tile">
+          <div class="tile-icon-box bg-pink"><i class="fa-solid fa-shield-heart"></i></div>
+          <h3>SHE Team &amp; Women Protection</h3>
+          <p>Confidential grievance redressal, domestic safety support, and 24x7 emergency transit escort services across all 33 Gujarat districts.</p>
+          <a href="tel:1091" class="tile-action-link">Contact 1091 Helpline <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-tile">
+          <div class="tile-icon-box bg-green"><i class="fa-solid fa-person-cane"></i></div>
+          <h3>"Pranam" Senior Citizen Safety</h3>
+          <p>Special registration program for elderly residents living alone. Local Beat Constables conduct regular security visits and health wellness checks.</p>
+          <a href="javascript:void(0)" onclick="showCustomAlert('Senior Citizen Pranam Program', 'Please visit your nearest police station or dial 112 for immediate onboarding and beat constable wellness visits.', 'info')" class="tile-action-link">Register Senior Citizen <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-tile">
+          <div class="tile-icon-box bg-purple"><i class="fa-solid fa-id-card-clip"></i></div>
+          <h3>Tenant &amp; Domestic Help Verification</h3>
+          <p>Verify domestic workers, drivers, security personnel, and rental tenants easily through online police background verification records.</p>
+          <a href="javascript:void(0)" onclick="showCustomAlert('eGujCop Verification Portal', 'Online verification forms and digital submission are available via police.gujarat.gov.in and your local Citizen Facilitation Center.', 'info')" class="tile-action-link">Verify Records <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-tile">
+          <div class="tile-icon-box bg-amber"><i class="fa-solid fa-certificate"></i></div>
+          <h3>Police Clearance Certificate (PCC)</h3>
+          <p>Apply for employment, passport, emigration, and commercial contractor police clearance certificates with digital status tracking.</p>
+          <a href="javascript:void(0)" onclick="showCustomAlert('PCC Digital Portal', 'Track PCC application status with your token ID at police.gujarat.gov.in or contact your District Special Branch (DSB).', 'info')" class="tile-action-link">Track PCC Status <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-tile">
+          <div class="tile-icon-box bg-cyan"><i class="fa-solid fa-shield-virus"></i></div>
+          <h3>Cyber Crime &amp; Financial Scam Portal</h3>
+          <p>Immediate intimation for UPI frauds, phishing, banking theft, and social media harassment. Instant coordinate freeze via 1930 protocol.</p>
+          <a href="https://cybercrime.gov.in" target="_blank" class="tile-action-link">National Cyber Portal <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 3: LIVE HIGHWAY TRAFFIC BULLETIN
+       ========================================== -->
+  <section id="traffic" class="section-block">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-kicker"><i class="fa-solid fa-traffic-light"></i> Real-Time Mobility Grid</span>
+        <h2 class="section-heading">State Highway &amp; Corridor Traffic Bulletin</h2>
+        <p class="section-subtext">Live condition updates and speed advisories across major expressway arteries monitored by highway CCTV patrol units.</p>
+      </div>
+
+      <!-- City / Region Filter Buttons -->
+      <div class="traffic-city-selector" id="traffic-city-filters">
+        <button class="city-btn active" data-city="ALL">All Corridors</button>
+        <button class="city-btn" data-city="AHMEDABAD">Ahmedabad</button>
+        <button class="city-btn" data-city="GANDHINAGAR">Gandhinagar</button>
+        <button class="city-btn" data-city="VADODARA">Vadodara - Surat NH-48</button>
+        <button class="city-btn" data-city="RAJKOT">Saurashtra / Rajkot</button>
+        <button class="city-btn" data-city="COASTAL">Coastal Belt</button>
+      </div>
+
+      <!-- Corridors Grid -->
+      <div class="corridors-grid" id="corridors-grid-container">
+        <!-- Card 1 -->
+        <div class="corridor-card status-smooth" data-region="AHMEDABAD">
+          <div class="corridor-card-top">
+            <span class="status-badge-chip green"><i class="fa-solid fa-circle-check"></i> NORMAL FLOW</span>
+            <span class="corridor-speed-tag"><i class="fa-solid fa-gauge-high"></i> Avg: 65 km/h</span>
+          </div>
+          <h4>S.G. Highway Express Corridor</h4>
+          <p class="corridor-route"><i class="fa-solid fa-route"></i> Iskcon Cross Rd &harr; Vaishnodevi Circle (22.4 km)</p>
+          <div class="corridor-meta">
+            <span><i class="fa-solid fa-car-on"></i> 4 Active Highway Patrols</span>
+            <span><i class="fa-solid fa-clock"></i> Updated: Just now</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="corridor-card status-caution" data-region="AHMEDABAD">
+          <div class="corridor-card-top">
+            <span class="status-badge-chip yellow"><i class="fa-solid fa-triangle-exclamation"></i> MODERATE DELAY</span>
+            <span class="corridor-speed-tag"><i class="fa-solid fa-gauge-high"></i> Avg: 35 km/h</span>
+          </div>
+          <h4>SP Ring Road • South Bypass</h4>
+          <p class="corridor-route"><i class="fa-solid fa-route"></i> Sanathal Circle &harr; Odhav Ring Rd (18.1 km)</p>
+          <div class="corridor-meta">
+            <span><i class="fa-solid fa-truck"></i> Heavy Commercial Flow</span>
+            <span><i class="fa-solid fa-clock"></i> Updated: 2 mins ago</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="corridor-card status-smooth" data-region="GANDHINAGAR">
+          <div class="corridor-card-top">
+            <span class="status-badge-chip green"><i class="fa-solid fa-circle-check"></i> CLEAR FLOW</span>
+            <span class="corridor-speed-tag"><i class="fa-solid fa-gauge-high"></i> Avg: 72 km/h</span>
+          </div>
+          <h4>Koba &ndash; Gandhinagar Capital Highway</h4>
+          <p class="corridor-route"><i class="fa-solid fa-route"></i> Koba Circle &harr; CH-0 Road (14.2 km)</p>
+          <div class="corridor-meta">
+            <span><i class="fa-solid fa-car-on"></i> Capital Escort Patrol</span>
+            <span><i class="fa-solid fa-clock"></i> Updated: Just now</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="corridor-card status-smooth" data-region="VADODARA">
+          <div class="corridor-card-top">
+            <span class="status-badge-chip green"><i class="fa-solid fa-circle-check"></i> NORMAL FLOW</span>
+            <span class="corridor-speed-tag"><i class="fa-solid fa-gauge-high"></i> Avg: 85 km/h</span>
+          </div>
+          <h4>NE-1 Ahmedabad &ndash; Vadodara Expressway</h4>
+          <p class="corridor-route"><i class="fa-solid fa-route"></i> CTM Toll Plaza &harr; Vadodara Bypass (93.2 km)</p>
+          <div class="corridor-meta">
+            <span><i class="fa-solid fa-shield-halved"></i> 8 Expressway Interceptor Vans</span>
+            <span><i class="fa-solid fa-clock"></i> Updated: Just now</span>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="corridor-card status-smooth" data-region="RAJKOT">
+          <div class="corridor-card-top">
+            <span class="status-badge-chip green"><i class="fa-solid fa-circle-check"></i> CLEAR FLOW</span>
+            <span class="corridor-speed-tag"><i class="fa-solid fa-gauge-high"></i> Avg: 60 km/h</span>
+          </div>
+          <h4>Rajkot &ndash; Gondal National Highway 27</h4>
+          <p class="corridor-route"><i class="fa-solid fa-route"></i> Shapar Veraval &harr; Gondal Chowkadi (28.6 km)</p>
+          <div class="corridor-meta">
+            <span><i class="fa-solid fa-car-on"></i> Saurashtra Range PCR Active</span>
+            <span><i class="fa-solid fa-clock"></i> Updated: 4 mins ago</span>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="corridor-card status-smooth" data-region="COASTAL">
+          <div class="corridor-card-top">
+            <span class="status-badge-chip green"><i class="fa-solid fa-circle-check"></i> CLEAR FLOW</span>
+            <span class="corridor-speed-tag"><i class="fa-solid fa-gauge-high"></i> Avg: 65 km/h</span>
+          </div>
+          <h4>Surat &ndash; Navsari &ndash; Bilimora Coastal Link</h4>
+          <p class="corridor-route"><i class="fa-solid fa-route"></i> Sachin GIDC &harr; Bilimora Town Port (45.8 km)</p>
+          <div class="corridor-meta">
+            <span><i class="fa-solid fa-sailboat"></i> Coastal Marine Police Beat</span>
+            <span><i class="fa-solid fa-clock"></i> Updated: Just now</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 4: VEHICLE THEFT e-INTIMATION DESK
+       ========================================== -->
+  <section id="report" class="section-block">
+    <div class="container">
+      <div class="report-box-wrapper">
+        <div class="report-box-header">
+          <div class="report-icon-emblem"><i class="fa-solid fa-file-shield"></i></div>
+          <div>
+            <span class="report-kicker"><i class="fa-solid fa-satellite-dish"></i> DIRECT ANPR GRID SYNCHRONIZATION</span>
+            <h3 class="report-heading">Vehicle Theft &amp; Lost Property e-Intimation</h3>
+            <p class="report-desc">Submit immediate vehicle theft details. Once submitted, the license plate is instantly synchronized across all 80,000+ state CCTV cameras and interceptor patrol cruisers.</p>
+          </div>
+        </div>
+
+        <form id="public-intimation-form" class="modern-report-form">
+          <!-- Statutory Fraud Prevention Notice -->
+          <div class="authenticity-callout">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              <strong>Statutory Verification & Fraud Prevention Notice:</strong> In compliance with Gujarat Police Vigilance Directives, complete technical credentials (Chassis VIN, Engine No, RC Number) and verifiable ownership proof documents must be submitted. All entries are cross-referenced with VAHAN / SARTHI / CCTNS registries before activating statewide ANPR hotlist alarms.
+            </div>
+          </div>
+
+          <!-- Section 1: Vehicle Identification & Authenticity -->
+          <div class="form-section-header">
+            <div class="form-section-title">
+              <i class="fa-solid fa-car"></i> 1. Vehicle Identification &amp; Technical Authenticity
+            </div>
+            <span class="section-required-badge">Mandatory Verification</span>
+          </div>
+
+          <div class="form-grid-4">
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-hashtag"></i> Registration Number *</label>
+              <input type="text" id="int-plate" class="custom-input plate-input" required placeholder="e.g. GJ01AB1234 / 22BH1234AA" minlength="4" maxlength="14" style="text-transform: uppercase;">
+              <span class="input-hint">Standard, Bharat (BH), Commercial, EV or Defense</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-file-invoice"></i> RC SmartCard Number *</label>
+              <input type="text" id="int-rc-number" class="custom-input" required placeholder="e.g. GJ01-2022-004492" minlength="8" maxlength="24" style="text-transform: uppercase;">
+              <span class="input-hint">Printed on Vehicle Registration Certificate</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-fingerprint"></i> Chassis / VIN Number *</label>
+              <input type="text" id="int-chassis" class="custom-input plate-input" required placeholder="17-Digit VIN (No I, O, Q)" minlength="17" maxlength="17" style="text-transform: uppercase;">
+              <span class="input-hint">Exact 17 characters stamped on vehicle frame</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-gears"></i> Engine Number *</label>
+              <input type="text" id="int-engine" class="custom-input plate-input" required placeholder="e.g. G4LA9823412" minlength="6" maxlength="16" style="text-transform: uppercase;">
+              <span class="input-hint">Stamped on engine cylinder block</span>
+            </div>
+          </div>
+
+          <div class="form-grid-4">
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-list-check"></i> Vehicle Class *</label>
+              <select id="int-category" class="custom-input custom-select" required>
+                <option value="Four-Wheeler / Car / SUV" selected>Four-Wheeler / Passenger Car / SUV</option>
+                <option value="Two-Wheeler (Motorcycle / Scooter)">Two-Wheeler (Motorcycle / Scooter)</option>
+                <option value="Commercial Truck / Multi-Axle HGV">Commercial Truck / Multi-Axle HGV</option>
+                <option value="Auto-Rickshaw / LCV">Auto-Rickshaw / Light Commercial Vehicle</option>
+                <option value="Electric Vehicle (EV)">Electric Vehicle (EV Green Plate)</option>
+                <option value="Commercial Taxi / Passenger Transport">Commercial Taxi / Transport (Yellow Plate)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-car-side"></i> Make, Model &amp; Variant *</label>
+              <input type="text" id="int-make" class="custom-input" required placeholder="e.g. Hyundai Creta SX 1.5L / Honda Activa 6G" minlength="3" maxlength="60">
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-palette"></i> Vehicle Color *</label>
+              <input type="text" id="int-color" class="custom-input" required placeholder="e.g. Polar White / Phantom Black / Silver" minlength="3" maxlength="30">
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-calendar-day"></i> Registration / Mfg Date *</label>
+              <input type="date" id="int-reg-date" class="custom-input" required min="1970-01-01">
+            </div>
+          </div>
+
+          <!-- Section 2: Owner Verification & Complainant Profile -->
+          <div class="form-section-divider">
+            <div class="form-section-header">
+              <div class="form-section-title">
+                <i class="fa-solid fa-user-shield"></i> 2. Registered Owner &amp; Complainant Profile
+              </div>
+              <span class="section-required-badge">KYC Authenticated</span>
+            </div>
+          </div>
+
+          <div class="form-grid-4">
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-user"></i> Owner Full Legal Name *</label>
+              <input type="text" id="int-name" class="custom-input" required placeholder="Full Name as printed on RC" minlength="3" maxlength="70">
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-user-group"></i> Father's / Husband's Name *</label>
+              <input type="text" id="int-guardian" class="custom-input" required placeholder="Guardian / Father Full Name" minlength="3" maxlength="70">
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-id-card"></i> Owner Government ID Type *</label>
+              <select id="int-id-type" class="custom-input custom-select" required>
+                <option value="Aadhaar Card" selected>Aadhaar Card (12-Digit UIDAI)</option>
+                <option value="PAN Card">PAN Card (10-Digit NSDL)</option>
+                <option value="Driving License">Driving License (SARTHI)</option>
+                <option value="Voter ID (EPIC)">Election Voter ID Card (EPIC)</option>
+                <option value="Passport">Indian Passport</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-shield"></i> Govt ID Number *</label>
+              <input type="text" id="int-id-number" class="custom-input" required placeholder="e.g. 12-Digit Aadhaar / 10-Digit PAN" minlength="8" maxlength="20" style="text-transform: uppercase;">
+            </div>
+          </div>
+
+          <div class="form-grid-4">
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-phone"></i> Contact Mobile (OTP Enabled) *</label>
+              <input type="tel" id="int-phone" class="custom-input" required placeholder="10-Digit Mobile (starts 6-9)" pattern="^[6-9][0-9]{9}$" maxlength="10" inputmode="numeric">
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-phone-volume"></i> Alternate Emergency Mobile</label>
+              <input type="tel" id="int-alt-phone" class="custom-input" placeholder="Alternate 10-Digit Mobile" pattern="^[6-9][0-9]{9}$" maxlength="10" inputmode="numeric">
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-envelope"></i> Citizen Email Address *</label>
+              <input type="email" id="int-email" class="custom-input" required placeholder="citizen@domain.com">
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-file-shield"></i> Insurance Policy &amp; Insurer</label>
+              <input type="text" id="int-insurance" class="custom-input" placeholder="e.g. New India Assurance - POL-99214" maxlength="50">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label"><i class="fa-solid fa-house"></i> Permanent Residential / Communication Address in Gujarat *</label>
+            <input type="text" id="int-address" class="custom-input" required placeholder="House/Flat No, Society/Street, Area, City/Taluka, Pincode" minlength="15" maxlength="180">
+          </div>
+
+          <!-- Section 3: Incident Details & Police Jurisdiction -->
+          <div class="form-section-divider">
+            <div class="form-section-header">
+              <div class="form-section-title">
+                <i class="fa-solid fa-location-crosshairs"></i> 3. Incident Timeline &amp; Police Jurisdiction
+              </div>
+              <span class="section-required-badge">Surveillance Mapping</span>
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-clock"></i> Date &amp; Time of Theft / Last Seen *</label>
+              <input type="datetime-local" id="int-theft-time" class="custom-input" required>
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-building-shield"></i> District / Commissionerate *</label>
+              <select id="int-district" class="custom-input custom-select" required>
+                <option value="Ahmedabad City" selected>Ahmedabad City Police</option>
+                <option value="Gandhinagar District">Gandhinagar District Police</option>
+                <option value="Surat City">Surat City Police</option>
+                <option value="Vadodara City">Vadodara City Police</option>
+                <option value="Rajkot City">Rajkot City Police</option>
+                <option value="Bhavnagar District">Bhavnagar District Police</option>
+                <option value="Jamnagar District">Jamnagar District Police</option>
+                <option value="Junagadh District">Junagadh District Police</option>
+                <option value="Kutch East & West">Kutch (Gandhidham / Bhuj)</option>
+                <option value="Mehsana District">Mehsana District Police</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-building"></i> Nearest Police Station Jurisdiction *</label>
+              <input type="text" id="int-police-station" class="custom-input" required placeholder="e.g. Navrangpura / Vastrapur / Sector 7" minlength="3" maxlength="60">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-location-dot"></i> Exact Theft Location / Landmark / Parking Area *</label>
+              <input type="text" id="int-location" class="custom-input" required placeholder="e.g. Outside Alpha One Mall, Vastrapur Lake Road" minlength="8" maxlength="150">
+            </div>
+            <div class="input-group">
+              <label class="input-label"><i class="fa-solid fa-file-signature"></i> Existing Station Diary / GD Entry (Optional)</label>
+              <input type="text" id="int-fir" class="custom-input" placeholder="e.g. GD Entry No. 42/2026 or Pending" maxlength="40">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label"><i class="fa-solid fa-align-left"></i> Distinctive Vehicle Identifying Marks / Accessories</label>
+            <textarea id="int-desc" class="custom-input custom-textarea" rows="2" placeholder="Dent on rear boot, customized chrome alloy rims, black roof wrap, front bumper scratch, GPS tracker model, decals, etc."></textarea>
+          </div>
+
+          <!-- Section 4: Mandatory Document & Ownership Proof Uploads -->
+          <div class="form-section-divider">
+            <div class="form-section-header">
+              <div class="form-section-title">
+                <i class="fa-solid fa-cloud-arrow-up"></i> 4. Mandatory Document &amp; Vehicle Proof Uploads
+              </div>
+              <span id="proof-counter" class="proof-counter">
+                <i class="fa-solid fa-circle-info"></i> Minimum 2 Proofs Required
+              </span>
+            </div>
+          </div>
+
+          <div class="proof-upload-container">
+            <input type="file" id="int-proof-files" multiple accept="image/jpeg,image/png,image/webp,application/pdf" style="display: none;">
+            
+            <div id="proof-dropzone" class="proof-upload-dropzone">
+              <div class="proof-dropzone-icon">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+              </div>
+              <div class="proof-dropzone-title">Click or Drag &amp; Drop Ownership Proofs &amp; Vehicle Photos</div>
+              <div class="proof-dropzone-sub">
+                Upload clear photographs of: <strong>1. Vehicle RC Smart Card</strong>, <strong>2. Owner Aadhaar / DL</strong>, and <strong>3. Actual Vehicle Photos</strong> (showing registration plate or distinct modifications) to legally substantiate ownership.
+              </div>
+              <button type="button" class="btn-browse-proofs" id="btn-browse-proofs">
+                <i class="fa-solid fa-folder-open"></i> Browse Files from Device
+              </button>
+              <div class="proof-dropzone-formats">Accepted Formats: JPG, PNG, WEBP, PDF (Max 5MB each)</div>
+            </div>
+
+            <!-- Uploaded Proof Cards Grid -->
+            <div id="proof-preview-grid" class="proof-preview-grid"></div>
+          </div>
+
+          <!-- Section 5: Legal Declaration & Submission -->
+          <div class="form-section-divider">
+            <div class="declaration-box">
+              <input type="checkbox" id="int-declaration" required>
+              <label for="int-declaration" class="declaration-text">
+                <strong>Solemn Statutory Declaration of Ownership:</strong> I hereby affirm and declare under penalty of law that I am the legal owner / authorized custodian of the vehicle detailed above, and all submitted identification, RC credentials, and photographs are genuine. I understand that submitting false or fabricated theft intimations to the Gujarat Police ANPR matrix constitutes a cognizable criminal offence under <strong>Section 199/200 IPC</strong> and <strong>Section 379/411 Bharatiya Nyaya Sanhita (BNS)</strong>.
+                <div class="declaration-cite"><i class="fa-solid fa-shield-halved"></i> Digitally Recorded with IP Address, Timestamp &amp; Section 65B Indian Evidence Act Hash</div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-action-row">
+            <button type="submit" class="btn-submit-intimation">
+              <i class="fa-solid fa-satellite-dish"></i> Submit Authenticated e-Intimation to Police Grid
+            </button>
+            <div class="form-security-note">
+              <i class="fa-solid fa-lock"></i> 256-Bit Encrypted &bull; Direct Statewide ANPR Interceptor Sync
+            </div>
+          </div>
+        </form>
+
+        <!-- Dynamic Success Receipt Modal Box -->
+        <div id="receipt-modal-card" class="receipt-success-card" style="display: none;">
+          <div class="receipt-header">
+            <i class="fa-solid fa-circle-check receipt-check"></i>
+            <div>
+              <h3>e-Intimation Lodged Successfully</h3>
+              <p>Your report has been broadcast to the statewide ANPR CCTV camera surveillance matrix.</p>
+            </div>
+          </div>
+          <div id="receipt-details-content" class="receipt-details-box"></div>
+          <div class="receipt-actions">
+            <button class="btn-print-receipt" onclick="window.printStolenVehicleDocument()"><i class="fa-solid fa-file-pdf"></i> Download Official Pre-FIR Docket (PDF)</button>
+            <button class="btn-dismiss-receipt" id="btn-dismiss-receipt"><i class="fa-solid fa-check"></i> Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 5: COMMISSIONERATE & POLICE DIRECTORY
+       ========================================== -->
+  <section id="stations" class="section-block">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-kicker"><i class="fa-solid fa-building-shield"></i> State Headquarters</span>
+        <h2 class="section-heading">Police Headquarters &amp; Control Rooms</h2>
+        <p class="section-subtext">Direct 24x7 control room contact details across key Gujarat police commissionerates.</p>
+      </div>
+
+      <div class="stations-grid">
+        <!-- Ahmedabad -->
+        <div class="station-card">
+          <div class="station-card-top">
+            <div class="station-badge-icon"><i class="fa-solid fa-building-flag"></i></div>
+            <span class="station-city-tag">AHMEDABAD CITY</span>
+          </div>
+          <h4>Ahmedabad City Police Commissionerate</h4>
+          <p class="station-addr"><i class="fa-solid fa-location-dot"></i> Police Commissioner Office, Shahibaug, Ahmedabad - 380004</p>
+          <div class="station-phones">
+            <a href="tel:07925630100"><i class="fa-solid fa-phone"></i> 079-25630100</a>
+            <a href="tel:112"><i class="fa-solid fa-phone-volume"></i> Dial 112</a>
+          </div>
+        </div>
+
+        <!-- Gandhinagar -->
+        <div class="station-card">
+          <div class="station-card-top">
+            <div class="station-badge-icon"><i class="fa-solid fa-building-flag"></i></div>
+            <span class="station-city-tag">GANDHINAGAR</span>
+          </div>
+          <h4>Gandhinagar District Police Bhavan</h4>
+          <p class="station-addr"><i class="fa-solid fa-location-dot"></i> Sector 27, Police Bhavan, Gandhinagar - 382027</p>
+          <div class="station-phones">
+            <a href="tel:07923210100"><i class="fa-solid fa-phone"></i> 079-23210100</a>
+            <a href="tel:112"><i class="fa-solid fa-phone-volume"></i> Dial 112</a>
+          </div>
+        </div>
+
+        <!-- Surat -->
+        <div class="station-card">
+          <div class="station-card-top">
+            <div class="station-badge-icon"><i class="fa-solid fa-building-flag"></i></div>
+            <span class="station-city-tag">SURAT CITY</span>
+          </div>
+          <h4>Surat City Police Commissionerate</h4>
+          <p class="station-addr"><i class="fa-solid fa-location-dot"></i> Athwalines, Surat Police Bhavan, Surat - 395001</p>
+          <div class="station-phones">
+            <a href="tel:02612244100"><i class="fa-solid fa-phone"></i> 0261-2244100</a>
+            <a href="tel:112"><i class="fa-solid fa-phone-volume"></i> Dial 112</a>
+          </div>
+        </div>
+
+        <!-- Rajkot -->
+        <div class="station-card">
+          <div class="station-card-top">
+            <div class="station-badge-icon"><i class="fa-solid fa-building-flag"></i></div>
+            <span class="station-city-tag">RAJKOT CITY</span>
+          </div>
+          <h4>Rajkot City Police Headquarters</h4>
+          <p class="station-addr"><i class="fa-solid fa-location-dot"></i> Race Course Ring Road, Rajkot - 360001</p>
+          <div class="station-phones">
+            <a href="tel:02812457100"><i class="fa-solid fa-phone"></i> 0281-2457100</a>
+            <a href="tel:112"><i class="fa-solid fa-phone-volume"></i> Dial 112</a>
+          </div>
+        </div>
+
+        <!-- Junagadh -->
+        <div class="station-card">
+          <div class="station-card-top">
+            <div class="station-badge-icon"><i class="fa-solid fa-building-flag"></i></div>
+            <span class="station-city-tag">JUNAGADH</span>
+          </div>
+          <h4>Junagadh District Police Headquarters</h4>
+          <p class="station-addr"><i class="fa-solid fa-location-dot"></i> SP Office, Bilkha Road, Junagadh - 362001</p>
+          <div class="station-phones">
+            <a href="tel:02852620033"><i class="fa-solid fa-phone"></i> 0285-2620033</a>
+            <a href="tel:112"><i class="fa-solid fa-phone-volume"></i> Dial 112</a>
+          </div>
+        </div>
+
+        <!-- Kutch Border -->
+        <div class="station-card">
+          <div class="station-card-top">
+            <div class="station-badge-icon"><i class="fa-solid fa-building-flag"></i></div>
+            <span class="station-city-tag">KUTCH RANGE</span>
+          </div>
+          <h4>Kutch Border Range Police Headquarters</h4>
+          <p class="station-addr"><i class="fa-solid fa-location-dot"></i> SP Office Road, Bhuj, Kutch - 370001</p>
+          <div class="station-phones">
+            <a href="tel:02832250100"><i class="fa-solid fa-phone"></i> 02832-250100</a>
+            <a href="tel:112"><i class="fa-solid fa-phone-volume"></i> Dial 112</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 6: CITIZEN FAQS & RIGHTS
+       ========================================== -->
+  <section id="advisories" class="section-block">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-kicker"><i class="fa-solid fa-circle-question"></i> Public Knowledgebase</span>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <p class="section-subtext">Clear answers on vehicle theft intimation, cyber fraud golden hour protocol, and emergency response rights.</p>
+      </div>
+
+      <div class="accordion-container">
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <button class="faq-toggle">
+            <span><i class="fa-solid fa-car-burst"></i> What happens after I submit a Vehicle Theft e-Intimation?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p>Once you submit your vehicle registration plate and details through this portal, our automated backend immediately flags the plate in the central ANPR CCTV matrix across all 33 districts. The moment the suspect vehicle passes any highway or municipal camera checkpoint, an audio-visual alert with live GPS coordinates is dispatched to the nearest police control room.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <button class="faq-toggle">
+            <span><i class="fa-solid fa-hourglass-start"></i> What is the "Golden Hour" in cyber fraud cases (1930 Helpline)?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p>The "Golden Hour" refers to the critical first 2 to 4 hours immediately following an unauthorized online banking, UPI, or credit card transaction. Calling <strong>1930</strong> immediately enables the National Cyber Crime Reporting Portal to trigger automated API liens with commercial banks and payment gateways to freeze funds before they are withdrawn by fraudsters.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <button class="faq-toggle">
+            <span><i class="fa-solid fa-person-dress"></i> How does the 1091 SHE Team assist women in emergencies?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-content">
+            <p>SHE Teams operate across all cities and rural talukas in Gujarat. They are specialized units led by women police officers trained to handle harassment, stalking, eve-teasing, and domestic distress. Women traveling alone late at night can also contact 1091 to request patrol vehicle accompaniment or live GPS tracking until they reach home safely.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       EMERGENCY SOS INTERACTIVE MODALS
+       ========================================== -->
+
+  <!-- Modal 1: 112 Police Emergency -->
+  <div class="pub-modal-backdrop" id="modal-sos-police">
+    <div class="pub-modal-window">
+      <div class="pub-modal-header border-red">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="pub-modal-badge bg-red"><i class="fa-solid fa-phone-volume"></i></div>
+          <div>
+            <span class="pub-modal-kicker text-red">24x7 ALL-IN-ONE STATE EMERGENCY</span>
+            <h3 class="pub-modal-title">Dial 112 / 100 — Integrated Emergency Response</h3>
+          </div>
+        </div>
+        <button class="pub-modal-close" data-close="modal-sos-police">&times;</button>
+      </div>
+      <div class="pub-modal-body">
+        <div class="modal-info-box">
+          <p><strong>Emergency Response Support System (ERSS 112)</strong> is Gujarat's unified emergency number connecting citizens to Police, Fire, and Medical assistance within seconds.</p>
+        </div>
+        <div class="modal-features-list">
+          <div class="modal-feat-item">
+            <i class="fa-solid fa-car-on text-accent"></i>
+            <div>
+              <strong>GPS-Enabled PCR Patrol Dispatch</strong>
+              <p>Automatically identifies the nearest patrol cruiser van with an average urban response time under 8 minutes.</p>
+            </div>
+          </div>
+          <div class="modal-feat-item">
+            <i class="fa-solid fa-tower-broadcast text-accent"></i>
+            <div>
+              <strong>Multi-Agency Interconnection</strong>
+              <p>Single-touch simultaneous dispatch for Police (100), Ambulance (108), and Fire Services (101).</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-cta-row">
+          <a href="tel:112" class="btn-modal-action bg-red"><i class="fa-solid fa-phone-volume"></i> Call 112 (Toll Free)</a>
+          <a href="tel:100" class="btn-modal-action bg-blue"><i class="fa-solid fa-phone"></i> Call 100</a>
+          <a href="#stations" class="btn-modal-action btn-outline" data-close="modal-sos-police"><i class="fa-solid fa-building-shield"></i> View Control Rooms</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: 1091 SHE Team Women Safety -->
+  <div class="pub-modal-backdrop" id="modal-sos-she">
+    <div class="pub-modal-window">
+      <div class="pub-modal-header border-pink">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="pub-modal-badge bg-pink"><i class="fa-solid fa-person-dress"></i></div>
+          <div>
+            <span class="pub-modal-kicker text-pink">CONFIDENTIAL WOMEN ASSISTANCE</span>
+            <h3 class="pub-modal-title">Dial 1091 — SHE Team Women Protection Hub</h3>
+          </div>
+        </div>
+        <button class="pub-modal-close" data-close="modal-sos-she">&times;</button>
+      </div>
+      <div class="pub-modal-body">
+        <div class="modal-info-box">
+          <p><strong>SHE Teams</strong> operate across all 33 Gujarat districts, led by dedicated women officers providing swift, empathetic, and confidential assistance to women and children in distress.</p>
+        </div>
+        <div class="modal-features-list">
+          <div class="modal-feat-item">
+            <i class="fa-solid fa-shield-heart text-pink"></i>
+            <div>
+              <strong>Late-Night Transit Escort Support</strong>
+              <p>Women traveling alone late at night can request emergency patrol accompaniment or continuous GPS tracking.</p>
+            </div>
+          </div>
+          <div class="modal-feat-item">
+            <i class="fa-solid fa-user-shield text-pink"></i>
+            <div>
+              <strong>Action Against Stalking &amp; Eve-Teasing</strong>
+              <p>Strict undercover deployment at public transit hubs, colleges, industrial zones, and bus terminals.</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-cta-row">
+          <a href="tel:1091" class="btn-modal-action bg-pink"><i class="fa-solid fa-phone-volume"></i> Call 1091 (Toll Free)</a>
+          <a href="tel:112" class="btn-modal-action bg-red"><i class="fa-solid fa-shield-halved"></i> Dial 112 for Urgent PCR</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: 1930 Cyber Crime Cell -->
+  <div class="pub-modal-backdrop" id="modal-sos-cyber">
+    <div class="pub-modal-window">
+      <div class="pub-modal-header border-blue">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="pub-modal-badge bg-blue"><i class="fa-solid fa-desktop"></i></div>
+          <div>
+            <span class="pub-modal-kicker text-accent">FINANCIAL CYBER FRAUD PROTOCOL</span>
+            <h3 class="pub-modal-title">Dial 1930 — National Cyber Crime Helpline</h3>
+          </div>
+        </div>
+        <button class="pub-modal-close" data-close="modal-sos-cyber">&times;</button>
+      </div>
+      <div class="pub-modal-body">
+        <div class="modal-info-box">
+          <p><strong>Dial 1930 within the "Golden Hour" (first 2-4 hours)</strong> after an unauthorized banking or UPI transaction to immediately lien and freeze fraudulent accounts before funds can be siphoned.</p>
+        </div>
+        <div class="modal-features-list">
+          <div class="modal-feat-item">
+            <i class="fa-solid fa-hourglass-start text-accent"></i>
+            <div>
+              <strong>The Golden Hour Direct Bank Interception</strong>
+              <p>Real-time API integration with 150+ Indian banks, payment gateways, and UPI platforms to halt cash withdrawals.</p>
+            </div>
+          </div>
+          <div class="modal-feat-item">
+            <i class="fa-solid fa-list-check text-accent"></i>
+            <div>
+              <strong>What to Keep Ready When Calling 1930:</strong>
+              <p>1. Transaction UTR / Reference Number &amp; Date/Time<br>
+                 2. Beneficiary Account / UPI ID / Phone Number<br>
+                 3. Bank Account Number &amp; Debit Card Last 4 Digits</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-cta-row">
+          <a href="tel:1930" class="btn-modal-action bg-blue"><i class="fa-solid fa-phone-volume"></i> Call 1930 (Helpline)</a>
+          <a href="https://cybercrime.gov.in" target="_blank" class="btn-modal-action btn-outline"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open cybercrime.gov.in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: 1095 State Traffic Control -->
+  <div class="pub-modal-backdrop" id="modal-sos-traffic">
+    <div class="pub-modal-window">
+      <div class="pub-modal-header border-amber">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="pub-modal-badge bg-amber"><i class="fa-solid fa-road-circle-exclamation"></i></div>
+          <div>
+            <span class="pub-modal-kicker text-amber">STATE HIGHWAY &amp; ACCIDENT CONTROL</span>
+            <h3 class="pub-modal-title">Dial 1095 — Highway Patrol &amp; Traffic Helpline</h3>
+          </div>
+        </div>
+        <button class="pub-modal-close" data-close="modal-sos-traffic">&times;</button>
+      </div>
+      <div class="pub-modal-body">
+        <div class="modal-info-box">
+          <p><strong>1095 Traffic Control Room</strong> assists motorists facing vehicle breakdowns, highway blockages, road accidents, and dangerous lane violations across all state expressways.</p>
+        </div>
+        <div class="modal-features-list">
+          <div class="modal-feat-item">
+            <i class="fa-solid fa-truck-pickup text-amber"></i>
+            <div>
+              <strong>Emergency Towing &amp; Crane Clearance</strong>
+              <p>Fast-track clearance of broken down heavy commercial trucks and obstructed expressway lanes.</p>
+            </div>
+          </div>
+          <div class="modal-feat-item">
+            <i class="fa-solid fa-truck-medical text-amber"></i>
+            <div>
+              <strong>Accident Trauma Medical Coordination</strong>
+              <p>Direct priority dispatch of highway ambulances (108) and trauma stabilization teams.</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-cta-row">
+          <a href="tel:1095" class="btn-modal-action bg-amber"><i class="fa-solid fa-phone-volume"></i> Call 1095 (Traffic)</a>
+          <a href="tel:1033" class="btn-modal-action bg-blue"><i class="fa-solid fa-road"></i> NHAI Toll Help 1033</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MAIN PUBLIC FOOTER
+       ========================================== -->
+  <footer class="public-footer">
+    <div class="container footer-content">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Logo -->
+        <div class="footer-brand-col">
+          <div class="footer-logo-row">
+            <div class="footer-logo-box">
+              <img src="logo.png" alt="Gujarat Police Sentinel Logo" class="footer-logo-img" width="48" height="48" style="width:48px;height:48px;max-width:48px;max-height:48px;object-fit:contain;display:block;">
+            </div>
+            <div>
+              <h3 class="footer-brand-title">GUJARAT POLICE</h3>
+              <p class="footer-brand-subtitle">SEVA • SURAKSHA • SHANTI</p>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Committed to citizen protection, transparent governance, and statewide safety through modern AI-driven surveillance and public partnership.
+          </p>
+          <div class="footer-state-seal">
+            <span>🇮🇳 Government of Gujarat • Home Department</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Emergency Numbers -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title"><i class="fa-solid fa-phone-volume"></i> Emergency Hotlines</h4>
+          <ul class="footer-nav-list">
+            <li><span class="hotline-pill red">112</span> All-in-One Police &amp; PCR</li>
+            <li><span class="hotline-pill pink">1091</span> Women Helpline (SHE Team)</li>
+            <li><span class="hotline-pill blue">1930</span> Cyber Crime Reporting</li>
+            <li><span class="hotline-pill amber">1095</span> State Traffic Control</li>
+            <li><span class="hotline-pill green">108</span> Emergency Medical Ambulance</li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Citizen Services -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title"><i class="fa-solid fa-shield-halved"></i> Quick Portals</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Citizen Services Hub</a></li>
+            <li><a href="#traffic"><i class="fa-solid fa-angle-right"></i> Live Highway Bulletins</a></li>
+            <li><a href="#report"><i class="fa-solid fa-angle-right"></i> Vehicle Theft e-Intimation</a></li>
+            <li><a href="#stations"><i class="fa-solid fa-angle-right"></i> Police Station Directory</a></li>
+            <li><a href="https://cybercrime.gov.in" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> National Cyber Crime Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Official Portals & Officer Access -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title"><i class="fa-solid fa-landmark"></i> Official Government Links</h4>
+          <ul class="footer-nav-list">
+            <li><a href="https://police.gujarat.gov.in" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Gujarat Police Official Website</a></li>
+            <li><a href="https://gujhome.gujarat.gov.in" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Gujarat Home Department</a></li>
+            <li><a href="https://digitalgujarat.gov.in" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Digital Gujarat Services</a></li>
+            <li style="margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(56,189,248,0.2);">
+              <a href="#" id="btn-footer-officer-login" style="color: #38BDF8; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-user-shield" style="color: #38BDF8;"></i> Officer CIPHER Terminal
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Strip -->
+      <div class="footer-bottom-bar">
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <span>&copy; 2026 Gujarat State Police. All Rights Reserved. Official Portal of Government of Gujarat.</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; background: rgba(56,189,248,0.1); color: #38BDF8; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700;">
+            <i class="fa-solid fa-shield-halved"></i> IT Act 2000 &bull; Section 65B Certified
+          </span>
+        </div>
+        <span>Designed for Citizen Safety, Public Peace &amp; Sovereign Law Enforcement Excellence</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Floating Emergency SOS Quick Dial Action Pill -->
+<div class="floating-sos-widget" id="floating-sos-widget">
+  <div class="floating-sos-panel" id="floating-sos-panel">
+    <span class="floating-panel-title"><i class="fa-solid fa-shield-halved"></i> 24x7 Emergency Hotlines</span>
+    <a href="tel:112" class="float-btn red"><i class="fa-solid fa-phone-volume"></i> 112 Police Emergency</a>
+    <a href="tel:1091" class="float-btn pink"><i class="fa-solid fa-person-dress"></i> 1091 SHE Team (Women)</a>
+    <a href="tel:1930" class="float-btn blue"><i class="fa-solid fa-desktop"></i> 1930 Cyber Crime</a>
+    <a href="tel:108" class="float-btn green"><i class="fa-solid fa-truck-medical"></i> 108 Medical Ambulance</a>
+  </div>
+  <button class="btn-floating-sos" id="btn-toggle-floating-sos" title="Quick Emergency Hotlines">
+    <span class="pulse-ring-sos"></span>
+    <i class="fa-solid fa-phone-volume"></i>
+    <span>EMERGENCY SOS</span>
+  </button>
+</div>
+</div>
+
+<!-- ==========================================
+     OFFICER LOGIN MODAL
+     ========================================== -->
+<div class="custom-dialog-backdrop" id="login-modal-backdrop" style="display: none;">
+  <div class="custom-dialog-box" style="max-width: 400px;">
+    <div class="custom-dialog-header">
+      <div class="custom-dialog-icon icon-info fa-shield-halved">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <div class="custom-dialog-title-wrap">
+        <div class="custom-dialog-title">SENTINEL CIPHER</div>
+        <div class="custom-dialog-subtitle">Authorized Access Only</div>
+      </div>
+    </div>
+    <div class="custom-dialog-body" style="padding-top: 10px;">
+      <div id="login-error-msg" style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; padding: 10px; border-radius: 4px; font-size: 13px; text-align: center; margin-bottom: 15px;">
+        Invalid credentials
+      </div>
+      <form id="officer-login-form">
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; font-size: 11px; font-weight: 700; color: #00e5ff; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Officer ID</label>
+          <input type="text" id="login-username" required placeholder="e.g. admin" style="width: 100%; background: #040b17; border: 1px solid rgba(0,229,255,0.22); border-radius: 4px; padding: 10px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 13px; outline: none; transition: 0.3s;" onfocus="this.style.borderColor='#00e5ff'; this.style.boxShadow='0 0 10px rgba(0,229,255,0.2)'" onblur="this.style.borderColor='rgba(0,229,255,0.22)'; this.style.boxShadow='none'">
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 11px; font-weight: 700; color: #00e5ff; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Passcode</label>
+          <input type="password" id="login-password" required placeholder="••••••••••••" style="width: 100%; background: #040b17; border: 1px solid rgba(0,229,255,0.22); border-radius: 4px; padding: 10px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 13px; outline: none; transition: 0.3s;" onfocus="this.style.borderColor='#00e5ff'; this.style.boxShadow='0 0 10px rgba(0,229,255,0.2)'" onblur="this.style.borderColor='rgba(0,229,255,0.22)'; this.style.boxShadow='none'">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; padding: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+          <i class="fa-solid fa-fingerprint"></i> Authenticate
+        </button>
+        <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #94A3B8;">
+          <span>Test Credentials:</span>
+          <button type="button" onclick="document.getElementById('login-username').value='admin';document.getElementById('login-password').value='password';" style="background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.4); color: #38BDF8; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 10.5px; font-weight: 600;">
+            <i class="fa-solid fa-key"></i> Fill Admin (admin/password)
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <button id="btn-close-login" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 16px;"><i class="fa-solid fa-times"></i></button>
+  </div>
+</div>
+
+<!-- Public Interaction Script -->
+<script src="js/auth.js"></script>
+<script src="public.js"></script>
+</body>
+</html>
